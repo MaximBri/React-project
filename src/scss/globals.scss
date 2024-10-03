@@ -1,0 +1,40 @@
+@import './fonts.scss';
+body{
+  font-size: 14px;
+  line-height: 1.1;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+.App, #root{
+  width: 100%;
+  // min-height: 100vh;
+}
+.container{
+  margin-inline: 10vw;
+}
+
+@media(max-width: 1024px){
+  .container{
+    margin-inline: 8vw;
+  }
+}
+@media(max-width: 768){
+  .container{
+    margin-inline: 5vw;
+  }
+}
+@media(max-width: 576px){
+  .container{
+    margin-inline: 4vw;
+  }
+}
+@media(max-width: 480){
+  .container{
+    margin-inline: 3vw;
+  }
+}
+@media(max-width: 360){
+  .container{
+    margin-inline: 2vw;
+  }
+}
