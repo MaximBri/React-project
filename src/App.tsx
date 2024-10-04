@@ -12,13 +12,13 @@ import './scss/globals.scss'
 function App() {
   return (
     <div className='App'>
-      <BrowserRouter>
+      <BrowserRouter >
         <Provider store={store}>
           <Routes>
             <Route path='/Home' element={<MainLayout />}>
               <Route path='' element={<HomePage />} />
+              <Route path='Authorization' element={<AuthPage />} />
             </Route>
-            <Route path='/Home/Authorization' element={<AuthPage />} />
           </Routes>
         </Provider>
       </BrowserRouter>
