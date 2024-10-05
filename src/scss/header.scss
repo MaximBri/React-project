@@ -13,6 +13,14 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    &_box{
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    &_item{
+      cursor: pointer;
+    }
   }
   &_logo {
     animation: rotate 15s linear infinite;
@@ -43,6 +51,7 @@
     height: 100%;
     padding: 0 20px;
     width: min-content;
+    min-width: 200px;
     text-wrap: nowrap;
   }
   &-inner{
@@ -79,8 +88,19 @@
   }
 }
 
+@media (max-width: 1024px){
+  .header{
+    &__nav{
+      &_box{
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+
 @media (max-width: 576px) {
   .header {
+    padding: 10px 10vw;
     &_logo {
       & > img {
         max-width: 30px;

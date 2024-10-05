@@ -68,6 +68,30 @@
     scale: 1.05;
   }
 }
+.auth{
+  &_success, &_error, &_loading{
+    padding: 20px 10px;
+    max-width: 50vw;
+    background-color: #07ff49;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    >img{
+      max-width: 50px;
+    }
+  }
+  &_error{
+    background-color: #ff1b13;
+  }
+  &_loading{
+    background-color: transparent;
+    >img{
+      max-width: 100px;
+    }
+  }
+}
 @media (max-width: 1200px){
   .auth{
     &__container{

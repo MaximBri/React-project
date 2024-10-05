@@ -3,7 +3,7 @@ import { RootState } from '../store'
 
 const initialState: { isMobile: boolean, width: number } = {
   isMobile: false,
-  width: 0,
+  width: window.innerWidth,
 }
 
 const innerWidth = createSlice({
