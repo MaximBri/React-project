@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/React-project/static/css/main.51c86f64.css",
-    "main.js": "/React-project/static/js/main.9e330f1f.js",
+    "main.css": "/React-project/static/css/main.3dadfb1a.css",
+    "main.js": "/React-project/static/js/main.a8d96471.js",
     "static/media/Montserrat-Bold.woff2": "/React-project/static/media/Montserrat-Bold.b8c6bf231f0ce4cad3c7.woff2",
     "static/media/Montserrat-Regular.woff2": "/React-project/static/media/Montserrat-Regular.812dd4640aaa4e4db7b8.woff2",
     "index.html": "/React-project/index.html",
-    "main.51c86f64.css.map": "/React-project/static/css/main.51c86f64.css.map",
-    "main.9e330f1f.js.map": "/React-project/static/js/main.9e330f1f.js.map"
+    "main.3dadfb1a.css.map": "/React-project/static/css/main.3dadfb1a.css.map",
+    "main.a8d96471.js.map": "/React-project/static/js/main.a8d96471.js.map"
   },
   "entrypoints": [
-    "static/css/main.51c86f64.css",
-    "static/js/main.9e330f1f.js"
+    "static/css/main.3dadfb1a.css",
+    "static/js/main.a8d96471.js"
   ]
 }
