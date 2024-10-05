@@ -19,6 +19,7 @@
     >div{
       padding: 15px;
       transition: all .3s;
+      cursor: pointer;
     }
   }
   &__body{
@@ -58,7 +59,27 @@
 .form_btn{
   padding: 15px;
   border-radius: 5px;
+  font-size: 18px;
   background-color: #3903ff;
   color: #ffffff;
   width: min-content;
+  transition: all .4s;
+  &:hover{
+    scale: 1.05;
+  }
+}
+@media (max-width: 1200px){
+  .auth{
+    &__container{
+      flex-direction: column;
+    }
+  }
+}
+@media (max-width: 576px){
+  .auth{
+    font-size: 14px;
+  }
+  .form_btn{
+    font-size: 14px;
+  }
 }

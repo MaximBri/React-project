@@ -8,17 +8,19 @@ import HomePage from './pages/HomePage'
 import AuthPage from './pages/AuthPage'
 import './scss/reset.css'
 import './scss/globals.scss'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   return (
     <div className='App'>
-      <BrowserRouter >
+      <BrowserRouter>
         <Provider store={store}>
           <Routes>
-            <Route path='/Home' element={<MainLayout />}>
+            <Route path='/React-project' element={<MainLayout />}>
               <Route path='' element={<HomePage />} />
               <Route path='Authorization' element={<AuthPage />} />
             </Route>
+            <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </Provider>
       </BrowserRouter>
