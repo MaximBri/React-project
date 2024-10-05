@@ -20,8 +20,9 @@ const BurgerMenu = () => {
     return () => {
       window.removeEventListener('resize', f)
     }
-  }, [])
-  if (width > 1024) {
+  }, [width])
+  console.log(width, window.innerWidth)
+  if (window.innerWidth > 1024) {
     return (
       <nav className='header__nav'>
         {location.pathname !== '/React-project' && (
@@ -37,7 +38,8 @@ const BurgerMenu = () => {
       </nav>
     )
   }
-  return (
+  else {
+    return (
     <>
       <div onClick={() => setIsOpen(true)} className='burger'>
         <div></div>
@@ -65,6 +67,7 @@ const BurgerMenu = () => {
       </nav>
     </>
   )
+}
 }
 
 export default BurgerMenu
