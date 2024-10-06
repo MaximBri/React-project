@@ -53,6 +53,8 @@
     width: min-content;
     min-width: 200px;
     text-wrap: nowrap;
+    transition: all .3s;
+    transform: translateX(0);
   }
   &-inner{
     height: 100%;
@@ -61,7 +63,6 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    // justify-content: center;
   }
   &_close{
     position: absolute;
@@ -86,6 +87,12 @@
       transform: rotate(135deg);
     }
   }
+}
+
+.hidden-burger{
+  // display: none;
+  transform: translateX(100%);
+  transition: all .3s;
 }
 
 @media (max-width: 1024px){

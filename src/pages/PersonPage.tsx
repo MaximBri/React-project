@@ -1,7 +1,14 @@
 import React from 'react'
 
+import { Person } from '../components'
+
 const PersonPage: React.FC = () => {
-  return <div>PersonPage</div>
+  return (
+    <>
+      <h1>Личный кабинет</h1>
+      <Person />
+    </>
+  )
 }
 
 export default PersonPage

@@ -37,7 +37,7 @@ const BurgerMenu = () => {
           <div></div>
           <div></div>
         </div>
-        <nav className={isOpen ? 'burger-menu' : 'burger-menu hidden'}>
+        <nav className={isOpen ? 'burger-menu' : 'burger-menu hidden-burger'}>
           <div onClick={() => setIsOpen(false)} className='burger_close'>
             <div></div>
             <div></div>

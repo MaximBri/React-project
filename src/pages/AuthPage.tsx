@@ -20,16 +20,34 @@ const AuthPage: React.FC = () => {
     setOption(false)
     setLogin('')
     setPass('')
+    setStateAuth('')
   }
   const setLog = () => {
     setOption(true)
     setLogin('')
     setPass('')
+    setStateAuth('')
   }
-  const entrance = () => {
-    // Логика для входа
+  const entrance = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const body = {
+      login,
+      password: pass,
+    }
+    try {
+      setStateAuth('Loading')
+      const response = await axios.post('https://catsandpies.ru/api/Auth/Login', body, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      setStateAuth('Authorized')
+      console.log(response); 
+    } catch (error :any) {
+      setStateAuth('Error')
+    }
   }
-  const sendForm = async (e: any) => {
+  const sendForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (pass.length < 4) {
       alert('Пароль должен быть длиннее 4 символов')
@@ -39,52 +57,19 @@ const AuthPage: React.FC = () => {
         login,
         password: pass,
       }
-      // try {
-      //   const res = await fetch(
-      //     'http://192.168.242.203:7178/api/Auth/Registration',
-      //     {
-      //       method: 'POST',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(obj),
-      //     }
-      //   )
-      //   console.log(res)
-      // } catch (err) {
-      //   console.log(err)
-      // }
-      setStateAuth('Loading')
-      axios
-        .post('http://192.168.242.203:7178/api/Auth/Registration', {
-          method: 'POST',
+      try {
+        setStateAuth('Loading')
+        const response = await axios.post('https://catsandpies.ru/api/Auth/Registration', body, {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          console.log(res)
-          console.log('Авторизация прошла успешно')
-          dispatch(setAuth(true))
-          setStateAuth('Authorized')
-        })
-        .catch((err) => {
-          console.log(err, 'Авторизация прошла с ошибкой')
-          dispatch(setAuth(true))
-          setStateAuth('Error')
-          // setStateAuth('Authorized')
-        })
-
-      // axios
-      //   .post('http://192.168.242.203:7178/api/Auth/Registration', { data })
-      //   .then((res) => console.log(res))
-      //   .catch((err) => console.log(err))
-
-      // axios
-      //   .get('http://192.168.242.203:7178/api/Account/hello')
-      //   .then((res) => console.log(res))
-      //   .catch((err) => console.log(err))
+        });
+        setStateAuth('Authorized')
+        console.log(response); 
+      } catch (error :any) {
+        if(!error.response.data.data) setStateAuth('Registered')
+        else setStateAuth('Error')
+      }
     }
   }
   return (
@@ -106,11 +91,21 @@ const AuthPage: React.FC = () => {
       )}
       {stateAuth === 'Error' && (
         <div className='auth_error'>
-          <img src={crossSvg} alt='Успешно' />
-          <h2 className='auth_success_text'>Произошла ошибка. Повторите попытку позже</h2>
+          <img src={crossSvg} alt='Ошибка' />
+          <h2 className='auth_success_text'>
+            Произошла ошибка. Повторите попытку позже
+          </h2>
           <Link to='../' className='button'>
             На главную
           </Link>
+        </div>
+      )}
+      {stateAuth === 'Registered' && (
+        <div className='auth_error'>
+          <img src={crossSvg} alt='Ошибка' />
+          <h2 className='auth_success_text'>
+            Пользователь с таким логином уже существует
+          </h2>
         </div>
       )}
       <div className='auth'>
@@ -155,6 +150,7 @@ const AuthPage: React.FC = () => {
                   type='password'
                   className='auth_input'
                   placeholder='Пароль'
+                  autoComplete='current-password'
                   required
                 />
               </div>
@@ -181,10 +177,11 @@ const AuthPage: React.FC = () => {
                   type='password'
                   className='auth_input'
                   placeholder='Пароль'
+                  autoComplete='current-password'
                   required
                 />
               </div>
-              <button onClick={() => entrance()} className='form_btn'>
+              <button onClick={(e) => entrance(e)} className='form_btn'>
                 Войти
               </button>
             </>

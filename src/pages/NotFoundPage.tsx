@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Header from '../components/Header'
+import { Header } from '../components'
 import '../scss/NotFound/notFound.scss'
 
 const NotFoundPage = () => {
   return (
     <>
-      <Header/>
+      <Header />
       <div className='container NF-wrapper'>
         <h1 className='NF_title'>Этой страницы не существует</h1>
-        <Link className='button' to='/React-project'>Вернуться на главную</Link>
+        <Link className='button' to='/React-project'>
+          Вернуться на главную
+        </Link>
       </div>
     </>
   )
