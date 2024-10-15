@@ -1,3 +1,4 @@
+@import '../vars.scss';
 .auth{
   margin-top: 50px;
   width: 100%;
@@ -11,7 +12,7 @@
   border-radius: 20px;
   font-size: 16px;
   &_switch{
-    background-color: #ffffff;
+    background-color: $white;
     display: flex;
     align-items: center;
     border-radius: 15px;
@@ -48,20 +49,20 @@
 }
 .active-right{
   border-radius: 15px 0 0 15px;
-  background-color: #3903ff;
-  color: #ffffff;
+  background-color: $blue;
+  color: $white;
 }
 .active-left{
   border-radius: 0 15px 15px 0;
-  background-color: #3903ff;
-  color: #ffffff;
+  background-color: $blue;
+  color: $white;
 }
 .form_btn{
   padding: 15px;
   border-radius: 5px;
   font-size: 18px;
-  background-color: #3903ff;
-  color: #ffffff;
+  background-color: $blue;
+  color: $white;
   width: min-content;
   transition: all .4s;
   &:hover{
@@ -69,24 +70,27 @@
   }
 }
 .auth{
+  position: relative;
   &_success, &_error, &_loading{
     padding: 20px 10px;
     max-width: 50vw;
-    background-color: #07ff49;
-    border-radius: 10px;
+    background-color: $green;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 15px;
+    text-align: center;
     >img{
       max-width: 50px;
     }
   }
   &_error{
-    background-color: #ff1b13;
+    background-color: $red;
+    flex-direction: row;
   }
   &_loading{
-    background-color: transparent;
+    border-radius: 10px;
+    background-color: $white;
     >img{
       max-width: 100px;
     }
@@ -96,6 +100,9 @@
   .auth{
     &__container{
       flex-direction: column;
+    }
+    &_success, &_error, &_loading{
+      max-width: 80%;
     }
   }
 }

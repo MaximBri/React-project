@@ -1,11 +1,12 @@
+@import './vars.scss';
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 10vw;
-  background-color: #3a51ff;
+  background-color: $blue;
   font-size: 16px;
-  color: #fff;
+  color: $white;
   &_title {
     font-size: 20px;
   }
@@ -38,12 +39,13 @@
   flex-direction: column;
   gap: 5px;
   > div {
-    background-color: #000000;
+    background-color: $black;
     width: 30px;
     height: 4px;
     border-radius: 10px;
   }
   &-menu{
+    z-index: 200;
     position: fixed;
     background-color: #121212d1;
     top: 0;
@@ -78,7 +80,7 @@
       right: 0%;
       width: 40px;
       height: 4px;
-      background-color: #fff;
+      background-color: $white;
     }
     :first-child{
       transform: rotate(45deg);
@@ -90,7 +92,6 @@
 }
 
 .hidden-burger{
-  // display: none;
   transform: translateX(100%);
   transition: all .3s;
 }

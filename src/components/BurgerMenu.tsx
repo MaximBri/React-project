@@ -1,25 +1,25 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 
 import { getAuth } from '../RTK/slices/AuthSlice'
-import { setWidth } from '../RTK/slices/InnerWidthSlice'
 
 const BurgerMenu = () => {
   const location = useLocation()
-  const dispatch = useDispatch()
-  const auth = useSelector(getAuth)
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
+  const [width, setWidth] = React.useState<number>(window.innerWidth)
+  const auth = useSelector<any, boolean>(getAuth)
+  console.log(auth)
   React.useEffect(() => {
     const f = () => {
-      dispatch(setWidth(window.innerWidth))
+      setWidth(window.innerWidth)
     }
     window.addEventListener('resize', f)
     return () => {
       window.removeEventListener('resize', f)
     }
   }, [])
-  if (window.innerWidth > 1024) {
+  if (width > 1024) {
     return (
       <nav className='header__nav'>
         {location.pathname !== '/React-project' && (
@@ -52,7 +52,7 @@ const BurgerMenu = () => {
                 Главная
               </Link>
             )}
-            {location.pathname !== '/React-project/Authorization' && (
+            {location.pathname !== '/React-project/Authorization' && !auth &&  (
               <Link
                 onClick={() => setIsOpen(false)}
                 to={'Authorization'}

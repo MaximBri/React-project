@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { setAuth } from '../RTK/slices/AuthSlice'
-import checkSvg from '../img/check.svg'
-import crossSvg from '../img/cross.svg'
+import crossSvg from '../img/attention.svg'
 import LoadGif from '../img/loader.gif'
 import '../scss/Auth/form.scss'
 
 const AuthPage: React.FC = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [stateAuth, setStateAuth] = React.useState('unregistered')
   const [option, setOption] = React.useState<boolean>(false)
@@ -36,14 +36,21 @@ const AuthPage: React.FC = () => {
     }
     try {
       setStateAuth('Loading')
-      const response = await axios.post('https://catsandpies.ru/api/Auth/Login', body, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post(
+        'https://catsandpies.ru/api/Auth/Login',
+        body,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      console.log(response)
       setStateAuth('Authorized')
-      console.log(response); 
-    } catch (error :any) {
+      dispatch(setAuth(true))
+      localStorage.setItem('token', response.data.data.token.token)
+      navigate('/React-project')
+    } catch (error: any) {
       setStateAuth('Error')
     }
   }
@@ -59,55 +66,29 @@ const AuthPage: React.FC = () => {
       }
       try {
         setStateAuth('Loading')
-        const response = await axios.post('https://catsandpies.ru/api/Auth/Registration', body, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await axios.post(
+          'https://catsandpies.ru/api/Auth/Registration',
+          body,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        console.log(response)
+        dispatch(setAuth(true))
+        localStorage.setItem('token', response.data.data.token.token)
         setStateAuth('Authorized')
-        console.log(response); 
-      } catch (error :any) {
-        if(!error.response.data.data) setStateAuth('Registered')
+        navigate('/React-project')
+      } catch (error: any) {
+        console.log(error)
+        if (!error.response.data.data) setStateAuth('Registered')
         else setStateAuth('Error')
       }
     }
   }
   return (
     <>
-      {stateAuth === 'Loading' && (
-        <div className='auth_loading'>
-          <img src={LoadGif} alt='Загрузка'></img>
-          <h2 className='auth_success_text'>Идёт отправка данных...</h2>
-        </div>
-      )}
-      {stateAuth === 'Authorized' && (
-        <div className='auth_success'>
-          <img src={checkSvg} alt='Успешно' />
-          <h2 className='auth_success_text'>Регистрация прошла успешно</h2>
-          <Link to='../' className='button'>
-            На главную
-          </Link>
-        </div>
-      )}
-      {stateAuth === 'Error' && (
-        <div className='auth_error'>
-          <img src={crossSvg} alt='Ошибка' />
-          <h2 className='auth_success_text'>
-            Произошла ошибка. Повторите попытку позже
-          </h2>
-          <Link to='../' className='button'>
-            На главную
-          </Link>
-        </div>
-      )}
-      {stateAuth === 'Registered' && (
-        <div className='auth_error'>
-          <img src={crossSvg} alt='Ошибка' />
-          <h2 className='auth_success_text'>
-            Пользователь с таким логином уже существует
-          </h2>
-        </div>
-      )}
       <div className='auth'>
         <div className='auth_switch'>
           <div
@@ -123,6 +104,38 @@ const AuthPage: React.FC = () => {
             Войти
           </div>
         </div>
+        {stateAuth === 'Loading' && (
+          <>
+            <div className='auth_loading'>
+              <img src={LoadGif} alt='Загрузка'></img>
+              <h2 className='auth_success_text'>Идёт отправка данных...</h2>
+            </div>
+          </>
+        )}
+        {stateAuth === 'Authorized' && (
+          <div className='auth_success'>
+            <h2 className='auth_success_text'>Регистрация прошла успешно</h2>
+            <Link to='../' className='button'>
+              На главную
+            </Link>
+          </div>
+        )}
+        {stateAuth === 'Error' && (
+          <div className='auth_error'>
+            <img src={crossSvg} alt='Ошибка' />
+            <h2 className='auth_success_text'>
+              Произошла ошибка. Повторите попытку позже
+            </h2>
+          </div>
+        )}
+        {stateAuth === 'Registered' && (
+          <div className='auth_error'>
+            <img src={crossSvg} alt='Ошибка' />
+            <h2 className='auth_success_text'>
+              Пользователь с таким логином уже существует
+            </h2>
+          </div>
+        )}
         <form action='#' className='auth__body'>
           {!option && (
             <>
