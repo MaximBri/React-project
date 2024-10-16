@@ -9,24 +9,36 @@ import LoadGif from '../img/loader.gif'
 import '../scss/Auth/form.scss'
 
 const AuthPage: React.FC = () => {
+  const messages: string[] = [
+    'Авторизация прошла успешно',
+    'Отправка данных...',
+    'Неверный логин или пароль',
+    'Пользователь с таким логином уже существует',
+    'Произошла ошибка. Повторите попытку позже :(',
+    'Пароль должен быть длиннее 4 символов',
+    'Пароли не совпадают!',
+  ]
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [stateAuth, setStateAuth] = React.useState('unregistered')
+  const [stateAuthErr, setStateAuthErr] = React.useState<string>('')
+  const [loading, setLoading] = React.useState<boolean>(false)
+  const [authMess, setAuthMess] = React.useState<string>('')
   const [option, setOption] = React.useState<boolean>(false)
   const [name, setName] = React.useState<string>('')
   const [login, setLogin] = React.useState<string>('')
   const [pass, setPass] = React.useState<string>('')
+  const [repeatPass, setRepeatPass] = React.useState<string>('')
   const setRegister = () => {
     setOption(false)
     setLogin('')
     setPass('')
-    setStateAuth('')
+    setStateAuthErr('')
   }
   const setLog = () => {
     setOption(true)
     setLogin('')
     setPass('')
-    setStateAuth('')
+    setStateAuthErr('')
   }
   const entrance = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -35,7 +47,8 @@ const AuthPage: React.FC = () => {
       password: pass,
     }
     try {
-      setStateAuth('Loading')
+      setLoading(true)
+      setStateAuthErr('')
       const response = await axios.post(
         'https://catsandpies.ru/api/Auth/Login',
         body,
@@ -45,19 +58,24 @@ const AuthPage: React.FC = () => {
           },
         }
       )
-      console.log(response)
-      setStateAuth('Authorized')
+      // console.log(response)
+      setAuthMess(messages[0])
       dispatch(setAuth(true))
       localStorage.setItem('token', response.data.data.token.token)
       navigate('/React-project')
     } catch (error: any) {
-      setStateAuth('Error')
+      console.log(error)
+      if (error.response.status === 404) setStateAuthErr(messages[4])
+      else setStateAuthErr(messages[2])
     }
+    setLoading(false)
   }
   const sendForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (pass.length < 4) {
-      alert('Пароль должен быть длиннее 4 символов')
+      setStateAuthErr(messages[5])
+    } else if (pass !== repeatPass) {
+      setStateAuthErr(messages[6])
     } else {
       const body = {
         name,
@@ -65,7 +83,8 @@ const AuthPage: React.FC = () => {
         password: pass,
       }
       try {
-        setStateAuth('Loading')
+        setStateAuthErr('')
+        setLoading(true)
         const response = await axios.post(
           'https://catsandpies.ru/api/Auth/Registration',
           body,
@@ -75,16 +94,17 @@ const AuthPage: React.FC = () => {
             },
           }
         )
-        console.log(response)
+        // console.log(response)
         dispatch(setAuth(true))
         localStorage.setItem('token', response.data.data.token.token)
-        setStateAuth('Authorized')
+        setAuthMess(messages[0])
         navigate('/React-project')
       } catch (error: any) {
         console.log(error)
-        if (!error.response.data.data) setStateAuth('Registered')
-        else setStateAuth('Error')
+        if (error.response.status === 409) setStateAuthErr(messages[3])
+        else setStateAuthErr(messages[4])
       }
+      setLoading(false)
     }
   }
   return (
@@ -104,36 +124,21 @@ const AuthPage: React.FC = () => {
             Войти
           </div>
         </div>
-        {stateAuth === 'Loading' && (
-          <>
-            <div className='auth_loading'>
-              <img src={LoadGif} alt='Загрузка'></img>
-              <h2 className='auth_success_text'>Идёт отправка данных...</h2>
-            </div>
-          </>
+        {loading && (
+          <div className='auth_loading'>
+            <img src={LoadGif} alt='loading...' />
+            <h2 className='auth_success_text'>{messages[1]}</h2>
+          </div>
         )}
-        {stateAuth === 'Authorized' && (
+        {authMess && (
           <div className='auth_success'>
-            <h2 className='auth_success_text'>Регистрация прошла успешно</h2>
-            <Link to='../' className='button'>
-              На главную
-            </Link>
+            <h2 className='auth_success_text'>{authMess}</h2>
           </div>
         )}
-        {stateAuth === 'Error' && (
+        {stateAuthErr && (
           <div className='auth_error'>
             <img src={crossSvg} alt='Ошибка' />
-            <h2 className='auth_success_text'>
-              Произошла ошибка. Повторите попытку позже
-            </h2>
-          </div>
-        )}
-        {stateAuth === 'Registered' && (
-          <div className='auth_error'>
-            <img src={crossSvg} alt='Ошибка' />
-            <h2 className='auth_success_text'>
-              Пользователь с таким логином уже существует
-            </h2>
+            <h2 className='auth_success_text'>{stateAuthErr}</h2>
           </div>
         )}
         <form action='#' className='auth__body'>
@@ -163,6 +168,15 @@ const AuthPage: React.FC = () => {
                   type='password'
                   className='auth_input'
                   placeholder='Пароль'
+                  autoComplete='current-password'
+                  required
+                />
+                <input
+                  onChange={(e) => setRepeatPass(e.target.value)}
+                  value={repeatPass}
+                  type='password'
+                  className='auth_input'
+                  placeholder='Повторите пароль'
                   autoComplete='current-password'
                   required
                 />
