@@ -1,0 +1,99 @@
+@import '../vars.scss';
+.person {
+  &_title {
+    text-align: center;
+    font-size: 40px;
+    margin: 10px 0;
+    color: $blue;
+    font-weight: 600;
+  }
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    &_item{
+      font-size: 24px;
+    }
+    &_active{
+      font-weight: 600;
+      border-bottom: 2px solid $red;
+    }
+  }
+  &__main,
+  &__other {
+    display: flex;
+    flex-direction: column;
+    & > h3 {
+      margin: 20px 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+  &__other {
+    &_inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      align-items: center;
+      gap: 20px 50px;
+      & > span {
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+      }
+    }
+  }
+  &__about {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    & > span {
+      font-size: 16px;
+    }
+    &_item {
+      padding: 10px 15px;
+      border: 2px solid $blue;
+      margin: 10px 0;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  }
+  &__top_name {
+    text-align: center;
+    font-size: 30px;
+    margin: 10px 0;
+  }
+  &_btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  &_name,
+  &_birthday {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+@media (max-width: 768px){
+  .person{
+    &__about{
+      flex-direction: column;
+    }
+    &__other{
+      &_inputs{
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

@@ -1,33 +1,28 @@
 import React from 'react'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
 
-import { setAuth } from '../RTK/slices/AuthSlice'
+import useRegisterLogic from '../components/hooks/registerLogic'
+import useAuthLogic from '../components/hooks/authLogic'
+import { messages } from '../components/hooks/authLogic'
 import crossSvg from '../img/attention.svg'
 import LoadGif from '../img/loader.gif'
 import '../scss/Auth/form.scss'
 
 const AuthPage: React.FC = () => {
-  const messages: string[] = [
-    'Авторизация прошла успешно',
-    'Отправка данных...',
-    'Неверный логин или пароль',
-    'Пользователь с таким логином уже существует',
-    'Произошла ошибка. Повторите попытку позже :(',
-    'Пароль должен быть длиннее 4 символов',
-    'Пароли не совпадают!',
-  ]
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [stateAuthErr, setStateAuthErr] = React.useState<string>('')
   const [loading, setLoading] = React.useState<boolean>(false)
   const [authMess, setAuthMess] = React.useState<string>('')
   const [option, setOption] = React.useState<boolean>(false)
-  const [name, setName] = React.useState<string>('')
   const [login, setLogin] = React.useState<string>('')
   const [pass, setPass] = React.useState<string>('')
-  const [repeatPass, setRepeatPass] = React.useState<string>('')
+  const { entance } = useAuthLogic({
+    login,
+    pass,
+    setLoading,
+    setAuthMess,
+    setStateAuthErr,
+  })
+  const { register, name, setName, repeatPass, setRepeatPass } =
+    useRegisterLogic({ login, pass, setLoading, setAuthMess, setStateAuthErr })
   const setRegister = () => {
     setOption(false)
     setLogin('')
@@ -39,73 +34,6 @@ const AuthPage: React.FC = () => {
     setLogin('')
     setPass('')
     setStateAuthErr('')
-  }
-  const entrance = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const body = {
-      login,
-      password: pass,
-    }
-    try {
-      setLoading(true)
-      setStateAuthErr('')
-      const response = await axios.post(
-        'https://catsandpies.ru/api/Auth/Login',
-        body,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      // console.log(response)
-      setAuthMess(messages[0])
-      dispatch(setAuth(true))
-      localStorage.setItem('token', response.data.data.token.token)
-      navigate('/React-project')
-    } catch (error: any) {
-      console.log(error)
-      if (error.response.status === 404) setStateAuthErr(messages[4])
-      else setStateAuthErr(messages[2])
-    }
-    setLoading(false)
-  }
-  const sendForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    if (pass.length < 4) {
-      setStateAuthErr(messages[5])
-    } else if (pass !== repeatPass) {
-      setStateAuthErr(messages[6])
-    } else {
-      const body = {
-        name,
-        login,
-        password: pass,
-      }
-      try {
-        setStateAuthErr('')
-        setLoading(true)
-        const response = await axios.post(
-          'https://catsandpies.ru/api/Auth/Registration',
-          body,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        // console.log(response)
-        dispatch(setAuth(true))
-        localStorage.setItem('token', response.data.data.token.token)
-        setAuthMess(messages[0])
-        navigate('/React-project')
-      } catch (error: any) {
-        console.log(error)
-        if (error.response.status === 409) setStateAuthErr(messages[3])
-        else setStateAuthErr(messages[4])
-      }
-      setLoading(false)
-    }
   }
   return (
     <>
@@ -141,7 +69,7 @@ const AuthPage: React.FC = () => {
             <h2 className='auth_success_text'>{stateAuthErr}</h2>
           </div>
         )}
-        <form action='#' className='auth__body'>
+        <form className='auth__body'>
           {!option && (
             <>
               <h2 className='auth_title'>Заполните все поля для регистрации</h2>
@@ -181,7 +109,7 @@ const AuthPage: React.FC = () => {
                   required
                 />
               </div>
-              <button onClick={(e) => sendForm(e)} className='form_btn'>
+              <button onClick={(e) => register(e)} className='form_btn'>
                 Зарегистрироваться
               </button>
             </>
@@ -208,7 +136,7 @@ const AuthPage: React.FC = () => {
                   required
                 />
               </div>
-              <button onClick={(e) => entrance(e)} className='form_btn'>
+              <button onClick={(e) => entance(e)} className='form_btn'>
                 Войти
               </button>
             </>

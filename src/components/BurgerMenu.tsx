@@ -9,7 +9,6 @@ const BurgerMenu = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const [width, setWidth] = React.useState<number>(window.innerWidth)
   const auth = useSelector<any, boolean>(getAuth)
-  console.log(auth)
   React.useEffect(() => {
     const f = () => {
       setWidth(window.innerWidth)
@@ -43,16 +42,14 @@ const BurgerMenu = () => {
             <div></div>
           </div>
           <div className='burger-inner'>
-            {location.pathname !== '/React-project' && (
-              <Link
-                onClick={() => setIsOpen(false)}
-                to={'/React-project'}
-                className='header__nav_item'
-              >
-                Главная
-              </Link>
-            )}
-            {location.pathname !== '/React-project/Authorization' && !auth &&  (
+            <Link
+              onClick={() => setIsOpen(false)}
+              to={'/React-project'}
+              className='header__nav_item'
+            >
+              Главная
+            </Link>
+            {location.pathname !== '/React-project/Authorization' && !auth && (
               <Link
                 onClick={() => setIsOpen(false)}
                 to={'Authorization'}
@@ -60,6 +57,15 @@ const BurgerMenu = () => {
               >
                 Регистрация / Вход
               </Link>
+            )}
+            {auth && (
+              <Link
+              onClick={() => setIsOpen(false)}
+              to={'User'}
+              className='header__nav_item'
+            >
+              Личный кабинет
+            </Link>
             )}
           </div>
         </nav>
