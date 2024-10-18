@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/React-project/static/css/main.2b4b39fe.css",
-    "main.js": "/React-project/static/js/main.fef4a64f.js",
+    "main.css": "/React-project/static/css/main.dc2a6678.css",
+    "main.js": "/React-project/static/js/main.e3c628a7.js",
     "static/media/loader.gif": "/React-project/static/media/loader.ddeb9d127dbef027133c.gif",
     "static/media/Montserrat-Bold.woff2": "/React-project/static/media/Montserrat-Bold.b8c6bf231f0ce4cad3c7.woff2",
     "static/media/Montserrat-Regular.woff2": "/React-project/static/media/Montserrat-Regular.812dd4640aaa4e4db7b8.woff2",
     "static/media/attention.svg": "/React-project/static/media/attention.6cc5506f4859556c4e4ce0e18fde687b.svg",
     "index.html": "/React-project/index.html",
     "static/media/account.svg": "/React-project/static/media/account.705093bd6a4741f0d0fc4b459b474fa8.svg",
-    "main.2b4b39fe.css.map": "/React-project/static/css/main.2b4b39fe.css.map",
-    "main.fef4a64f.js.map": "/React-project/static/js/main.fef4a64f.js.map"
+    "main.dc2a6678.css.map": "/React-project/static/css/main.dc2a6678.css.map",
+    "main.e3c628a7.js.map": "/React-project/static/js/main.e3c628a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b4b39fe.css",
-    "static/js/main.fef4a64f.js"
+    "static/css/main.dc2a6678.css",
+    "static/js/main.e3c628a7.js"
   ]
 }
