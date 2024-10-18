@@ -1,37 +1,44 @@
 import React from 'react'
 import axios from 'axios'
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
+import { Outlet } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Header } from '../components'
-import { Outlet } from 'react-router-dom'
+import { getAllFields, getAuth, setAllFields, setAuth, setQuestionnaire } from '../RTK/slices/AuthSlice'
 
 const MainLayout: React.FC = () => {
-  // нужно будет вытянуть данные о юзере
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //     const token = Cookie.get('token')
-  //     console.log(token)
-  //     if (token) {
-  //       try {
-  //         const response = await axios.post(
-  //           'https://catsandpies.ru/api/Questionnaire',
-  //           {},
-  //           {
-  //             headers: {
-  //               'Content-Type': 'application/json',
-  //               // Authorization: `Bearer ${JSON.stringify(token)}`,
-  //               Authorization: `Bearer ${token}`,
-  //             },
-  //           }
-  //         )
-  //         console.log(response.data)
-  //       } catch (error) {
-  //         console.error('Error fetching data:', error)
-  //       }
-  //     }
-  //   }
-  //   fetchData()
-  // }, [])
+  const dispatch = useDispatch()
+  const token = Cookies.get('token')
+  React.useEffect(() => {
+    const fetchData = async () => {
+      console.log(token)
+      if (token) {
+        dispatch(setAuth(true))
+        try {
+          const response = await axios.get(
+            'https://catsandpies.ru/api/Questionnaire/GetMyQuestionnaire',
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          console.log(response.data.data)
+          dispatch(setAllFields(response.data.data))
+          dispatch(setQuestionnaire(true))
+        } catch (error: any) {
+          console.error('Error fetching data:', error.response)
+          if(error.response.data.description === 'Анкета не найдена') dispatch(setQuestionnaire(false))
+        }
+      }
+    }
+    fetchData()
+  }, [token, dispatch])
+  const userData = useSelector(getAllFields)
+  console.log(useSelector(getAuth))
+  console.log(userData)
   return (
     <>
       <Header />

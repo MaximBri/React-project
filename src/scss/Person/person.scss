@@ -27,6 +27,7 @@
   }
   &__main,
   &__other {
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     & > h3 {
@@ -34,8 +35,6 @@
       font-size: 24px;
       font-weight: 600;
     }
-  }
-  &__other {
     &_inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -83,6 +82,25 @@
     margin: 15px 0;
     font-weight: 400;
     font-size: 16px;
+  }
+  &__loading{
+    width: 100%;
+    font-size: 24px;
+  }
+}
+.blocked{
+  background-color: $grey;
+}
+.user{
+  &__about{
+    &_btn{
+      margin: 30px 0;
+      background-color: $red;
+      padding: 20px 40px;
+      font-size: 24px;
+      color: #fff;
+      border-radius: 10px;
+    }
   }
 }
 @media (max-width: 768px){

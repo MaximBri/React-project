@@ -8,7 +8,7 @@ const BurgerMenu = () => {
   const location = useLocation()
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const [width, setWidth] = React.useState<number>(window.innerWidth)
-  const auth = useSelector<any, boolean>(getAuth)
+  const auth = useSelector<any, boolean | number>(getAuth)
   React.useEffect(() => {
     const f = () => {
       setWidth(window.innerWidth)

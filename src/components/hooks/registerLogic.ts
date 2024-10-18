@@ -47,6 +47,7 @@ const useRegisterLogic = ({
         login,
         password: pass,
       }
+      console.log(body)
       try {
         setStateAuthErr('')
         setLoading(true)

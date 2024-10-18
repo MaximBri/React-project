@@ -1,0 +1,15 @@
+interface UserDataInterface {
+  name: string,
+  email?:string | null,
+  birthday: Date | string,
+  hobby: string,
+  season: string,
+  flower: string,
+  dish: string,
+  chillTime: string,
+  film: string,
+  singer: string,
+  color: string,
+  positiveTraits: string,
+  dream: string
+}
