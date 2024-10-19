@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/React-project/static/css/main.f620752d.css",
-    "main.js": "/React-project/static/js/main.e169080d.js",
+    "main.js": "/React-project/static/js/main.087ec6e1.js",
     "static/media/loader.gif": "/React-project/static/media/loader.ddeb9d127dbef027133c.gif",
     "static/media/Montserrat-Bold.woff2": "/React-project/static/media/Montserrat-Bold.b8c6bf231f0ce4cad3c7.woff2",
     "static/media/Montserrat-Regular.woff2": "/React-project/static/media/Montserrat-Regular.812dd4640aaa4e4db7b8.woff2",
@@ -9,10 +9,10 @@
     "index.html": "/React-project/index.html",
     "static/media/account.svg": "/React-project/static/media/account.705093bd6a4741f0d0fc4b459b474fa8.svg",
     "main.f620752d.css.map": "/React-project/static/css/main.f620752d.css.map",
-    "main.e169080d.js.map": "/React-project/static/js/main.e169080d.js.map"
+    "main.087ec6e1.js.map": "/React-project/static/js/main.087ec6e1.js.map"
   },
   "entrypoints": [
     "static/css/main.f620752d.css",
-    "static/js/main.e169080d.js"
+    "static/js/main.087ec6e1.js"
   ]
 }
