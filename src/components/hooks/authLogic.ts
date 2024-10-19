@@ -26,6 +26,7 @@ export const messages: string[] = [
   'Пароль должен быть длиннее 4 символов',
   'Пароли не совпадают!',
   'Введите имя',
+  'Заполните все поля!'
 ]
 
 const useAuthLogic = ({
@@ -43,26 +44,31 @@ const useAuthLogic = ({
       login,
       password: pass,
     }
-    try {
-      setLoading(true)
-      setStateAuthErr('')
-      const response = await axios.post(
-        'https://catsandpies.ru/api/Auth/Login',
-        body,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      setAuthMess(messages[0])
-      dispatch(setAuth(true))
-      Cookie.set('token', response.data.data.token.token)
-      navigate('/React-project')
-    } catch (error: any) {
-      console.log(error)
-      if (error.response.status === 404) setStateAuthErr(messages[4])
-      else setStateAuthErr(messages[2])
+    if(pass && login){
+      try {
+        setLoading(true)
+        setStateAuthErr('')
+        const response = await axios.post(
+          'https://catsandpies.ru/api/Auth/Login',
+          body,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        setAuthMess(messages[0])
+        dispatch(setAuth(true))
+        Cookie.set('token', response.data.data.token.token)
+        navigate('/React-project')
+      } catch (error: any) {
+        console.log(error)
+        if (error.response.status === 404) setStateAuthErr(messages[4])
+        else setStateAuthErr(messages[2])
+      }
+    }
+    else{
+      setStateAuthErr(messages[8])
     }
     setLoading(false)
   }

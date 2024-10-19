@@ -4,20 +4,10 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { getAuth } from '../RTK/slices/AuthSlice'
 
-const BurgerMenu = () => {
+const BurgerMenu:React.FC<{width: number}> = ({width}) => {
   const location = useLocation()
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
-  const [width, setWidth] = React.useState<number>(window.innerWidth)
   const auth = useSelector<any, boolean | number>(getAuth)
-  React.useEffect(() => {
-    const f = () => {
-      setWidth(window.innerWidth)
-    }
-    window.addEventListener('resize', f)
-    return () => {
-      window.removeEventListener('resize', f)
-    }
-  }, [])
   if (width > 1024) {
     return (
       <nav className='header__nav'>

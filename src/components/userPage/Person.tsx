@@ -18,18 +18,16 @@ const Person = () => {
   const convertData = (dateString: Date | string): Date | string => {
     const date = new Date(dateString)
     const day = date.getDate().toString().padStart(2, '0')
-    const month = (date.getMonth() + 1).toString().padStart(2, '0') 
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
     return `${year}-${month}-${day}`
   }
-  console.log(questionnaire)
   const [loading, setLoading] = React.useState<boolean>(false)
   const [canChangeInput, setCanChangeInput] = React.useState(false)
   const [name, setName] = React.useState<string>(userData.name)
   const [birthday, setBirthday] = React.useState<Date | string>(
     convertData(userData.birthday)
   )
-  console.log(convertData(userData.birthday))
   const [hobby, setHobby] = React.useState<string>(userData.hobby)
   const [season, setSeason] = React.useState<string>(userData.season)
   const [flower, setFlower] = React.useState<string>(userData.flower)
@@ -58,6 +56,7 @@ const Person = () => {
     }
   }, [questionnaire])
   const saveUserData = () => {
+    setCanChangeInput(false)
     const data = {
       userId: 0,
       name,
@@ -74,12 +73,10 @@ const Person = () => {
       dream,
     }
     JSON.stringify(data)
-    console.log({ ...data })
     dispatch(setAllFields(data))
     dispatch(setQuestionnaire(true))
     const fetchData = async () => {
       const token = Cookies.get('token')
-      console.log(token)
       if (token) {
         try {
           const response = await axios.post(
@@ -92,8 +89,23 @@ const Person = () => {
               },
             }
           )
-          console.log(response)
-        } catch (error) {
+        } catch (error: any) {
+          if(error.response.data.description === 'Анкета не добавлена. Анкета уже создана') {
+            try{
+              const response = await axios.put(
+                'https://catsandpies.ru/api/Questionnaire',
+                { ...data },
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+            }catch(error){
+              console.log(error)
+            }
+          }
           console.error('Error fetching data:', error)
         }
       }
@@ -103,9 +115,7 @@ const Person = () => {
   return (
     <section className='person-wrapper'>
       <h2 className='person__top_name'>
-        {canChangeInput
-          ? 'Заполнить анкету можно только один раз'
-          : 'Ваши данные'}
+        {canChangeInput ? 'Заполните анкету' : 'Ваши данные'}
       </h2>
       {!loading ? (
         <>
@@ -287,10 +297,16 @@ const Person = () => {
               </span>
             </div>
           </div>
-          {canChangeInput && (
+          {canChangeInput ? (
             <div className='person_btn'>
               <div onClick={() => saveUserData()} className='button'>
                 Сохранить
+              </div>
+            </div>
+          ) : (
+            <div className='person_btn'>
+              <div onClick={() => setCanChangeInput(true)} className='button'>
+                Изменить
               </div>
             </div>
           )}

@@ -21,6 +21,10 @@
     }
     &_item{
       cursor: pointer;
+      &-active{
+        background-color: $white;
+        color: $black;
+      }
     }
   }
   &_logo {
@@ -90,7 +94,11 @@
     }
   }
 }
-
+.user_name{
+  font-weight: 600;
+  padding: 5px 15px;
+  border: 2px solid $white;
+}
 .hidden-burger{
   transform: translateX(100%);
   transition: all .3s;
@@ -106,9 +114,35 @@
   }
 }
 
+@media(max-width: 768px){
+  .header{
+    &__nav{
+      &_item{
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &-active{
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  .user_name{
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    border: 2px solid $white;
+    border-radius: 50%;
+  }
+}
+
 @media (max-width: 576px) {
   .header {
-    padding: 10px 10vw;
+    padding: 10px 20px;
     &_logo {
       & > img {
         max-width: 30px;
