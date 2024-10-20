@@ -1,34 +1,43 @@
-@import './fonts.scss';
-body{
+@import './fonts.scss',
+'./vars.scss';
+body {
   font-size: 14px;
   line-height: 1.1;
   overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
   scroll-behavior: smooth;
 }
-.App, #root{
+.App,
+#root {
   width: 100%;
 }
-.container{
+.container {
   margin-inline: 10vw;
 }
-.hidden{
+.hidden {
   display: none;
 }
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
 }
-.button{
+.button {
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #3903ff;
   color: #fff;
   font-size: 16px;
 }
-
+.button2 {
+  margin: 30px 0;
+  background-color: $red;
+  padding: 20px 40px;
+  font-size: 24px;
+  color: #fff;
+  border-radius: 10px;
+}
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -38,28 +47,28 @@ body{
   }
 }
 
-@media(max-width: 1024px){
-  .container{
+@media (max-width: 1024px) {
+  .container {
     margin-inline: 8vw;
   }
 }
-@media(max-width: 768){
-  .container{
+@media (max-width: 768) {
+  .container {
     margin-inline: 5vw;
   }
 }
-@media(max-width: 576px){
-  .container{
+@media (max-width: 576px) {
+  .container {
     margin-inline: 4vw;
   }
 }
-@media(max-width: 480){
-  .container{
+@media (max-width: 480) {
+  .container {
     margin-inline: 3vw;
   }
 }
-@media(max-width: 360){
-  .container{
+@media (max-width: 360) {
+  .container {
     margin-inline: 2vw;
   }
 }

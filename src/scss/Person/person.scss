@@ -84,8 +84,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 30px;
     margin: 20px 0;
     cursor: pointer;
+    &-delete{
+      background-color: $red;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: $white;
+    }
   }
   &_name,
   &_birthday {

@@ -232,6 +232,51 @@ const Person = () => {
     }
     fetchData()
   }
+  const deleteUserData = async () => {
+    const token = Cookies.get('token')
+    dispatch(setAllFields({
+      name: '',
+      birthday: convertDataToAPI(birthday),
+      hobby: '',
+      season: '',
+      flower: '',
+      dish: '',
+      chillTime: '',
+      film: '',
+      singer: '',
+      color: '',
+      positiveTraits: '',
+      dream: '',
+    }))
+    setName('')
+    setHobby('')
+    setFilm('')
+    setFlower('')
+    setSinger('')
+    setDish('')
+    setBirthday('01.01.2000')
+    setDream('')
+    setCharacters('')
+    setColor('')
+    setSeason('')
+    setFreeTime('')
+    if (token) {
+      try {
+        const response = await axios.delete(
+          'https://catsandpies.ru/api/Questionnaire',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        console.log(response)
+      } catch (error: any) {
+        console.error('Error fetching data:', error)
+      }
+    }
+  }
   return (
     <section className='person-wrapper'>
       <h2 className='person__top_name'>
@@ -286,6 +331,12 @@ const Person = () => {
             <div className='person_btn'>
               <div onClick={() => setCanChangeInput(true)} className='button'>
                 Изменить
+              </div>
+              <div
+                onClick={() => deleteUserData()}
+                className='person_btn-delete'
+              >
+                Удалить анкету
               </div>
             </div>
           )}

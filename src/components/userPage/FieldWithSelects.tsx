@@ -17,7 +17,6 @@ const FieldWithSelects = React.memo(
     value,
     setValue,
     canChangeInput,
-    placeholder,
     variants,
   }: FieldWithSelectsEtranceData) => {
     const [open, setOpen] = React.useState<boolean>(false)
