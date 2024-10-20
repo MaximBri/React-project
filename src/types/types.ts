@@ -13,3 +13,12 @@ interface UserDataInterface {
   positiveTraits: string,
   dream: string
 }
+
+interface FieldEtranceData {
+  title: string,
+  value: string,
+  setValue: React.Dispatch<React.SetStateAction<string>> | ((text: string) => void),
+  canChangeInput: boolean,
+  main: boolean,
+  placeholder: string
+}

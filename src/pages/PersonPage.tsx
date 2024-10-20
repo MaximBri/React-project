@@ -14,7 +14,7 @@ const PersonPage: React.FC = () => {
   const loading = useSelector(getLoading)
   const auth = useSelector(getAuth)
   React.useEffect(() => {
-    if(!loading && !auth) navigate('/React-project')
+    if(!loading && !auth) navigate('/')
   }, [loading, auth])
   return (
     <>

@@ -28,7 +28,7 @@ const AboutPerson = () => {
     )
     dispatch(setQuestionnaire(false))
     Cookies.set('token', '')
-    navigate('/React-project')
+    navigate('/')
   }
   return (
     <div>

@@ -3,11 +3,13 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Field from './Field'
 import {
   getAllFields,
   setAllFields,
   setQuestionnaire,
 } from '../../RTK/slices/AuthSlice'
+import FieldWithSelects from './FieldWithSelects'
 
 const Person = () => {
   const dispatch = useDispatch()
@@ -15,17 +17,43 @@ const Person = () => {
   let questionnaire = useSelector<any, boolean | null>(
     (state) => state.auth.questionnaire
   )
-  const convertData = (dateString: Date | string): Date | string => {
+  const convertData = (dateString: Date | string): string => {
     const date = new Date(dateString)
     const day = date.getDate().toString().padStart(2, '0')
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
-    return `${year}-${month}-${day}`
+    return `${day}.${month}.${year}`
+  }
+  const convertDataToAPI = (dateString: string | Date): Date | string => {
+    dateString = dateString.toString()
+    let date = dateString.split('.')[2]
+    date += '-'
+    date += dateString.split('.')[1]
+    date += '-'
+    date += dateString.split('.')[0]
+    return date
+  }
+  const changeBirthday = (text: string) => {
+    text = text.replace(/\D/g, '')
+    if (text.length > 8) text = text.slice(0, 8)
+    if (text.length > 2) {
+      if (Number(text.slice(0, 2)) > 31) text = ''
+      text = text.slice(0, 2) + '.' + text.slice(2)
+    }
+    if (text.length > 5) {
+      if (Number(text.slice(3, 5)) > 12) text = text.slice(0, 3)
+      text = text.slice(0, 5) + '.' + text.slice(5)
+    }
+    if (text.length === 10) {
+      if (Number(text.slice(6, 10)) > Number(new Date().getFullYear()))
+        text = text.slice(0, 6)
+    }
+    setBirthday(text)
   }
   const [loading, setLoading] = React.useState<boolean>(false)
   const [canChangeInput, setCanChangeInput] = React.useState(false)
   const [name, setName] = React.useState<string>(userData.name)
-  const [birthday, setBirthday] = React.useState<Date | string>(
+  const [birthday, setBirthday] = React.useState<string>(
     convertData(userData.birthday)
   )
   const [hobby, setHobby] = React.useState<string>(userData.hobby)
@@ -40,12 +68,101 @@ const Person = () => {
     userData.positiveTraits
   )
   const [dream, setDream] = React.useState<string>(userData.dream)
-  const changeInput = (
-    value: string,
-    funct: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    if (canChangeInput) funct(value)
-  }
+  let key = 0
+  const mainFields: React.ReactElement<FieldEtranceData>[] = [
+    <Field
+      title='Имя'
+      value={name}
+      setValue={setName}
+      canChangeInput={canChangeInput}
+      main={true}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Дата рождения'
+      value={birthday}
+      setValue={changeBirthday}
+      canChangeInput={canChangeInput}
+      main={true}
+      placeholder='ДД.ММ.ГГГГ'
+      key={key++}
+    />,
+  ]
+  const fields: React.ReactElement<FieldEtranceData>[] = [
+    <Field
+      title='Хобби'
+      value={hobby}
+      setValue={setHobby}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Любимый цветок'
+      value={flower}
+      setValue={setFlower}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Любимое блюдо'
+      value={dish}
+      setValue={setDish}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Время отдыха'
+      value={freeTime}
+      setValue={setFreeTime}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Любимый фильм'
+      value={film}
+      setValue={setFilm}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Любимый певец'
+      value={singer}
+      setValue={setSinger}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Любимый цвет'
+      value={color}
+      setValue={setColor}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+    <Field
+      title='Позитивные черты'
+      value={characters}
+      setValue={setCharacters}
+      canChangeInput={canChangeInput}
+      main={false}
+      placeholder=''
+      key={key++}
+    />,
+  ]
   React.useEffect(() => {
     if (questionnaire === null) setLoading(true)
     else {
@@ -60,7 +177,7 @@ const Person = () => {
     const data = {
       userId: 0,
       name,
-      birthday,
+      birthday: convertDataToAPI(birthday),
       hobby,
       season,
       flower,
@@ -90,8 +207,11 @@ const Person = () => {
             }
           )
         } catch (error: any) {
-          if(error.response.data.description === 'Анкета не добавлена. Анкета уже создана') {
-            try{
+          if (
+            error.response.data.description ===
+            'Анкета не добавлена. Анкета уже создана'
+          ) {
+            try {
               const response = await axios.put(
                 'https://catsandpies.ru/api/Questionnaire',
                 { ...data },
@@ -102,7 +222,7 @@ const Person = () => {
                   },
                 }
               )
-            }catch(error){
+            } catch (error) {
               console.log(error)
             }
           }
@@ -119,184 +239,43 @@ const Person = () => {
       </h2>
       {!loading ? (
         <>
-          <div className='person__main'>
+          <section className='person__main'>
             <h3>Основные</h3>
             <div className='person__about'>
-              <span className='person_name'>
-                Имя
-                <input
-                  value={name}
-                  onChange={(e) => changeInput(e.target.value, setName)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span className='person_birthday'>
-                Дата рождения:
-                <input
-                  value={birthday.toString()}
-                  onChange={(e) => setBirthday(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='date'
-                  readOnly={!canChangeInput}
-                />
-              </span>
+              {mainFields.map((item) => {
+                return React.cloneElement(item, { key: item.props.title })
+              })}
             </div>
-          </div>
-          <div className='person__other'>
+          </section>
+          <section className='person__other'>
             <h3>Дополнительные</h3>
             <div className='person__other_inputs'>
-              <span>
-                Хобби:
-                <input
-                  value={hobby}
-                  onChange={(e) => setHobby(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимый сезон:
-                <input
-                  value={season}
-                  onChange={(e) => setSeason(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимый цветок:
-                <input
-                  value={flower}
-                  onChange={(e) => setFlower(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимое блюдо:
-                <input
-                  value={dish}
-                  onChange={(e) => setDish(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Время отдыха:
-                <input
-                  value={freeTime}
-                  onChange={(e) => setFreeTime(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимый фильм:
-                <input
-                  value={film}
-                  onChange={(e) => setFilm(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимый певец:
-                <input
-                  value={singer}
-                  onChange={(e) => setSinger(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Любимый цвет:
-                <input
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
-              <span>
-                Позитивные черты:
-                <input
-                  value={characters}
-                  onChange={(e) => setCharacters(e.target.value)}
-                  className={
-                    canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
-                  }
-                  type='text'
-                  readOnly={!canChangeInput}
-                />
-              </span>
+              {fields.map((item) => {
+                return React.cloneElement(item, { key: item.props.title })
+              })}
+              <FieldWithSelects
+                title='Любимый сезон'
+                value={season}
+                setValue={setSeason}
+                canChangeInput={canChangeInput}
+                placeholder=''
+                variants={['Зима', 'Весна', 'Лето', 'Осень']}
+              />
               <span>
                 Мечтаю о ...
-                <input
+                <textarea
                   value={dream}
                   onChange={(e) => setDream(e.target.value)}
                   className={
                     canChangeInput
-                      ? 'person__about_item'
-                      : 'person__about_item blocked'
+                      ? 'person__about_item-textarea'
+                      : 'person__about_item-textarea blocked'
                   }
-                  type='text'
                   readOnly={!canChangeInput}
                 />
               </span>
             </div>
-          </div>
+          </section>
           {canChangeInput ? (
             <div className='person_btn'>
               <div onClick={() => saveUserData()} className='button'>

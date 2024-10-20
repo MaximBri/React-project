@@ -60,7 +60,7 @@ const useAuthLogic = ({
         setAuthMess(messages[0])
         dispatch(setAuth(true))
         Cookie.set('token', response.data.data.token.token)
-        navigate('/React-project')
+        navigate('/')
       } catch (error: any) {
         console.log(error)
         if (error.response.status === 404) setStateAuthErr(messages[4])

@@ -12,15 +12,16 @@
     display: flex;
     flex-direction: column;
   }
-  &__list{
+  &__list {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
-    &_item{
+    &_item {
       font-size: 24px;
+      cursor: pointer;
     }
-    &_active{
+    &_active {
       font-weight: 600;
       border-bottom: 2px solid $red;
     }
@@ -39,7 +40,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       justify-content: center;
-      align-items: center;
       gap: 20px 50px;
       & > span {
         display: flex;
@@ -61,6 +61,17 @@
       margin: 10px 0;
       border-radius: 5px;
       font-size: 16px;
+      &-textarea {
+        min-height: 45px;
+        max-width: 100%;
+        max-height: 30vh;
+        resize: vertical;
+        padding: 10px 15px;
+        border: 2px solid $blue;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 16px;
+      }
     }
   }
   &__top_name {
@@ -68,7 +79,7 @@
     font-size: 30px;
     margin: 10px 0;
   }
-  &_btn{
+  &_btn {
     width: 100%;
     display: flex;
     align-items: center;
@@ -84,17 +95,43 @@
     font-weight: 400;
     font-size: 16px;
   }
-  &__loading{
+  &__loading {
     width: 100%;
     font-size: 24px;
   }
 }
-.blocked{
+.field {
+  padding: 10px 0px;
+  border: 2px solid $blue;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  min-height: 40px;
+  &_variant {
+    transition: all .5s;
+    line-height: 1.5;
+    &:hover{
+      background-color: $blue;
+      line-height: 2;
+      color: $white;
+    }
+  }
+  &_variants {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    &:first-child{
+      margin-top: 20px;
+    }
+  }
+}
+.blocked {
   background-color: $grey;
 }
-.user{
-  &__about{
-    &_btn{
+.user {
+  &__about {
+    &_btn {
       margin: 30px 0;
       background-color: $red;
       padding: 20px 40px;
@@ -104,13 +141,13 @@
     }
   }
 }
-@media (max-width: 768px){
-  .person{
-    &__about{
+@media (max-width: 768px) {
+  .person {
+    &__about {
       flex-direction: column;
     }
-    &__other{
-      &_inputs{
+    &__other {
+      &_inputs {
         grid-template-columns: 1fr;
       }
     }

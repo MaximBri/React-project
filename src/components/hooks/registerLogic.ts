@@ -64,7 +64,7 @@ const useRegisterLogic = ({
         Cookie.set('token', response.data.data.token.token)
         setAuthMess(messages[0])
         console.log(Cookie.get('token'))
-        navigate('/React-project')
+        navigate('/')
       } catch (error: any) {
         console.log(error)
         if (error.response.status === 409) setStateAuthErr(messages[3])

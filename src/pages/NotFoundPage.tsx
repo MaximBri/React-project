@@ -10,7 +10,7 @@ const NotFoundPage = () => {
       <Header />
       <div className='container NF-wrapper'>
         <h1 className='NF_title'>Этой страницы не существует</h1>
-        <Link className='button' to='/React-project'>
+        <Link className='button' to='/'>
           Вернуться на главную
         </Link>
       </div>

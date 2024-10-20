@@ -23,22 +23,29 @@ const Header: React.FC = () => {
       window.removeEventListener('resize', f)
     }
   }, [])
-  const countSymb = width>768? 9 : 1
-  if(!userName) userName = 'User'
+  const countSymb = width > 768 ? 9 : 1
+  if (!userName) userName = 'User'
   if (userName.length >= countSymb) {
     userName = userName.substring(0, countSymb)
-    if(width>768) userName += '...'
+    if (width > 768) userName += '...'
   }
   return (
     <header className='header'>
-      <Link to={'/React-project'} className='header_logo'>
+      <Link to={'/'} className='header_logo'>
         <img src={logo} alt='Logo' />
       </Link>
       <h2 className='header_title'>React проект</h2>
       <div className='header__nav_box'>
-        <BurgerMenu width={width}/>
+        <BurgerMenu width={width} />
         {auth ? (
-          <div onClick={() => navigate('User')} className={location.pathname === '/React-project/User' ? 'header__nav_item header__nav_item-active': 'header__nav_item'}>
+          <div
+            onClick={() => navigate('User')}
+            className={
+              location.pathname === '/User'
+                ? 'header__nav_item header__nav_item-active'
+                : 'header__nav_item'
+            }
+          >
             <h3 className='user_name'>{userName}</h3>
           </div>
         ) : (

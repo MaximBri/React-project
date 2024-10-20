@@ -11,8 +11,8 @@ const BurgerMenu:React.FC<{width: number}> = ({width}) => {
   if (width > 1024) {
     return (
       <nav className='header__nav'>
-        {location.pathname !== '/React-project' && (
-          <Link to={'/React-project'} className='header__nav_item'>
+        {location.pathname !== '/' && (
+          <Link to={'/'} className='header__nav_item'>
             Главная
           </Link>
         )}
@@ -34,12 +34,12 @@ const BurgerMenu:React.FC<{width: number}> = ({width}) => {
           <div className='burger-inner'>
             <Link
               onClick={() => setIsOpen(false)}
-              to={'/React-project'}
+              to={'/'}
               className='header__nav_item'
             >
               Главная
             </Link>
-            {location.pathname !== '/React-project/Authorization' && !auth && (
+            {location.pathname !== '/Authorization' && !auth && (
               <Link
                 onClick={() => setIsOpen(false)}
                 to={'Authorization'}
