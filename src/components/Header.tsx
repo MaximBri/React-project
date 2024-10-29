@@ -3,8 +3,8 @@ import React from 'react'
 import { getAuth } from '../RTK/slices/AuthSlice'
 import BurgerMenu from './BurgerMenu'
 import logo from '../img/logo192.png'
-import regSvg from '../img/account.svg'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import regSvg from '../img/Person.svg'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import '../scss/header.scss'
 import { useSelector } from 'react-redux'
 
@@ -31,12 +31,18 @@ const Header: React.FC = () => {
   }
   return (
     <header className='header'>
-      <Link to={'/'} className='header_logo'>
-        <img src={logo} alt='Logo' />
-      </Link>
-      <h2 className='header_title'>React проект</h2>
+      <div className='header_right'>
+        <img onClick={() => navigate('/')} src={logo} alt='Logo' />
+        <nav className='header__nav_list'>
+          <NavLink to='/Catalog'>Каталог</NavLink>
+          <NavLink to='/Cat'>Мой кот</NavLink>
+          <NavLink to='/Account'>Мой Счет</NavLink>
+          <NavLink to='/User'>Профиль</NavLink>
+          <NavLink to='/About'>О нас</NavLink>
+        </nav>
+      </div>
       <div className='header__nav_box'>
-        <BurgerMenu width={width} />
+        {width< 1024 && <BurgerMenu width={width} />}
         {auth ? (
           <div
             onClick={() => navigate('User')}
@@ -54,6 +60,7 @@ const Header: React.FC = () => {
             className='header__nav_item'
           >
             <img src={regSvg} alt='Вход' />
+            <h4>Вход / Регистрация</h4>
           </span>
         )}
       </div>

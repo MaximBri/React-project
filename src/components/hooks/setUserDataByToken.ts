@@ -28,6 +28,7 @@ const setUserDataByToken = async (
       )
       dispatch(setAllFields(response.data.data))
       dispatch(setQuestionnaire(true))
+      // console.log(response)
     } catch (error: any) {
       console.error('Error fetching data:', error.response)
       if (error.response.data.description === 'Анкета не найдена')

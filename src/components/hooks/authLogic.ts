@@ -1,10 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Cookie from 'js-cookie'
 
-import { setAuth } from '../../RTK/slices/AuthSlice'
+import { setAuth, setExpires } from '../../RTK/slices/AuthSlice'
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
@@ -38,6 +38,7 @@ const useAuthLogic = ({
 }: AuthLogicEntanceType): AuthLogicReturnType => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const time: Date = useSelector<any, Date>(state => state.auth.expiresIn)
   const entance = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const body = {
@@ -59,6 +60,9 @@ const useAuthLogic = ({
         )
         setAuthMess(messages[0])
         dispatch(setAuth(true))
+        // console.log(response.data.data.token.expiresIn)
+        const time: Date = new Date(response.data.data.token.expiresIn)
+        dispatch(setExpires(time))
         Cookie.set('token', response.data.data.token.token)
         navigate('/')
       } catch (error: any) {
@@ -72,6 +76,10 @@ const useAuthLogic = ({
     }
     setLoading(false)
   }
+  React.useEffect(() => {
+    console.log(+time - +new Date())
+    // if( +new Date() - +time)
+  }, [time])
   return { entance }
 }
 

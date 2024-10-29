@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-const initialState: { auth: boolean, questionnaire: boolean | null, loading: boolean, data: UserDataInterface } = {
+const initialState: {expiresIn: Date | null, auth: boolean, questionnaire: boolean | null, loading: boolean, data: UserDataInterface } = {
+  expiresIn: null,
   auth: false,
   questionnaire: null,
   loading: true,
@@ -30,6 +31,9 @@ const AuthSlice = createSlice({
       state.auth = action.payload
       // console.log(action.payload)
     },
+    setExpires(state, action: PayloadAction<Date>){
+      state.expiresIn = action.payload
+    },
     setQuestionnaire(state, action: PayloadAction<boolean | null>){
       state.questionnaire = action.payload
     },
@@ -46,5 +50,5 @@ const AuthSlice = createSlice({
 export const getAuth = (state: RootState) => state.auth.auth
 export const getLoading = (state: RootState) => state.auth.loading
 export const getAllFields = (state: RootState) => state.auth.data
-export const { setAuth, setAllFields, setLoading, setQuestionnaire } = AuthSlice.actions
+export const { setAuth, setAllFields, setExpires, setLoading, setQuestionnaire } = AuthSlice.actions
 export default AuthSlice.reducer
