@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/React-project/static/css/main.cbde90e0.css",
-    "main.js": "/React-project/static/js/main.b92bca2b.js",
+    "main.css": "/React-project/static/css/main.6d66817b.css",
+    "main.js": "/React-project/static/js/main.aec86508.js",
     "static/media/loader.gif": "/React-project/static/media/loader.ddeb9d127dbef027133c.gif",
     "static/media/Lato-Regular.woff2": "/React-project/static/media/Lato-Regular.cf0cb273ca399ef6f49e.woff2",
     "static/media/Lato-Bold.woff2": "/React-project/static/media/Lato-Bold.053c985717ad3258a6ff.woff2",
     "static/media/Person.svg": "/React-project/static/media/Person.fe75dde4ddcf4ccb06ffe7a72cd2d2d8.svg",
     "static/media/attention.svg": "/React-project/static/media/attention.6cc5506f4859556c4e4ce0e18fde687b.svg",
     "index.html": "/React-project/index.html",
-    "main.cbde90e0.css.map": "/React-project/static/css/main.cbde90e0.css.map",
-    "main.b92bca2b.js.map": "/React-project/static/js/main.b92bca2b.js.map"
+    "main.6d66817b.css.map": "/React-project/static/css/main.6d66817b.css.map",
+    "main.aec86508.js.map": "/React-project/static/js/main.aec86508.js.map"
   },
   "entrypoints": [
-    "static/css/main.cbde90e0.css",
-    "static/js/main.b92bca2b.js"
+    "static/css/main.6d66817b.css",
+    "static/js/main.aec86508.js"
   ]
 }
