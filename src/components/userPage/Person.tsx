@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Field from './Field'
 import {
   getAllFields,
+  getQuestionnaire,
   setAllFields,
   setQuestionnaire,
 } from '../../RTK/slices/AuthSlice'
@@ -13,10 +14,8 @@ import FieldWithSelects from './FieldWithSelects'
 
 const Person = () => {
   const dispatch = useDispatch()
-  const userData = useSelector<any, UserDataInterface>(getAllFields)
-  let questionnaire = useSelector<any, boolean | null>(
-    (state) => state.auth.questionnaire
-  )
+  const userData = useSelector(getAllFields)
+  let questionnaire = useSelector(getQuestionnaire)
   const convertData = (dateString: Date | string): string => {
     const date = new Date(dateString)
     const day = date.getDate().toString().padStart(2, '0')
@@ -195,38 +194,36 @@ const Person = () => {
     const fetchData = async () => {
       const token = Cookies.get('token')
       if (token) {
-        try {
-          const response = await axios.post(
-            'https://catsandpies.ru/api/Questionnaire',
-            { ...data },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-        } catch (error: any) {
-          if (
-            error.response.data.description ===
-            'Анкета не добавлена. Анкета уже создана'
-          ) {
-            try {
-              const response = await axios.put(
-                'https://catsandpies.ru/api/Questionnaire',
-                { ...data },
-                {
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                  },
-                }
-              )
-            } catch (error) {
-              console.log(error)
-            }
+        if (questionnaire) {
+          try {
+            await axios.put(
+              'https://catsandpies.ru/api/Questionnaire',
+              { ...data },
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+          } catch (error: any) {
+            console.log(error)
           }
-          console.error('Error fetching data:', error)
+        } else {
+          try {
+            await axios.post(
+              'https://catsandpies.ru/api/Questionnaire',
+              { ...data },
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+          } catch (error) {
+            console.log(error)
+          }
         }
       }
     }
@@ -234,20 +231,22 @@ const Person = () => {
   }
   const deleteUserData = async () => {
     const token = Cookies.get('token')
-    dispatch(setAllFields({
-      name: '',
-      birthday: convertDataToAPI(birthday),
-      hobby: '',
-      season: '',
-      flower: '',
-      dish: '',
-      chillTime: '',
-      film: '',
-      singer: '',
-      color: '',
-      positiveTraits: '',
-      dream: '',
-    }))
+    dispatch(
+      setAllFields({
+        name: '',
+        birthday: convertDataToAPI(birthday),
+        hobby: '',
+        season: '',
+        flower: '',
+        dish: '',
+        chillTime: '',
+        film: '',
+        singer: '',
+        color: '',
+        positiveTraits: '',
+        dream: '',
+      })
+    )
     setName('')
     setHobby('')
     setFilm('')

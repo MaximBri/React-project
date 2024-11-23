@@ -50,5 +50,6 @@ const AuthSlice = createSlice({
 export const getAuth = (state: RootState) => state.auth.auth
 export const getLoading = (state: RootState) => state.auth.loading
 export const getAllFields = (state: RootState) => state.auth.data
+export const getQuestionnaire = (state: RootState) => state.auth.questionnaire
 export const { setAuth, setAllFields, setExpires, setLoading, setQuestionnaire } = AuthSlice.actions
 export default AuthSlice.reducer

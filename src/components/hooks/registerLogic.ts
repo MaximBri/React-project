@@ -6,6 +6,7 @@ import Cookie from 'js-cookie'
 
 import { setAuth } from '../../RTK/slices/AuthSlice'
 import { messages } from './authLogic'
+import { setRegisterWindow } from '../../RTK/slices/WindowsSlice'
 
 interface RegisterLogicReturnType {
   name: string
@@ -63,6 +64,7 @@ const useRegisterLogic = ({
         dispatch(setAuth(true))
         Cookie.set('token', response.data.data.token.token)
         setAuthMess(messages[0])
+        dispatch(setRegisterWindow(false))
         console.log(Cookie.get('token'))
         navigate('/')
       } catch (error: any) {

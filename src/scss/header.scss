@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 10vw;
-  // background-color: $blue;
   font-size: 16px;
   color: $black;
   &__nav {
@@ -28,10 +27,15 @@
       }
     }
     &_item {
+      background: transparent;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
+      &>svg{
+        max-width: 50px;
+        max-height: 50px;
+      }
       &-active {
         background-color: $white;
         color: $black;

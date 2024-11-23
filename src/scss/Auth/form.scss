@@ -1,77 +1,140 @@
 @import '../vars.scss';
-.auth{
-  margin-top: 50px;
-  width: 100%;
+.auth {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 30px 0;
+  margin: 0px auto;
   justify-content: center;
-  background: linear-gradient(51deg, #69fb49,#85f8ff);
   border-radius: 20px;
   font-size: 16px;
-  &_switch{
+  width: 100%;
+  &_switch {
     background-color: $white;
     display: flex;
     align-items: center;
     border-radius: 15px;
     text-align: center;
-    >div{
+    > div {
       padding: 15px;
-      transition: all .3s;
+      transition: all 0.3s;
       cursor: pointer;
     }
   }
-  &__body{
+  &__body {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
-  &__container{
-    width: 100%;
-    display: flex;
-    text-align: center;
-    gap: 20px;
-    align-items: center;
-    >input{
-      border-radius: 5px;
-      padding: 5px 10px;
-      font-size: 16px;
+  &-bg {
+    position: absolute;
+    background-color: $grey-bg;
+    opacity: 0.75;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+  }
+  &__input {
+    &_label {
+      margin-top: 20px;
     }
   }
-  &_title{
+  &__account {
+    font-weight: 400;
     font-size: 16px;
-    margin: 20px 10px;
+    line-height: 150%;
+    color: $grey-800;
+    cursor: pointer;
+    >span{
+      color: $orange;
+    }
+  }
+  &__container {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    > input {
+      border: 1px solid $grey-400;
+      border-radius: 4px;
+      border-radius: 5px;
+      padding: 12px 16px;
+      font-size: 18px;
+      ::placeholder {
+        color: $grey-600;
+      }
+    }
+  }
+  &-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    max-width: 500px;
+    padding: 48px;
+    margin-inline: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background-color: $white;
+    border: 1px solid $grey-300;
+    box-shadow: 0 4px 4px -4px rgba(30, 33, 44, 0.05),
+      0 12px 10px -6px rgba(30, 33, 44, 0.08),
+      0 26px 24px -10px rgba(30, 33, 44, 0.1),
+      0 60px 80px -20px rgba(30, 33, 44, 0.16);
+    border-radius: 4px;
+  }
+  &_title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 150%;
+    margin: 20px 10px 10px;
+    color: $grey-bg;
+  }
+  &_input{
+    margin-bottom: 20px;
   }
 }
-.active-right{
+.active-right {
   border-radius: 15px 0 0 15px;
   background-color: $blue;
   color: $white;
 }
-.active-left{
+.active-left {
   border-radius: 0 15px 15px 0;
   background-color: $blue;
   color: $white;
 }
-.form_btn{
+.form_btn {
   padding: 15px;
   border-radius: 5px;
   font-size: 18px;
-  background-color: $blue;
+  background-color: $orange;
   color: $white;
-  width: min-content;
-  transition: all .4s;
-  &:hover{
+  margin: 24px 0;
+  width: 100%;
+  transition: all 0.4s;
+  &:hover {
     scale: 1.05;
   }
 }
-.auth{
-  position: relative;
-  &_success, &_error, &_loading{
+.auth {
+  &_success,
+  &_error,
+  &_loading {
     padding: 20px 10px;
     max-width: 50vw;
     background-color: $green;
@@ -80,37 +143,49 @@
     flex-direction: column;
     gap: 15px;
     text-align: center;
-    >img{
+    > img {
       max-width: 50px;
     }
   }
-  &_error{
+  &_error {
     background-color: $red;
     flex-direction: row;
   }
-  &_loading{
+  &_loading {
     border-radius: 10px;
     background-color: $white;
-    >img{
+    > img {
       max-width: 100px;
     }
   }
 }
-@media (max-width: 1200px){
-  .auth{
-    &__container{
+@media (max-width: 1200px) {
+  .auth {
+    &__container {
       flex-direction: column;
     }
-    &_success, &_error, &_loading{
+    &_success,
+    &_error,
+    &_loading {
       max-width: 80%;
     }
   }
 }
-@media (max-width: 576px){
-  .auth{
+@media (max-width: 576px) {
+  .auth {
     font-size: 14px;
+    &-container {
+      width: 95%;
+      padding: 24px;
+    }
+    &_title{
+      margin: 0;
+    }
+    &_input{
+      margin-bottom: 10px;
+    }
   }
-  .form_btn{
+  .form_btn {
     font-size: 14px;
   }
 }

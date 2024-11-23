@@ -5,6 +5,7 @@ import axios from 'axios'
 import Cookie from 'js-cookie'
 
 import { setAuth, setExpires } from '../../RTK/slices/AuthSlice'
+import { setAuthWindow } from '../../RTK/slices/WindowsSlice'
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
@@ -58,11 +59,12 @@ const useAuthLogic = ({
             },
           }
         )
+        console.log(response)
         setAuthMess(messages[0])
         dispatch(setAuth(true))
-        // console.log(response.data.data.token.expiresIn)
-        const time: Date = new Date(response.data.data.token.expiresIn)
+        // const time: Date = new Date(response.data.data.token.expiresIn)
         dispatch(setExpires(time))
+        dispatch(setAuthWindow(false))
         Cookie.set('token', response.data.data.token.token)
         navigate('/')
       } catch (error: any) {
@@ -76,10 +78,6 @@ const useAuthLogic = ({
     }
     setLoading(false)
   }
-  React.useEffect(() => {
-    console.log(+time - +new Date())
-    // if( +new Date() - +time)
-  }, [time])
   return { entance }
 }
 

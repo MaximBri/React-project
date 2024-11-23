@@ -1,7 +1,7 @@
-import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { NotFoundPage, PersonPage, HomePage, AuthPage, CatalogPage, CatPage, AccountPage, AboutPage} from './pages'
+import { NotFoundPage, PersonPage, HomePage, CatalogPage, CatPage, AccountPage, AboutPage} from './pages'
 import MainLayout from './layouts/MainLayout'
 import { store } from './RTK/store'
 import './scss/reset.css'
@@ -15,7 +15,6 @@ function App() {
           <Routes>
             <Route path='/' element={<MainLayout />}>
               <Route path='' element={<HomePage />} />
-              <Route path='Authorization' element={<AuthPage />} />
               <Route path='User' element={<PersonPage />} />
               <Route path='Catalog' element={<CatalogPage />} />
               <Route path='Cat' element={<CatPage />} />

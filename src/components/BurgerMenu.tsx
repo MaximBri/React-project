@@ -23,9 +23,13 @@ const BurgerMenu: React.FC<{ width: number }> = ({ width }) => {
         </div>
         <div className='burger-inner'>
           <NavLink to='/Catalog'>Каталог</NavLink>
-          <NavLink to='/Cat'>Мой кот</NavLink>
-          <NavLink to='/Account'>Мой Счет</NavLink>
-          <NavLink to='/User'>Профиль</NavLink>
+          {auth &&
+            <>
+              <NavLink to='/Cat'>Мой кот</NavLink>
+              <NavLink to='/Account'>Мой Счет</NavLink>
+              <NavLink to='/User'>Профиль</NavLink>
+            </>
+          }
           <NavLink to='/About'>О нас</NavLink>
         </div>
       </nav>
