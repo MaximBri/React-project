@@ -6,6 +6,7 @@ import Cookie from 'js-cookie'
 
 import { setAuth, setExpires } from '../../RTK/slices/AuthSlice'
 import { setAuthWindow } from '../../RTK/slices/WindowsSlice'
+import { setCatData } from '../../RTK/slices/CatSlice'
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
@@ -59,17 +60,40 @@ const useAuthLogic = ({
             },
           }
         )
-        console.log(response)
+        const catInfo = response.data.data.cat
+        if(catInfo){
+          const catData: catInterface = {
+            existed: true,
+            data: {
+              name: catInfo.name,
+              description: catInfo.personality.description,
+              role: catInfo.personality.name,
+              phrase: catInfo.phrase,
+              color: catInfo.color.name,
+            }
+          }
+          dispatch(setCatData(catData))
+          Cookie.set('cat', JSON.stringify(catData))
+        }
+        else {
+          dispatch(setCatData({existed: false, data: {
+            phrase: '',
+            name: '',
+            role: '',
+            color: '',
+            description: '',
+          }}))
+          Cookie.set('cat', '')
+        }
         setAuthMess(messages[0])
         dispatch(setAuth(true))
-        // const time: Date = new Date(response.data.data.token.expiresIn)
         dispatch(setExpires(time))
         dispatch(setAuthWindow(false))
         Cookie.set('token', response.data.data.token.token)
         navigate('/')
       } catch (error: any) {
         console.log(error)
-        if (error.response.status === 404) setStateAuthErr(messages[4])
+        if (error.status === 404) setStateAuthErr(messages[4])
         else setStateAuthErr(messages[2])
       }
     }

@@ -1,25 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-const initialState: { existed: boolean | null, name: string | null } = {
+const initialState: catInterface = {
   existed: null,
-  name: null,
+  data: {
+    name: null,
+    role: null,
+    phrase: null,
+    description: null,
+    color: null,
+  },
 }
 
 const CatSlice = createSlice({
   name: 'cat',
   initialState,
   reducers: {
-    setExisting(state, action: PayloadAction<boolean>) {
+    setCatExisting(state, action: PayloadAction<boolean>) {
       state.existed = action.payload
     },
-    setName(state, action: PayloadAction<string>) {
-      state.name = action.payload
+    setCatName(state, action: PayloadAction<string>) {
+      state.data.name = action.payload
+    },
+    setCatData(state, action: PayloadAction<catInterface>) {
+      state.existed = action.payload.existed
+      state.data = action.payload.data
     },
   },
 })
 export const getExisting = (state: RootState) => state.cat.existed
-export const getName = (state: RootState) => state.cat.name
-export const { setExisting, setName } =
-CatSlice.actions
+export const getName = (state: RootState) => state.cat.data.name
+export const getColor = (state: RootState) => state.cat.data.color
+export const getCatData = (state: RootState) => state.cat.data
+export const { setCatExisting, setCatName, setCatData } = CatSlice.actions
 export default CatSlice.reducer

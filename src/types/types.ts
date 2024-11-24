@@ -31,3 +31,16 @@ interface AuthProps {
     reg: React.Dispatch<React.SetStateAction<boolean>>
   }
 }
+
+interface catInterface {
+  existed: boolean | null
+  data: catDataInterface
+}
+
+interface catDataInterface {
+  name: string | null
+  description: string | null
+  role: string | null
+  phrase: string | null
+  color: string | null
+}

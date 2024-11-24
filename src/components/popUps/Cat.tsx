@@ -1,29 +1,36 @@
 import React from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useDispatch } from 'react-redux'
 
 import { setCatWindow } from '../../RTK/slices/WindowsSlice'
+import { CatLogic } from '../hooks/catLogic'
 import attentionSvg from '../../img/attention.svg'
 import '../../scss/Cat/cat.scss'
-import Cookies from 'js-cookie'
 
 const Cat = () => {
   const dispatch = useDispatch()
   const [name, setName] = React.useState('')
+  const [error, setError] = React.useState<string>('')
   const createCat = async () => {
-    const body = { name }
-    console.log(body)
-    const response = await axios.post(
-      'https://catsandpies.ru/api/Cat/CreateCat',
-      name,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      }
-    )
-    console.log(response)
+    try {
+      const response = await axios.post(
+        'https://catsandpies.ru/api/Cat/CreateCat',
+        name,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      )
+      const catInfo = response.data.data
+      CatLogic(catInfo, dispatch)
+      dispatch(setCatWindow(false))
+    } catch (error) {
+      console.log(error)
+      setError('Произошла ошибка при создании кота')
+    }
   }
   return (
     <>
@@ -32,6 +39,7 @@ const Cat = () => {
         <div className='cat_attention'>
           <img src={attentionSvg} alt='Attention' />
           <h3>Кота можно создать только 1 раз</h3>
+          {error && <h3>{error}</h3>}
         </div>
         <h3 className='cat_name'>Придумай имя для кота</h3>
         <input

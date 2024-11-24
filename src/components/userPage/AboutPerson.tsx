@@ -1,8 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setAllFields, setAuth, setQuestionnaire } from '../../RTK/slices/AuthSlice'
+import {
+  setAllFields,
+  setAuth,
+  setQuestionnaire,
+} from '../../RTK/slices/AuthSlice'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { setCatData } from '../../RTK/slices/CatSlice'
 
 const AboutPerson = () => {
   const dispatch = useDispatch()
@@ -27,7 +32,20 @@ const AboutPerson = () => {
       })
     )
     dispatch(setQuestionnaire(false))
+    dispatch(
+      setCatData({
+        existed: false,
+        data: {
+          color: '',
+          role: '',
+          phrase: '',
+          description: '',
+          name: '',
+        },
+      })
+    )
     Cookies.set('token', '')
+    Cookies.set('cat', '')
     navigate('/')
   }
   return (

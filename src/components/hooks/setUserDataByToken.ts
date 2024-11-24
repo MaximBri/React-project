@@ -7,6 +7,7 @@ import {
   setLoading,
   setQuestionnaire,
 } from '../../RTK/slices/AuthSlice'
+import { setCatData } from '../../RTK/slices/CatSlice'
 
 const setUserDataByToken = async (
   token: string | undefined,
@@ -28,21 +29,24 @@ const setUserDataByToken = async (
       )
       dispatch(setAllFields(response.data.data))
       dispatch(setQuestionnaire(true))
-      // console.log(response)
     } catch (error: any) {
-      // console.error('Error fetching data:', error.response)
-      if (error.response.data.statusCode === 404)
+      console.log(error)
+      if (error.response?.status === 404)
         dispatch(setQuestionnaire(false))
       if (error.response.status === 401) {
         dispatch(setAuth(false))
         Cookies.set('token', '')
-        navigate('/React-project/Authorization')
+        navigate('/')
       }
     }
     dispatch(setLoading(false))
   }
   else{
     dispatch(setLoading(false))
+  }
+  const catData = Cookies.get('cat')
+  if (catData) {
+    dispatch(setCatData(JSON.parse(catData)))
   }
 }
 

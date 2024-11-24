@@ -1,13 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { getAuth } from '../RTK/slices/AuthSlice'
+import { getExisting } from '../RTK/slices/CatSlice'
 
 const BurgerMenu: React.FC<{ width: number }> = ({ width }) => {
-  const location = useLocation()
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const auth = useSelector<any, boolean | number>(getAuth)
+  const catExisting = useSelector(getExisting)
 
   return (
     <>
@@ -23,13 +24,13 @@ const BurgerMenu: React.FC<{ width: number }> = ({ width }) => {
         </div>
         <div className='burger-inner'>
           <NavLink to='/Catalog'>Каталог</NavLink>
-          {auth &&
+          {auth && (
             <>
-              <NavLink to='/Cat'>Мой кот</NavLink>
+              {catExisting && <NavLink to='/Cat'>Мой кот</NavLink>}
               <NavLink to='/Account'>Мой Счет</NavLink>
               <NavLink to='/User'>Профиль</NavLink>
             </>
-          }
+          )}
           <NavLink to='/About'>О нас</NavLink>
         </div>
       </nav>

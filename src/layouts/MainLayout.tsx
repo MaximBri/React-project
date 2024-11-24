@@ -10,13 +10,6 @@ const MainLayout: React.FC = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const token = Cookies.get('token')
-  const cat = Cookies.get('cat')
-  React.useEffect(() => {
-    if(JSON.stringify(cat)){
-      console.log(cat)
-      // dispatch(setName(cat))
-    }
-  },[cat, dispatch])
   React.useEffect(() => {
     setUserDataByToken(token, dispatch, navigate)
   }, [token, dispatch])

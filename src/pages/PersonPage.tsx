@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { Person } from '../components'
 import AboutPerson from '../components/userPage/AboutPerson'
 import { getAuth, getLoading } from '../RTK/slices/AuthSlice'
 import '../scss/Person/person.scss'
-import { useNavigate } from 'react-router-dom'
 
 const PersonPage: React.FC = () => {
   const navigate = useNavigate()

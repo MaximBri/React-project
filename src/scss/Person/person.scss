@@ -154,6 +154,19 @@
     &__about {
       flex-direction: column;
     }
+    &_title {
+      font-size: 30px;
+    }
+    &__top{
+      &_name{
+        font-size: 20px;
+      }
+    }
+    &__list{
+      &_item{
+        font-size: 18px;
+      }
+    }
     &__other {
       &_inputs {
         grid-template-columns: 1fr;
