@@ -1,4 +1,5 @@
-@import './vars.scss';
+@import './vars.scss',
+'./globals.scss';
 .header {
   display: flex;
   align-items: center;

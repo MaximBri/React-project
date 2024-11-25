@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                   onClick={() => dispatch(setCatWindow(true))}
                   className='header__nav_item'
                 >
-                  <CatImage color={null}/>
+                  <CatImage color={null} shadow={false}/>
                 </button>
               )}
               <div

@@ -60,3 +60,76 @@
     color: $white;
   }
 }
+
+.cats{
+  padding: 30px 50px 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  background-color: $green;
+  border-radius: 5px;
+  box-shadow: 1px 1px 36px 0px rgba(34, 60, 80, 0.2);
+  &_name{
+    font-size: 28px;
+    text-align: center;
+  }
+  &_shadow{
+    filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.7));
+  }
+  &__about{
+    background-color: $orange;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 10px 15px;
+  }
+  &__details{
+    border-top: 2px solid $black;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    :first-child{
+      text-align: center;
+      font-size: 22px;
+    }
+    &_item{
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+  &__phrases{
+    padding: 40px 0;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    &_btn{
+      background-color: $blue;
+      border-radius: 5px;
+      color: $white;
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+  }
+  &_phrase{
+    padding: 10px 15px;
+    background-color: $grey-400;
+    border-radius: 10px 0 10px 10px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1024px){
+  .cats{
+    padding: 10px 30px 5px;
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px){
+  .cats{
+    width: 90%;
+  }
+}

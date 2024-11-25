@@ -1,13 +1,18 @@
-@import './fonts.scss',
-'./vars.scss';
+@import './vars.scss', '../fonts/fonts.css';
 body {
   font-size: 14px;
   line-height: 1.1;
   overflow-x: hidden;
-  font-family: 'Lato', sans-serif;
   scroll-behavior: smooth;
   font-weight: 700;
 }
+
+body,
+html,
+* {
+  font-family: 'Mulish';
+}
+
 .App,
 #root {
   width: 100%;

@@ -1,26 +1,26 @@
 import React from 'react'
 
-const CatImage: React.FC<{ color: string | null }> = ({ color }) => {
+const CatImage: React.FC<{ color: string | null; shadow: boolean }> = ({
+  color,
+  shadow,
+}) => {
   const [colors, setColors] = React.useState<string>('')
   React.useEffect(() => {
     if (!color || color.toLowerCase() === 'шоколадный') {
       setColors('#967A4A #826A40 #65513C #AD8D56 #FFFFFF #333E48 #1E252B')
-    }
-    else if(color.toLowerCase() === 'черный'){
+    } else if (color.toLowerCase() === 'черный') {
       setColors('#2C2C2C #000000 #3D3D3D #2F2F2F #FFFFFF #333E48 #A2A2A2')
-    }
-    else if(color.toLowerCase() === 'серый'){
+    } else if (color.toLowerCase() === 'серый') {
       setColors('#545454 #2C2C2C #000000 #878686 #FFFFFF #333E48 #1E252B')
-    }
-    else if(color.toLowerCase() === 'рыжий'){
+    } else if (color.toLowerCase() === 'рыжий') {
       setColors('#EC7B1E #9A6100 #B85F00 #DC9C2E #FFFFFF #333E48 #1E252B')
-    }
-    else if(color.toLowerCase() === 'белый'){
+    } else if (color.toLowerCase() === 'белый') {
       setColors('#ECEAE5 #C4C4C4 #C1BFBE #FFFFFF #585858 #333E48 #1E252B')
     }
   }, [color])
   return (
     <svg
+      className={shadow ? 'cats_shadow' : ''}
       height='198px'
       width='198px'
       version='1.1'
