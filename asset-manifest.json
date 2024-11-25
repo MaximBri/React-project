@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/React-project/static/css/main.30bd38e9.css",
-    "main.js": "/React-project/static/js/main.096d5e22.js",
+    "main.css": "/React-project/static/css/main.bf6d6e06.css",
+    "main.js": "/React-project/static/js/main.1b254f06.js",
     "static/media/loader.gif": "/React-project/static/media/loader.ddeb9d127dbef027133c.gif",
-    "static/media/Lato-Regular.woff2": "/React-project/static/media/Lato-Regular.cf0cb273ca399ef6f49e.woff2",
-    "static/media/Lato-Bold.woff2": "/React-project/static/media/Lato-Bold.053c985717ad3258a6ff.woff2",
+    "static/media/Mulish-Medium.woff2": "/React-project/static/media/Mulish-Medium.97952bebc179d0479bfe.woff2",
+    "static/media/Mulish-Black.woff2": "/React-project/static/media/Mulish-Black.881b6e6982d30a551176.woff2",
+    "static/media/Mulish-Regular.woff2": "/React-project/static/media/Mulish-Regular.f188daf01849fd250c9f.woff2",
+    "static/media/Mulish-Bold.woff2": "/React-project/static/media/Mulish-Bold.6f19e1ab88b801decc77.woff2",
     "static/media/Person.svg": "/React-project/static/media/Person.fe75dde4ddcf4ccb06ffe7a72cd2d2d8.svg",
     "static/media/attention.svg": "/React-project/static/media/attention.6cc5506f4859556c4e4ce0e18fde687b.svg",
     "index.html": "/React-project/index.html",
-    "main.30bd38e9.css.map": "/React-project/static/css/main.30bd38e9.css.map",
-    "main.096d5e22.js.map": "/React-project/static/js/main.096d5e22.js.map"
+    "main.bf6d6e06.css.map": "/React-project/static/css/main.bf6d6e06.css.map",
+    "main.1b254f06.js.map": "/React-project/static/js/main.1b254f06.js.map"
   },
   "entrypoints": [
-    "static/css/main.30bd38e9.css",
-    "static/js/main.096d5e22.js"
+    "static/css/main.bf6d6e06.css",
+    "static/js/main.1b254f06.js"
   ]
 }
