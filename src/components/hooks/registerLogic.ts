@@ -7,6 +7,7 @@ import Cookie from 'js-cookie'
 import { setAuth } from '../../RTK/slices/AuthSlice'
 import { messages } from './authLogic'
 import { setRegisterWindow } from '../../RTK/slices/WindowsSlice'
+import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
 
 interface RegisterLogicReturnType {
   name: string
@@ -65,7 +66,15 @@ const useRegisterLogic = ({
         Cookie.set('token', response.data.data.token.token)
         setAuthMess(messages[0])
         dispatch(setRegisterWindow(false))
-        console.log(Cookie.get('token'))
+        dispatch(
+          pushMessage({
+            message: response.data.messageForUser,
+            statusCode: response.data.statusCode,
+          })
+        )
+        setTimeout(()=> {
+          dispatch(clearMessage())
+        }, 3000)
         navigate('/')
       } catch (error: any) {
         console.log(error)

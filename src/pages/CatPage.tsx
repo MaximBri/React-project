@@ -5,11 +5,16 @@ import { getCatData } from '../RTK/slices/CatSlice'
 
 import CatImage from '../components/Cat/CatImage'
 import Cookies from 'js-cookie'
+import { getAuth } from '../RTK/slices/AuthSlice'
+import { useNavigate } from 'react-router-dom'
 
 const CatPage = () => {
+  const navigate = useNavigate()
   const catData = useSelector(getCatData)
+  const auth = useSelector(getAuth)
   const [description, setDescription] = React.useState<boolean>(false)
   const [phrase, setPhrase] = React.useState<string | null>(catData.phrase)
+  if (!auth) navigate('/')
   const getNewPhrase = () => {
     setPhrase('Думает...')
     setTimeout(async () => {
@@ -26,12 +31,11 @@ const CatPage = () => {
             }
           )
           setPhrase(responce.data.data)
-          console.log(responce)
         } catch (error) {
           console.log(error)
         }
       }
-    }, 1000);
+    }, 1000)
   }
   return (
     <>

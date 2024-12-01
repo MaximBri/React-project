@@ -11,6 +11,7 @@ import {
   setQuestionnaire,
 } from '../../RTK/slices/AuthSlice'
 import FieldWithSelects from './FieldWithSelects'
+import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
 
 const Person = () => {
   const dispatch = useDispatch()
@@ -206,8 +207,26 @@ const Person = () => {
                 },
               }
             )
+            dispatch(
+              pushMessage({
+                message: 'Данные сохранены успешно!',
+                statusCode: 200,
+              })
+            )
+            setTimeout(() => {
+              dispatch(clearMessage())
+            }, 3000)
           } catch (error: any) {
             console.log(error)
+            dispatch(
+              pushMessage({
+                message: 'Ошибка при сохранении данных',
+                statusCode: 400,
+              })
+            )
+            setTimeout(() => {
+              dispatch(clearMessage())
+            }, 3000)
           }
         } else {
           try {
@@ -221,8 +240,26 @@ const Person = () => {
                 },
               }
             )
+            dispatch(
+              pushMessage({
+                message: 'Данные сохранены успешно!',
+                statusCode: 200,
+              })
+            )
+            setTimeout(() => {
+              dispatch(clearMessage())
+            }, 3000)
           } catch (error) {
             console.log(error)
+            dispatch(
+              pushMessage({
+                message: 'Ошибка при сохранении данных',
+                statusCode: 400,
+              })
+            )
+            setTimeout(() => {
+              dispatch(clearMessage())
+            }, 3000)
           }
         }
       }

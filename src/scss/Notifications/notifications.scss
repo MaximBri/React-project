@@ -1,0 +1,32 @@
+@import '../vars.scss';
+
+.notif {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: fixed;
+  bottom: -15vh;
+  right: 20px;
+  max-width: max(80vw, 300px);
+  padding: 20px;
+  transition: all .6s;
+  opacity: 0;
+  &_img{
+    max-height: 40px;
+  }
+}
+.notif.visible{
+  opacity: 1;
+  bottom: 5vh;
+}
+.notif.hidden2{
+  opacity: 0;
+  right: -10vw;
+  bottom: 5vh;
+}
+.green{
+  background-color: $green;
+}
+.red{
+  background-color: $red;
+}

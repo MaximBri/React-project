@@ -33,7 +33,7 @@ interface AuthProps {
 }
 
 interface catInterface {
-  existed: boolean | null
+  existed: boolean 
   data: catDataInterface
 }
 
@@ -43,4 +43,9 @@ interface catDataInterface {
   role: string | null
   phrase: string | null
   color: string | null
+}
+
+interface NotificationIntreface{
+  message: string,
+  statusCode: number
 }

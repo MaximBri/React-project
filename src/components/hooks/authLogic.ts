@@ -7,6 +7,7 @@ import Cookie from 'js-cookie'
 import { setAuth, setExpires } from '../../RTK/slices/AuthSlice'
 import { setAuthWindow } from '../../RTK/slices/WindowsSlice'
 import { setCatData } from '../../RTK/slices/CatSlice'
+import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
@@ -28,7 +29,7 @@ export const messages: string[] = [
   'Пароль должен быть длиннее 4 символов',
   'Пароли не совпадают!',
   'Введите имя',
-  'Заполните все поля!'
+  'Заполните все поля!',
 ]
 
 const useAuthLogic = ({
@@ -40,14 +41,14 @@ const useAuthLogic = ({
 }: AuthLogicEntanceType): AuthLogicReturnType => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const time: Date = useSelector<any, Date>(state => state.auth.expiresIn)
+  const time: Date = useSelector<any, Date>((state) => state.auth.expiresIn)
   const entance = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const body = {
       login,
       password: pass,
     }
-    if(pass && login){
+    if (pass && login) {
       try {
         setLoading(true)
         setStateAuthErr('')
@@ -61,7 +62,7 @@ const useAuthLogic = ({
           }
         )
         const catInfo = response.data.data.cat
-        if(catInfo){
+        if (catInfo) {
           const catData: catInterface = {
             existed: true,
             data: {
@@ -70,21 +71,34 @@ const useAuthLogic = ({
               role: catInfo.personality.name,
               phrase: catInfo.phrase,
               color: catInfo.color.name,
-            }
+            },
           }
           dispatch(setCatData(catData))
           Cookie.set('cat', JSON.stringify(catData))
-        }
-        else {
-          dispatch(setCatData({existed: false, data: {
-            phrase: '',
-            name: '',
-            role: '',
-            color: '',
-            description: '',
-          }}))
+        } else {
+          dispatch(
+            setCatData({
+              existed: false,
+              data: {
+                phrase: '',
+                name: '',
+                role: '',
+                color: '',
+                description: '',
+              },
+            })
+          )
           Cookie.set('cat', '')
         }
+        dispatch(
+          pushMessage({
+            message: response.data.messageForUser,
+            statusCode: response.data.statusCode,
+          })
+        )
+        setTimeout(()=> {
+          dispatch(clearMessage())
+        }, 3000)
         setAuthMess(messages[0])
         dispatch(setAuth(true))
         dispatch(setExpires(time))
@@ -96,8 +110,7 @@ const useAuthLogic = ({
         if (error.status === 404) setStateAuthErr(messages[4])
         else setStateAuthErr(messages[2])
       }
-    }
-    else{
+    } else {
       setStateAuthErr(messages[8])
     }
     setLoading(false)

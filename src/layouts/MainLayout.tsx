@@ -1,10 +1,11 @@
 import React from 'react'
 import Cookies from 'js-cookie'
-import { Outlet, useNavigate} from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { Header } from '../components'
 import setUserDataByToken from '../components/hooks/setUserDataByToken'
+import States from '../components/popUps/States'
 
 const MainLayout: React.FC = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <Header />
+      <States />
       <div className='container'>
         <main className='wrapper'>
           <Outlet />

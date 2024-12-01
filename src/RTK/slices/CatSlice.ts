@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 const initialState: catInterface = {
-  existed: null,
+  existed: true,
   data: {
     name: null,
     role: null,

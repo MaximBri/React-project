@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { setCatData } from '../../RTK/slices/CatSlice'
+import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
 
 const AboutPerson = () => {
   const dispatch = useDispatch()
@@ -44,6 +45,15 @@ const AboutPerson = () => {
         },
       })
     )
+    dispatch(
+      pushMessage({
+        message: 'Вы вышли из аккаунта',
+        statusCode: 200,
+      })
+    )
+    setTimeout(() => {
+      dispatch(clearMessage())
+    }, 3000)
     Cookies.set('token', '')
     Cookies.set('cat', '')
     navigate('/')
