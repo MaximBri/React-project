@@ -2,15 +2,19 @@
 
 .notif {
   display: flex;
-  gap: 20px;
+  box-shadow: rgba(149, 157, 165, 0.7) 4px 0px 24px;
+  border-radius: 5px;
   align-items: center;
   position: fixed;
   bottom: -15vh;
   right: 20px;
   max-width: max(80vw, 300px);
   padding: 20px;
+  padding-left: 0;
   transition: all .6s;
   opacity: 0;
+  font-size: 18px;
+  overflow: hidden;
   &_img{
     max-height: 40px;
   }
@@ -25,8 +29,24 @@
   bottom: 5vh;
 }
 .green{
-  background-color: $green;
+  fill: #04e4003a;
 }
 .red{
-  background-color: $red;
+  fill: #e41b003a;
+}
+.wave {
+  margin-left: -35px;
+  margin-right: -30px;
+  transform: rotate(90deg);
+  height: 20px;
+}
+@media(max-width: 1024px){
+  .notif{
+    font-size: 16px;
+  }
+}
+@media(max-width: 576px){
+  .notif{
+    font-size: 14px;
+  }
 }

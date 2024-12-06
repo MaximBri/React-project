@@ -8,6 +8,7 @@ import { setAuth, setExpires } from '../../RTK/slices/AuthSlice'
 import { setAuthWindow } from '../../RTK/slices/WindowsSlice'
 import { setCatData } from '../../RTK/slices/CatSlice'
 import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
+import { setMessage } from './messagesLogic'
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
@@ -90,15 +91,11 @@ const useAuthLogic = ({
           )
           Cookie.set('cat', '')
         }
-        dispatch(
-          pushMessage({
-            message: response.data.messageForUser,
-            statusCode: response.data.statusCode,
-          })
-        )
-        setTimeout(()=> {
-          dispatch(clearMessage())
-        }, 3000)
+        setMessage({
+          message: response.data.messageForUser,
+          statusCode: response.data.statusCode,
+          dispatch,
+        })
         setAuthMess(messages[0])
         dispatch(setAuth(true))
         dispatch(setExpires(time))

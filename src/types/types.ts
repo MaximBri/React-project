@@ -49,3 +49,9 @@ interface NotificationIntreface{
   message: string,
   statusCode: number
 }
+
+interface messageInterface {
+  dispatch: any
+  message: string
+  statusCode: number
+}

@@ -4,11 +4,11 @@ import Cookies from 'js-cookie'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { setMessage } from '../hooks/messagesLogic'
 import { setCatWindow } from '../../RTK/slices/WindowsSlice'
 import { CatLogic } from '../hooks/catLogic'
 import attentionSvg from '../../img/attention.svg'
 import '../../scss/Cat/cat.scss'
-import { clearMessage, pushMessage } from '../../RTK/slices/NotificationSlice'
 
 const Cat = () => {
   const dispatch = useDispatch()
@@ -30,16 +30,11 @@ const Cat = () => {
       const catInfo = response.data.data
       CatLogic(catInfo, dispatch)
       dispatch(setCatWindow(false))
-      dispatch(
-        pushMessage({
-          message: response.data.messageForUser,
-          statusCode: response.data.statusCode,
-        })
-      )
-      console.log(response)
-      setTimeout(()=> {
-        dispatch(clearMessage())
-      }, 3000)
+      setMessage({
+        message: response.data.messageForUser,
+        statusCode: response.data.statusCode,
+        dispatch,
+      })
       navigate('/Cat')
     } catch (error) {
       console.log(error)

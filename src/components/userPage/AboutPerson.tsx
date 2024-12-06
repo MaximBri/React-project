@@ -48,7 +48,7 @@ const AboutPerson = () => {
     dispatch(
       pushMessage({
         message: 'Вы вышли из аккаунта',
-        statusCode: 200,
+        statusCode: 400,
       })
     )
     setTimeout(() => {
