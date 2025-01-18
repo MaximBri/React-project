@@ -1,0 +1,82 @@
+.burger {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+  align-items: center;
+  justify-content: center;
+
+  width: rem(40);
+  height: rem(40);
+  > div {
+    width: rem(30);
+    height: rem(4);
+    border-radius: 10px;
+    background-color: $black;
+  }
+  &__menu {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    right: 0;
+    transform: translateX(0);
+
+    width: min-content;
+    min-width: rem(200);
+    height: 100%;
+    padding: 0 rem(20);
+
+    text-wrap: nowrap;
+
+    background-color: #121212d1;
+
+    transition: all 0.3s;
+    &--hidden {
+      transform: translateX(100%);
+      transition: all 0.3s;
+    }
+  }
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    align-items: center;
+
+    height: 100%;
+    margin: rem(80) 0;
+
+    color: $white;
+    & > .active {
+      color: $orange;
+    }
+  }
+  &__close-btn {
+    cursor: pointer;
+
+    position: absolute;
+    top: rem(40);
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    width: rem(40);
+    height: rem(40);
+    border-radius: 50%;
+    & > div {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+
+      width: rem(40);
+      height: rem(4);
+
+      background-color: $white;
+    }
+    :first-child {
+      transform: rotate(45deg);
+    }
+    :last-child {
+      transform: rotate(135deg);
+    }
+  }
+}

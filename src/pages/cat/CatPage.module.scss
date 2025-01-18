@@ -1,0 +1,87 @@
+.cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50%;
+  padding: rem(30) rem(50) rem(10);
+  border-radius: 5px;
+
+  background-color: $green;
+  box-shadow: 1px 1px 36px 0px rgba(34, 60, 80, 0.2);
+  &__name {
+    font-size: rem(28);
+    text-align: center;
+  }
+
+  &__about-btn {
+    padding: rem(10) rem(15);
+    border-radius: 5px;
+
+    font-size: rem(18);
+    font-weight: 800;
+
+    background-color: $orange;
+  }
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+
+    padding: rem(10) 0;
+    border-top: 2px solid $black;
+    :first-child {
+      font-size: rem(22);
+      text-align: center;
+    }
+    &-item {
+      font-size: rem(18);
+      font-weight: 600;
+    }
+  }
+  &__phrases {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    align-items: center;
+
+    padding: rem(40) 0;
+    &-text {
+      padding: rem(10) rem(15);
+      border-radius: 10px 0 10px 10px;
+      font-size: rem(20);
+      background-color: $grey-400;
+    }
+    &-btn {
+      padding: rem(10) rem(20);
+      border-radius: 5px;
+
+      font-size: rem(18);
+      color: $white;
+
+      background-color: $blue;
+    }
+  }
+  &__btn {
+    padding: rem(10) rem(20);
+    border-radius: 5px;
+
+    font-size: rem(18);
+    color: $white;
+
+    background-color: $blue;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cat {
+    width: 70%;
+    padding: rem(10) rem(30) rem(5);
+  }
+}
+
+@media (max-width: 768px) {
+  .cat {
+    width: 90%;
+  }
+}

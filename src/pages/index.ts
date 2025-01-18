@@ -1,8 +1,7 @@
-export {default as HomePage} from './HomePage'
-// export {default as AuthPage} from './AuthPage'
-export {default as NotFoundPage} from './NotFoundPage'
-export {default as PersonPage} from './PersonPage'
-export {default as AboutPage} from './AboutPage'
-export {default as AccountPage} from './AccountPage'
-export {default as CatalogPage} from './CatalogPage'
-export {default as CatPage} from './CatPage'
+export { AboutPage } from './about/AboutPage';
+export { AccountPage } from './account/AccountPage';
+export { CatPage } from './cat/CatPage';
+export { CatalogPage } from './catalog/CatalogPage';
+export { HomePage } from './home/HomePage';
+export { NotFoundPage } from './not-found/NotFoundPage';
+export { PersonPage } from './person/PersonPage';

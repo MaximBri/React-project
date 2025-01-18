@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.eslint": "never"
+  },
+  "stylelint.validate": ["css", "scss"],
+  "eslint.validate": ["typescript", "typescriptreact"]
+}

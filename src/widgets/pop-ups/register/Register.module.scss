@@ -1,0 +1,161 @@
+.registration {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: rem(500);
+  margin-inline: 2vw;
+  padding: rem(24) rem(48);
+  border: 1px solid $grey-300;
+  border-radius: 4px;
+
+  background-color: $white;
+  box-shadow:
+    0 4px 4px -4px rgba(30, 33, 44, 0.05),
+    0 12px 10px -6px rgba(30, 33, 44, 0.08),
+    0 26px 24px -10px rgba(30, 33, 44, 0.1),
+    0 60px 80px -20px rgba(30, 33, 44, 0.16);
+  &__background {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    opacity: 0.75;
+    background-color: $grey-bg;
+  }
+  &__status {
+    &-success,
+    &-error,
+    &-loading {
+      display: flex;
+      flex-direction: column;
+      gap: rem(15);
+      align-items: center;
+
+      max-width: 50vw;
+      padding: rem(20) rem(10);
+
+      text-align: center;
+
+      background-color: $green;
+      > img {
+        max-width: rem(50);
+      }
+    }
+    &-error {
+      flex-direction: row;
+      background-color: $red;
+    }
+    &-loading {
+      border-radius: 10px;
+      background-color: $white;
+      > img {
+        max-width: rem(100);
+      }
+    }
+  }
+  &__entrance {
+    cursor: pointer;
+
+    font-size: rem(16);
+    font-weight: 400;
+    line-height: 150%;
+    color: $grey-800;
+    > span {
+      color: $orange;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+
+    width: 100%;
+    margin-top: rem(24);
+
+    font-size: rem(18);
+    font-weight: 400;
+    line-height: 150%;
+    &-input {
+      margin-bottom: rem(20);
+      padding: rem(12) rem(16);
+      border: 1px solid $grey-400;
+      border-radius: 5px;
+
+      font-size: rem(18);
+      ::placeholder {
+        color: $grey-600;
+      }
+    }
+    &-btn {
+      width: 100%;
+      margin: rem(24) 0;
+      padding: rem(15);
+      border-radius: 5px;
+
+      font-size: rem(18);
+      color: $white;
+
+      background-color: $orange;
+
+      transition: all 0.4s;
+      &:hover {
+        scale: 1.05;
+      }
+    }
+  }
+  &__title {
+    margin: 0 rem(10) rem(10);
+
+    font-size: rem(28);
+    font-weight: 700;
+    line-height: 150%;
+    color: $grey-bg;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .registration {
+    &__container {
+      flex-direction: column;
+    }
+    &_success,
+    &_error,
+    &_loading {
+      max-width: 80%;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .registration {
+    font-size: 14px;
+    &-container {
+      width: 95%;
+      padding: 24px;
+    }
+    &_title {
+      margin: 0;
+    }
+    &_input {
+      margin-bottom: 10px;
+    }
+  }
+  .form_btn {
+    font-size: 14px;
+  }
+}

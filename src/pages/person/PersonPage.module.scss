@@ -1,0 +1,40 @@
+.person {
+  &__title {
+    margin: rem(10) 0;
+
+    font-size: rem(40);
+    font-weight: 600;
+    color: $blue;
+    text-align: center;
+  }
+  &__list {
+    display: flex;
+    gap: rem(30);
+    align-items: center;
+    justify-content: center;
+    &-item {
+      cursor: pointer;
+      font-size: rem(24);
+      &--active {
+        border-bottom: 2px solid $red;
+        font-weight: 600;
+      }
+    }
+  }
+  &__loading {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .person {
+    &__title {
+      font-size: rem(30);
+    }
+    &__list {
+      &-item {
+        font-size: rem(18);
+      }
+    }
+  }
+}

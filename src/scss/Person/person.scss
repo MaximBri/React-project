@@ -1,46 +1,46 @@
-@import '../vars.scss';
 .person {
   &_title {
-    text-align: center;
-    font-size: 40px;
     margin: 10px 0;
-    color: $blue;
+
+    font-size: rem(40);
     font-weight: 600;
+    color: $blue;
+    text-align: center;
   }
   &-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
   &__list {
     display: flex;
+    gap: rem(30);
     align-items: center;
     justify-content: center;
-    gap: 30px;
     &_item {
-      font-size: 24px;
       cursor: pointer;
+      font-size: 24px;
     }
     &_active {
-      font-weight: 600;
       border-bottom: 2px solid $red;
+      font-weight: 600;
     }
   }
   &__main,
   &__other {
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    margin-bottom: rem(20);
     & > h3 {
-      margin: 20px 0;
+      margin: rem(20) 0;
       font-size: 24px;
       font-weight: 600;
     }
     &_inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: rem(20) rem(50);
       justify-content: center;
-      gap: 20px 50px;
       & > span {
         display: flex;
         flex-direction: column;
@@ -56,52 +56,61 @@
       font-size: 16px;
     }
     &_item {
-      padding: 10px 15px;
-      border: 2px solid $blue;
       margin: 10px 0;
+      padding: 10px rem(15);
+      border: 2px solid $blue;
       border-radius: 5px;
+
       font-size: 16px;
       &-textarea {
-        min-height: 45px;
-        max-width: 100%;
-        max-height: 30vh;
         resize: vertical;
-        padding: 10px 15px;
-        border: 2px solid $blue;
+
+        max-width: 100%;
+        min-height: 45px;
+        max-height: 30vh;
         margin: 10px 0;
+        padding: 10px rem(15);
+        border: 2px solid $blue;
         border-radius: 5px;
+
         font-size: 16px;
       }
     }
   }
   &__top_name {
-    text-align: center;
-    font-size: 30px;
     margin: 10px 0;
+    font-size: rem(30);
+    text-align: center;
   }
   &_btn {
-    width: 100%;
+    cursor: pointer;
+
     display: flex;
+    gap: rem(30);
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin: 20px 0;
-    cursor: pointer;
-    &-delete{
-      background-color: $red;
+
+    width: 100%;
+    margin: rem(20) 0;
+    &-delete {
+      padding: 10px rem(20);
       border-radius: 5px;
-      padding: 10px 20px;
+
       font-size: 16px;
       color: $white;
+
+      background-color: $red;
     }
   }
   &_name,
   &_birthday {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
-    font-weight: 700;
+
+    margin: rem(15) 0;
+
     font-size: 16px;
+    font-weight: 700;
   }
   &__loading {
     width: 100%;
@@ -109,28 +118,29 @@
   }
 }
 .field {
+  min-height: rem(40);
+  margin: 10px 0;
   padding: 10px 0px;
   border: 2px solid $blue;
-  margin: 10px 0;
   border-radius: 5px;
+
   font-size: 16px;
   text-align: center;
-  min-height: 40px;
   &_variant {
-    transition: all .5s;
     line-height: 1.5;
-    &:hover{
-      background-color: $blue;
+    transition: all 0.5s;
+    &:hover {
       line-height: 2;
       color: $white;
+      background-color: $blue;
     }
   }
   &_variants {
     display: flex;
-    text-align: center;
     flex-direction: column;
-    &:first-child{
-      margin-top: 20px;
+    text-align: center;
+    &:first-child {
+      margin-top: rem(20);
     }
   }
 }
@@ -140,12 +150,14 @@
 .user {
   &__about {
     &_btn {
-      margin: 30px 0;
-      background-color: $red;
-      padding: 20px 40px;
+      margin: rem(30) 0;
+      padding: rem(20) rem(40);
+      border-radius: 10px;
+
       font-size: 24px;
       color: #fff;
-      border-radius: 10px;
+
+      background-color: $red;
     }
   }
 }
@@ -155,16 +167,16 @@
       flex-direction: column;
     }
     &_title {
-      font-size: 30px;
+      font-size: rem(30);
     }
-    &__top{
-      &_name{
-        font-size: 20px;
+    &__top {
+      &_name {
+        font-size: rem(20);
       }
     }
-    &__list{
-      &_item{
-        font-size: 18px;
+    &__list {
+      &_item {
+        font-size: rem(18);
       }
     }
     &__other {

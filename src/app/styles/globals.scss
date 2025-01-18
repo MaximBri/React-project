@@ -1,0 +1,94 @@
+@use 'sass:math';
+@use './mixins' as *;
+@use './variables' as *;
+
+body {
+  font-size: rem(14);
+  line-height: 1.1;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-weight: 700;
+}
+
+body,
+html,
+* {
+  font-family: 'Mulish';
+}
+
+.App,
+#root {
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  margin-inline: 10vw;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: rem(20) 0;
+}
+
+.button {
+  padding: rem(10) rem(20);
+  border-radius: 5px;
+  background-color: #3903ff;
+  color: #fff;
+  font-size: rem(16);
+}
+
+.button2 {
+  margin: rem(30) 0;
+  background-color: $red;
+  padding: rem(20) rem(40);
+  font-size: rem(24);
+  color: #fff;
+  border-radius: 10px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    margin-inline: 8vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-inline: 5vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-inline: 4vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin-inline: 3vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    margin-inline: 2vw;
+  }
+}

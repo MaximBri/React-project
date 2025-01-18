@@ -1,0 +1,73 @@
+.cat {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: rem(48);
+  border: 1px solid $grey-300;
+  border-radius: 4px;
+
+  color: $grey-bg;
+  text-align: center;
+
+  background-color: $white;
+  box-shadow:
+    0 4px 4px -4px rgba(30, 33, 44, 0.05),
+    0 12px 10px -6px rgba(30, 33, 44, 0.08),
+    0 26px 24px -10px rgba(30, 33, 44, 0.1),
+    0 60px 80px -20 rgba(30, 33, 44, 0.16);
+  &__background {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    opacity: 0.75;
+    background-color: $grey-bg;
+  }
+  &__title {
+    margin-bottom: rem(25);
+    font-size: rem(28);
+  }
+  &__attention {
+    display: flex;
+    gap: rem(20);
+    align-items: center;
+
+    margin: rem(10) 0;
+    padding: rem(10) rem(20);
+
+    font-weight: 400;
+    color: $white;
+
+    background-color: $red;
+  }
+  &__name {
+    margin-top: rem(20);
+    font-size: rem(24);
+    &-input {
+      margin: rem(10) 0;
+      padding: rem(12) rem(16);
+      border: 1px solid $grey-400;
+      border-radius: 4px;
+
+      font-size: rem(16);
+    }
+  }
+  &__create-btn {
+    padding: rem(15) rem(20);
+    border-radius: 10px;
+
+    font-size: rem(18);
+    color: $white;
+
+    background-color: $orange;
+  }
+}

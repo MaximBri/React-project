@@ -1,4 +1,4 @@
-.notif {
+.notification {
   position: fixed;
   right: rem(20);
   bottom: -15vh;
@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
 
-  max-width: max(80vw, 300px);
+  max-width: max(80vw, rem(300));
   padding: rem(20);
   padding-left: 0;
   border-radius: 5px;
@@ -18,38 +18,42 @@
   box-shadow: rgba(149, 157, 165, 0.7) 4px 0px 24px;
 
   transition: all 0.6s;
-  &_img {
-    max-height: rem(40);
-  }
 }
-.notif.visible {
+
+.notification.visible {
   bottom: 5vh;
   opacity: 1;
 }
-.notif.hidden2 {
+
+.notification.hidden {
   right: -10vw;
   bottom: 5vh;
   opacity: 0;
 }
+
 .green {
   fill: #04e4003a;
 }
+
 .red {
   fill: #e41b003a;
 }
+
 .wave {
   transform: rotate(90deg);
   height: rem(20);
   margin-right: -rem(30);
-  margin-left: -35px;
+  margin-left: rem(-35);
 }
+
 @media (max-width: 1024px) {
-  .notif {
-    font-size: 16px;
+  .notification {
+    font-size: rem(16);
   }
 }
+
 @media (max-width: 576px) {
-  .notif {
-    font-size: 14px;
+  .notification {
+    font-size: rem(14);
   }
 }
