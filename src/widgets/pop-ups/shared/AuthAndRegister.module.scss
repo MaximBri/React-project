@@ -1,4 +1,4 @@
-.registration {
+.window {
   position: fixed;
   z-index: 100;
   top: 50%;
@@ -59,6 +59,16 @@
     &-error {
       flex-direction: row;
       background-color: $red;
+      &--under {
+        margin-top: rem(-30);
+        padding: rem(10);
+        border-radius: 0 0 10px 10px;
+
+        font-size: 18px;
+        color: $white;
+
+        background-color: $red;
+      }
     }
     &-loading {
       border-radius: 10px;
@@ -130,27 +140,47 @@
 }
 
 @media (max-width: 1200px) {
-  .registration {
+  .window {
     padding: rem(18) rem(36);
     &__status {
       &-success,
       &-error,
       &-loading {
-        max-width: 80%;
+        width: 100%;
+        max-width: 100%;
+        padding: rem(5) rem(5);
+
+        font-size: rem(14);
+        font-weight: 600;
+      }
+      &-error {
+        &--under {
+          font-size: 16px;
+        }
       }
     }
   }
 }
 
 @media (max-width: 768px) {
-  .registration {
-    width: calc(100vw - rem(30));
+  .window {
+    width: 65vw;
     padding: rem(10) rem(15);
     &__status {
       &-success,
       &-error,
       &-loading {
         max-width: 100%;
+      }
+      &-error {
+        &--under {
+          width: 100%;
+          margin: 0 auto;
+          margin-top: rem(-5);
+          padding: rem(5);
+
+          font-size: rem(14);
+        }
       }
     }
     &__title {
@@ -163,6 +193,7 @@
       flex-direction: column;
       gap: rem(5);
 
+      max-width: 70%;
       margin-top: rem(5);
 
       font-size: rem(14);
@@ -184,5 +215,20 @@
     &__entrance {
       font-size: rem(12);
     }
+  }
+}
+
+@media (max-width: 520px) {
+  .window {
+    width: 75vw;
+    &__form {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .window {
+    width: 85vw;
   }
 }

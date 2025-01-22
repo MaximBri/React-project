@@ -75,8 +75,8 @@ export interface RegisterLogicEntanceType {
   login: string;
   pass: string;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setAuthMess: React.Dispatch<React.SetStateAction<string>>;
-  setStateAuthErr: React.Dispatch<React.SetStateAction<string>>;
+  setRegMess: React.Dispatch<React.SetStateAction<string>>;
+  setStateRegErr: React.Dispatch<React.SetStateAction<stateRegErrInterface>>;
 }
 
 export interface FieldWithSelectsEtranceData {
@@ -88,4 +88,11 @@ export interface FieldWithSelectsEtranceData {
   canChangeInput: boolean;
   placeholder: string;
   variants: string[];
+}
+
+export interface stateRegErrInterface {
+  name?: string;
+  login?: string;
+  pass?: string;
+  other?: string;
 }

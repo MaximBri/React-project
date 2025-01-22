@@ -20,8 +20,8 @@ const useRegisterLogic = ({
   login,
   pass,
   setLoading,
-  setAuthMess,
-  setStateAuthErr,
+  setRegMess,
+  setStateRegErr,
 }: RegisterLogicEntanceType): RegisterLogicReturnType => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,11 +30,13 @@ const useRegisterLogic = ({
   const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (pass.length < 4) {
-      setStateAuthErr(messages[5]);
+      setStateRegErr({ pass: messages[5] });
+    } else if (!login) {
+      setStateRegErr({ login: messages[9] });
     } else if (!name) {
-      setStateAuthErr(messages[7]);
+      setStateRegErr({ name: messages[7] });
     } else if (pass !== repeatPass) {
-      setStateAuthErr(messages[6]);
+      setStateRegErr({ pass: messages[6] });
     } else {
       const body = {
         name,
@@ -42,7 +44,7 @@ const useRegisterLogic = ({
         password: pass,
       };
       try {
-        setStateAuthErr('');
+        setStateRegErr({});
         setLoading(true);
         const response = await axios.post(
           API_URL + apiRoutes.registration,
@@ -55,7 +57,7 @@ const useRegisterLogic = ({
         );
         dispatch(setAuth(true));
         Cookie.set(TOKEN, response.data.data.token.token);
-        setAuthMess(messages[0]);
+        setRegMess(messages[0]);
         dispatch(setRegisterWindow(false));
         addNotification(
           dispatch,
@@ -65,8 +67,9 @@ const useRegisterLogic = ({
         navigate(routes.main.home.path);
       } catch (error: any) {
         console.log(error);
-        if (error.response.status === 409) setStateAuthErr(messages[3]);
-        else setStateAuthErr(messages[4]);
+        if (error.response.status === 409)
+          setStateRegErr({ other: messages[3] });
+        else setStateRegErr({ other: messages[4] });
       }
       setLoading(false);
     }
