@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
+
 import { UserDataInterface } from '../../../shared/types';
+import { defaultUserData } from '@/entities/user/model/defaultUserData';
 
 const initialState: {
   expiresIn: Date | null;
@@ -13,21 +15,7 @@ const initialState: {
   auth: false,
   questionnaire: null,
   loading: true,
-  data: {
-    name: '',
-    email: '',
-    birthday: '01.01.2000',
-    hobby: '',
-    season: '',
-    flower: '',
-    dish: '',
-    chillTime: '',
-    film: '',
-    singer: '',
-    color: '',
-    positiveTraits: '',
-    dream: '',
-  },
+  data: defaultUserData,
 };
 
 const AuthSlice = createSlice({
@@ -36,7 +24,6 @@ const AuthSlice = createSlice({
   reducers: {
     setAuth(state, action: PayloadAction<boolean>) {
       state.auth = action.payload;
-      // console.log(action.payload)
     },
     setExpires(state, action: PayloadAction<Date>) {
       state.expiresIn = action.payload;
@@ -50,7 +37,9 @@ const AuthSlice = createSlice({
     setAllFields(state, action: PayloadAction<UserDataInterface>) {
       state.data = action.payload;
       if (action.payload.name) state.auth = true;
-      // console.log(action.payload)
+    },
+    updateUserData(state, action: any) {
+      state.data = { ...state.data, ...action };
     },
   },
 });
@@ -64,5 +53,6 @@ export const {
   setExpires,
   setLoading,
   setQuestionnaire,
+  updateUserData,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;

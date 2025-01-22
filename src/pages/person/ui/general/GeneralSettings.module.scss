@@ -1,0 +1,14 @@
+.user {
+  &__about {
+    &-btn {
+      margin: rem(30) 0;
+      padding: rem(20) rem(40);
+      border-radius: 10px;
+
+      font-size: rem(24);
+      color: $white;
+
+      background-color: $red;
+    }
+  }
+}

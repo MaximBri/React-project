@@ -5,10 +5,13 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { setCatWindow } from '../../../app/store/slices/WindowsSlice';
-import { setMessage } from '@/features/notifications/model/messagesLogic';
 import { CatLogic } from '../../../entities/cat/catLogic';
 import attentionSvg from '/img/attention.svg';
 import styles from './CreateCat.module.scss';
+import { addNotification } from '../notifications/model/addNotification';
+import { routes } from '@/app/routes/model/routes';
+import { API_URL, TOKEN } from '@/shared/globals/globalsData';
+import { apiRoutes } from '@/shared/globals/apiRoutes';
 
 export const CreateCat = () => {
   const dispatch = useDispatch();
@@ -18,24 +21,25 @@ export const CreateCat = () => {
   const createCat = async () => {
     try {
       const response = await axios.post(
-        'https://catsandpies.ru/api/Cat/CreateCat',
+        `${API_URL}${apiRoutes.cat_create}`,
         name,
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${Cookies.get('token')}`,
+            Authorization: `Bearer ${Cookies.get(TOKEN)}`,
           },
         }
       );
       const catInfo = response.data.data;
       CatLogic(catInfo, dispatch);
       dispatch(setCatWindow(false));
-      setMessage({
-        message: response.data.messageForUser,
-        statusCode: response.data.statusCode,
+      addNotification(
         dispatch,
-      });
-      navigate('/Cat');
+        response.data.messageForUser,
+        response.data.statusCode
+      );
+
+      navigate(routes.main.cat.path);
     } catch (error) {
       console.log(error);
       setError('Произошла ошибка при создании кота');

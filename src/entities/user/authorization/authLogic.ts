@@ -7,12 +7,12 @@ import { catInterface } from '@/shared/types';
 import { setCatData } from '@/app/store/slices/CatSlice';
 import { setAuth, setExpires } from '@/app/store/slices/AuthSlice';
 import { setAuthWindow } from '@/app/store/slices/WindowsSlice';
-import { setMessage } from '@/features/notifications/model/messagesLogic';
 import { messages } from './model/messagesForUser';
 import { defaultCatData } from '@/entities/cat/model/defaultCatData';
 import { API_URL, CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
 import { routes } from '@/app/routes/model/routes';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
+import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
@@ -69,11 +69,11 @@ const useAuthLogic = ({
           dispatch(setCatData(defaultCatData));
           Cookie.set(CAT_TOKEN, '');
         }
-        setMessage({
-          message: response.data.messageForUser,
-          statusCode: response.data.statusCode,
+        addNotification(
           dispatch,
-        });
+          response.data.messageForUser,
+          response.data.statusCode
+        );
         setAuthMess(messages[0]);
         dispatch(setAuth(true));
         dispatch(setExpires(time));

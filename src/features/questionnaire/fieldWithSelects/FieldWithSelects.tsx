@@ -1,17 +1,9 @@
-import { memo, useState } from "react";
+import { memo, useState } from 'react';
 
-interface FieldWithSelectsEtranceData {
-  title: string;
-  value: string;
-  setValue:
-    | React.Dispatch<React.SetStateAction<string>>
-    | ((text: string) => void);
-  canChangeInput: boolean;
-  placeholder: string;
-  variants: string[];
-}
+import { FieldWithSelectsEtranceData } from '@/shared/types';
+import styles from './FieldWithSelects.module.scss';
 
-const FieldWithSelects = memo(
+export const FieldWithSelects = memo(
   ({
     title,
     value,
@@ -30,9 +22,9 @@ const FieldWithSelects = memo(
     return (
       <span className="">
         {title}:
-        <span
+        <button
           onClick={() => canOpen()}
-          className={canChangeInput ? 'field' : 'field blocked'}
+          className={`${styles.field} ${canChangeInput ? '' : styles['field--blocked']}`}
         >
           {value}
           {open && (
@@ -51,10 +43,8 @@ const FieldWithSelects = memo(
               })}
             </div>
           )}
-        </span>
+        </button>
       </span>
     );
-  },
+  }
 );
-
-export default FieldWithSelects;

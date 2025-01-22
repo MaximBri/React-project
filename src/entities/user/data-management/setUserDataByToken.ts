@@ -21,7 +21,7 @@ const setUserDataByToken = async (
     dispatch(setAuth(true));
     dispatch(setLoading(true));
     try {
-      const response = await axios.get(API_URL + apiRoutes.questionnaire, {
+      const response = await axios.get(API_URL + apiRoutes.get_questionnaire, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

@@ -1,4 +1,6 @@
-import AboutPerson from '@/features/person/AboutPerson';
-import Person from '@/features/person/Person';
+import { GeneralSettings, Questionnaire } from '../ui';
 
-export const sections: React.ReactNode[] = [<AboutPerson />, <Person />];
+export const sections: React.ReactNode[] = [
+  <GeneralSettings />,
+  <Questionnaire />,
+];

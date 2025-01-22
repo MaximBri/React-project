@@ -1,31 +1,29 @@
 import { memo } from 'react';
-import { FieldEtranceData } from '../../shared/types';
 
-const Field = memo(
+import { FieldEtranceData } from '../../../shared/types';
+import styles from './Field.module.scss';
+
+export const Field = memo(
   ({
     title,
     value,
     setValue,
     canChangeInput,
-    main,
     placeholder,
   }: FieldEtranceData) => {
     return (
-      <span className={main ? 'person_name' : ''}>
+      <label className={styles.field__title}>
         {title}:
         <input
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className={
-            canChangeInput ? 'person__about_item' : 'person__about_item blocked'
-          }
+          className={`${styles['field__about-item']}
+            ${canChangeInput ? '' : styles['field__about-item--blocked']}`}
           type="text"
           placeholder={placeholder}
           readOnly={!canChangeInput}
         />
-      </span>
+      </label>
     );
   }
 );
-
-export default Field;

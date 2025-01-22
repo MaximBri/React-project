@@ -1,23 +1,22 @@
-import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
-import { CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
-import { defaultCatData } from '@/entities/cat/model/defaultCatData';
-import { defaultUserData } from '@/entities/user/model/defaultUserData';
 import { routes } from '@/app/routes/model/routes';
-import { setCatData } from '@/app/store/slices/CatSlice';
 import {
   setAllFields,
   setAuth,
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
+import { setCatData } from '@/app/store/slices/CatSlice';
 import {
   clearMessage,
   pushMessage,
 } from '@/app/store/slices/NotificationSlice';
+import { defaultCatData } from '@/entities/cat/model/defaultCatData';
+import { defaultUserData } from '@/entities/user/model/defaultUserData';
+import { CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
+import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const AboutPerson = () => {
+export const generalSettingsModel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const exitFromAcc = () => {
@@ -38,13 +37,5 @@ const AboutPerson = () => {
     Cookies.set(CAT_TOKEN, '');
     navigate(routes.main.home.path);
   };
-  return (
-    <div>
-      <button onClick={() => exitFromAcc()} className="user__about_btn">
-        Выйти
-      </button>
-    </div>
-  );
+  return { exitFromAcc };
 };
-
-export default AboutPerson;

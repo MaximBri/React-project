@@ -16,6 +16,7 @@ import { Auth, CreateCat, Register } from '@/widgets/pop-ups';
 import logo from '/img/logo192.png';
 import regSvg from '/img/Person.svg';
 import styles from './Header.module.scss';
+import { Portal } from '@/shared/ui';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -74,13 +75,20 @@ export const Header = () => {
           )}
         </div>
       </header>
-      {/* сделать через порталы */}
-      {authWindow && <Auth />}
-      {registerWindow && <Register />}
+      {authWindow && (
+        <Portal>
+          <Auth />
+        </Portal>
+      )}
+      {registerWindow && (
+        <Portal>
+          <Register />
+        </Portal>
+      )}
       {catWindow && (
-        <section className="auth">
+        <Portal>
           <CreateCat />
-        </section>
+        </Portal>
       )}
     </>
   );

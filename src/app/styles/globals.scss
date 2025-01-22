@@ -2,8 +2,11 @@
 @use './mixins' as *;
 @use './variables' as *;
 
+html{
+  font-size: rem($font-size-base);
+}
+
 body {
-  font-size: rem(14);
   line-height: 1.1;
   overflow-x: hidden;
   scroll-behavior: smooth;

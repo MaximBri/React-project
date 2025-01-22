@@ -1,3 +1,5 @@
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
+
 export interface UserDataInterface {
   name: string;
   email?: string | null;
@@ -12,6 +14,12 @@ export interface UserDataInterface {
   color: string;
   positiveTraits: string;
   dream: string;
+}
+
+export interface saveUserDataInterface extends UserDataInterface {
+  setCanChangeInput: (value: React.SetStateAction<boolean>) => void;
+  questionnaire: boolean | null;
+  dispatch: Dispatch<UnknownAction>;
 }
 
 export interface FieldEtranceData {
@@ -54,4 +62,30 @@ export interface messageInterface {
   dispatch: any;
   message: string;
   statusCode: number;
+}
+
+export interface RegisterLogicReturnType {
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  repeatPass: string;
+  setRepeatPass: React.Dispatch<React.SetStateAction<string>>;
+  register: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
+}
+export interface RegisterLogicEntanceType {
+  login: string;
+  pass: string;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setAuthMess: React.Dispatch<React.SetStateAction<string>>;
+  setStateAuthErr: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface FieldWithSelectsEtranceData {
+  title: string;
+  value: string;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | ((text: string) => void);
+  canChangeInput: boolean;
+  placeholder: string;
+  variants: string[];
 }

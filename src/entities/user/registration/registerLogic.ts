@@ -6,26 +6,15 @@ import { useState } from 'react';
 
 import { setAuth } from '@/app/store/slices/AuthSlice';
 import { setRegisterWindow } from '@/app/store/slices/WindowsSlice';
-import { setMessage } from '@/features/notifications/model/messagesLogic';
 import { API_URL, TOKEN } from '@/shared/globals/globalsData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { routes } from '@/app/routes/model/routes';
 import { messages } from '../authorization/model/messagesForUser';
-
-interface RegisterLogicReturnType {
-  name: string;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-  repeatPass: string;
-  setRepeatPass: React.Dispatch<React.SetStateAction<string>>;
-  register: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
-}
-interface RegisterLogicEntanceType {
-  login: string;
-  pass: string;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setAuthMess: React.Dispatch<React.SetStateAction<string>>;
-  setStateAuthErr: React.Dispatch<React.SetStateAction<string>>;
-}
+import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
+import {
+  RegisterLogicEntanceType,
+  RegisterLogicReturnType,
+} from '@/shared/types';
 
 const useRegisterLogic = ({
   login,
@@ -68,11 +57,11 @@ const useRegisterLogic = ({
         Cookie.set(TOKEN, response.data.data.token.token);
         setAuthMess(messages[0]);
         dispatch(setRegisterWindow(false));
-        setMessage({
-          message: response.data.messageForUser,
-          statusCode: response.data.statusCode,
+        addNotification(
           dispatch,
-        });
+          response.data.messageForUser,
+          response.data.statusCode
+        );
         navigate(routes.main.home.path);
       } catch (error: any) {
         console.log(error);

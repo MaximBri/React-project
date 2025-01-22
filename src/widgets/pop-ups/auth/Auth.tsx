@@ -40,7 +40,6 @@ export const Auth = () => {
     <>
       <section className={styles.auth}>
         <h2 className={styles.auth__title}>Вход</h2>
-        {/* попробовать сделать это через map */}
         {loading && (
           <div className={styles['auth__status-loading']}>
             <img src={LoadGif} alt="loading..." />
