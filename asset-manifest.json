@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/React-project/static/css/main.0074d9df.css",
-    "main.js": "/React-project/static/js/main.61587439.js",
+    "main.css": "/React-project/static/css/main.0ea0a217.css",
+    "main.js": "/React-project/static/js/main.1379d38f.js",
     "static/media/loader.gif": "/React-project/static/media/loader.ddeb9d127dbef027133c.gif",
     "static/media/Mulish-Medium.woff2": "/React-project/static/media/Mulish-Medium.97952bebc179d0479bfe.woff2",
     "static/media/Mulish-Black.woff2": "/React-project/static/media/Mulish-Black.881b6e6982d30a551176.woff2",
@@ -10,11 +10,11 @@
     "static/media/Person.svg": "/React-project/static/media/Person.fe75dde4ddcf4ccb06ffe7a72cd2d2d8.svg",
     "static/media/attention.svg": "/React-project/static/media/attention.6cc5506f4859556c4e4ce0e18fde687b.svg",
     "index.html": "/React-project/index.html",
-    "main.0074d9df.css.map": "/React-project/static/css/main.0074d9df.css.map",
-    "main.61587439.js.map": "/React-project/static/js/main.61587439.js.map"
+    "main.0ea0a217.css.map": "/React-project/static/css/main.0ea0a217.css.map",
+    "main.1379d38f.js.map": "/React-project/static/js/main.1379d38f.js.map"
   },
   "entrypoints": [
-    "static/css/main.0074d9df.css",
-    "static/js/main.61587439.js"
+    "static/css/main.0ea0a217.css",
+    "static/js/main.1379d38f.js"
   ]
 }
