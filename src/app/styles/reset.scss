@@ -12,6 +12,11 @@
   box-sizing: border-box;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
+
 :focus,
 :active {
   outline: none;

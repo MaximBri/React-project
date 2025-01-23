@@ -2,35 +2,23 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { routes } from '@/app/routes/model/routes';
-import { headerModel } from '../model/headerModel';
+import { useHeaderModel } from '../model/useHeaderModel';
 import { NavigationList } from '@/app/routes/ui/NavigationList';
-import {
-  setAuthWindow,
-  setCatWindow,
-} from '../../../store/slices/WindowsSlice';
+import { setCatWindow } from '../../../store/slices/WindowsSlice';
 
 import CatImage from '@/pages/cat/ui/CatImage';
 import { BurgerMenu } from '../../burger-menu';
-import { Auth, CreateCat, Register } from '@/widgets/pop-ups';
 
 import logo from '/img/logo192.png';
 import regSvg from '/img/Person.svg';
 import styles from './Header.module.scss';
-import { Portal } from '@/shared/ui';
 
 export const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    auth,
-    authWindow,
-    registerWindow,
-    catWindow,
-    catExisting,
-    width,
-    userName,
-  } = headerModel();
+  const { auth, catExisting, userName, onAuthButtonClick } =
+  useHeaderModel();
   return (
     <>
       <header className={styles.header}>
@@ -46,7 +34,7 @@ export const Header = () => {
           </nav>
         </div>
         <div className={styles['header__nav-box']}>
-          {width < 1024 && <BurgerMenu />}
+          <BurgerMenu />
           {auth ? (
             <>
               {catExisting === false && (
@@ -66,7 +54,7 @@ export const Header = () => {
             </>
           ) : (
             <span
-              onClick={() => dispatch(setAuthWindow(true))}
+              onClick={() => onAuthButtonClick()}
               className={styles['header__nav-item']}
             >
               <img src={regSvg} alt="Вход" />
@@ -75,21 +63,6 @@ export const Header = () => {
           )}
         </div>
       </header>
-      {authWindow && (
-        <Portal>
-          <Auth />
-        </Portal>
-      )}
-      {registerWindow && (
-        <Portal>
-          <Register />
-        </Portal>
-      )}
-      {catWindow && (
-        <Portal>
-          <CreateCat />
-        </Portal>
-      )}
     </>
   );
 };

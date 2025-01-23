@@ -2,9 +2,9 @@ import Cookies from 'js-cookie';
 
 import { setAllFields, setQuestionnaire } from '@/app/store/slices/AuthSlice';
 import { saveUserDataInterface, UserDataInterface } from '@/shared/types';
-import { TOKEN } from '@/shared/globals/globalsData';
 import { putQuestionnaire } from './questionnaire/putQuestionnaire';
 import { postQuestionnaire } from './questionnaire/postQuestionnaire';
+import { TOKEN } from '@/shared/globals/globalsData';
 
 export const saveUserData = ({
   setCanChangeInput,

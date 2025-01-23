@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,11 @@ export const catPageModel = () => {
   const auth = useSelector(getAuth);
   const [description, setDescription] = useState<boolean>(false);
   const [phrase, setPhrase] = useState<string | null>(catData.phrase);
-  if (!auth || !catData.name) navigate(routes.main.home.path);
+  useEffect(() => {
+    if (!auth || !catData.name) {
+      navigate(routes.main.home.path);
+    }
+  }, [auth, catData.name]);
   const getNewPhrase = () => {
     setPhrase('Думает...');
     setTimeout(async () => {

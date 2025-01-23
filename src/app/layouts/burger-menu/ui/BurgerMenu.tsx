@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import { NavigationList } from '@/app/routes/ui/NavigationList';
 import styles from './BurgerMenu.module.scss';
 
-export const BurgerMenu = () => {
+export const BurgerMenu = memo(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
-      <div onClick={() => setIsOpen(true)} className={styles.burger}>
+      <button onClick={() => setIsOpen(true)} className={styles.burger}>
         <div></div>
         <div></div>
         <div></div>
-      </div>
+      </button>
       <nav
         className={
           isOpen
@@ -19,17 +19,23 @@ export const BurgerMenu = () => {
             : `${styles.burger__menu} ${styles['burger__menu--hidden']}`
         }
       >
-        <div
+        <button
           onClick={() => setIsOpen(false)}
           className={styles['burger__close-btn']}
         >
           <div></div>
           <div></div>
-        </div>
+        </button>
         <nav className={styles['burger-inner']}>
-          <NavigationList />
+          <NavigationList closeBurger={setIsOpen}/>
         </nav>
       </nav>
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className={styles.burger__background}
+        ></div>
+      )}
     </>
   );
-};
+});

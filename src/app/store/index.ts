@@ -4,6 +4,7 @@ import auth from './slices/AuthSlice';
 import windows from './slices/WindowsSlice';
 import cat from './slices/CatSlice';
 import notification from './slices/NotificationSlice';
+import userDevice from './slices/UserDeviceSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     windows,
     cat,
     notification,
+    userDevice,
   },
 });
 

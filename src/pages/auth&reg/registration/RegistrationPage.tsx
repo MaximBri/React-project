@@ -2,18 +2,43 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { messages } from '@/entities/user/authorization/model/messagesForUser';
-import { registerModel } from './model/registerModel';
-import crossSvg from '/img/attention.svg';
+import { registerModel } from '@/widgets/pop-ups/register/model/registerModel';
+import { routes } from '@/app/routes/model/routes';
 import LoadGif from '/img/loader.gif';
-import styles from '../shared/AuthAndRegister.module.scss';
+import CrossSvg from '/img/attention.svg';
+import styles from '../authorization/AuthorizationPage.module.scss';
 
-export const Register = () => {
+export const RegistrationPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = registerModel(dispatch, navigate);
+
   return (
     <>
       <section className={styles.window}>
+        <button
+          onClick={() => data.returnBack()}
+          className={styles.window__subtitle}
+        >
+          <svg
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
+            aria-labelledby="returnIconTitle returnIconDesc"
+            stroke="#2329D6"
+            stroke-width="1"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            fill="none"
+            color="#2329D6"
+          >
+            <path d="M19,8 L19,11 C19,12.1045695 18.1045695,13 17,13 L6,13" />{' '}
+            <polyline points="8 16 5 13 8 10" />
+          </svg>
+          Вернуться
+        </button>
         <h2 className={styles.window__title}>Регистрация</h2>
         {data.loading && (
           <div className={styles['window__status-loading']}>
@@ -28,7 +53,7 @@ export const Register = () => {
         )}
         {data.stateRegErr.other && (
           <div className={styles['window__status-error']}>
-            <img src={crossSvg} alt="Ошибка" />
+            <img src={CrossSvg} alt="Ошибка" />
             <h2 className={styles['window__status-text']}>
               {data.stateRegErr.other}
             </h2>
@@ -96,16 +121,12 @@ export const Register = () => {
           </button>
           <h3
             className={styles.window__entrance}
-            onClick={() => data.openAuthWindow()}
+            onClick={() => navigate(routes.main.auth.path)}
           >
             Уже есть аккаунт?<span> Войти</span>
           </h3>
         </div>
       </section>
-      <div
-        onClick={() => data.closeWindows()}
-        className={styles.window__background}
-      ></div>
     </>
   );
 };

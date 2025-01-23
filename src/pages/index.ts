@@ -5,3 +5,5 @@ export { CatalogPage } from './catalog/CatalogPage';
 export { HomePage } from './home/HomePage';
 export { NotFoundPage } from './not-found/NotFoundPage';
 export { PersonPage } from './person/PersonPage';
+export { AuthorizationPage } from './auth&reg/authorization/AuthorizationPage';
+export { RegistrationPage } from './auth&reg/registration/RegistrationPage';

@@ -1,14 +1,21 @@
 .field {
-  min-height: rem(40);
-  margin: 10px 0;
-  padding: 10px 0px;
-  border: 2px solid $blue;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  &__button {
+    min-height: rem(40);
+    margin: 10px 0;
+    padding: 10px 0px;
+    border: 2px solid $blue;
+    border-radius: 5px;
 
-  font-size: 16px;
-  text-align: center;
-  &--blocked {
-    background-color: $grey;
+    font-size: 16px;
+    text-align: center;
+
+    background-color: transparent;
+    &--blocked {
+      cursor: auto;
+      background-color: $grey;
+    }
   }
   &__variant {
     line-height: 1.5;
@@ -25,46 +32,6 @@
     text-align: center;
     &:first-child {
       margin-top: rem(20);
-    }
-  }
-}
-
-.user {
-  &__about {
-    &_btn {
-      margin: rem(30) 0;
-      padding: rem(20) rem(40);
-      border-radius: 10px;
-
-      font-size: 24px;
-      color: #fff;
-
-      background-color: $red;
-    }
-  }
-}
-@media (max-width: 768px) {
-  .person {
-    &__about {
-      flex-direction: column;
-    }
-    &_title {
-      font-size: rem(30);
-    }
-    &__top {
-      &_name {
-        font-size: rem(20);
-      }
-    }
-    &__list {
-      &_item {
-        font-size: rem(18);
-      }
-    }
-    &__other {
-      &_inputs {
-        grid-template-columns: 1fr;
-      }
     }
   }
 }

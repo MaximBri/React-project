@@ -9,7 +9,7 @@ export const Field = memo(
     value,
     setValue,
     canChangeInput,
-    placeholder,
+    placeholder = '',
   }: FieldEtranceData) => {
     return (
       <label className={styles.field__title}>

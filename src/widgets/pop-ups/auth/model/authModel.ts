@@ -1,12 +1,19 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { useState } from 'react';
+import { NavigateFunction } from 'react-router-dom';
+
 import useAuthLogic from '@/entities/user/authorization/authLogic';
+import { PREV_PAGE } from '@/shared/globals/globalsData';
+import { routes } from '@/app/routes/model/routes';
 import {
   setAuthWindow,
   setRegisterWindow,
 } from '@/app/store/slices/WindowsSlice';
 
-export const authModel = (dispatch: Dispatch<UnknownAction>) => {
+export const authModel = (
+  dispatch: Dispatch<UnknownAction>,
+  navigate: NavigateFunction
+) => {
   const [stateAuthErr, setStateAuthErr] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [authMess, setAuthMess] = useState<string>('');
@@ -29,6 +36,13 @@ export const authModel = (dispatch: Dispatch<UnknownAction>) => {
     dispatch(setRegisterWindow(false));
     dispatch(setAuthWindow(false));
   };
+
+  const returnBack = () => {
+    let prevUrl = localStorage.getItem(PREV_PAGE) || routes.main.home.path;
+    if (prevUrl === 'Authorization') prevUrl = routes.main.home.path;
+    navigate('/' + prevUrl);
+  };
+
   return {
     stateAuthErr,
     loading,
@@ -40,5 +54,6 @@ export const authModel = (dispatch: Dispatch<UnknownAction>) => {
     entance,
     openRegWindow,
     closeWindows,
+    returnBack,
   };
 };

@@ -1,33 +1,20 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 import { setAllFields } from '@/app/store/slices/AuthSlice';
-import { TOKEN } from '@/shared/globals/globalsData';
+import { API_URL, TOKEN } from '@/shared/globals/globalsData';
+import { defaultUserData } from '../model/defaultUserData';
+import { apiRoutes } from '@/shared/globals/apiRoutes';
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
+import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
 
-export const deleteUserData = async (birthday: Date | string) => {
-  const dispatch = useDispatch();
+export const deleteUserData = async (dispatch: Dispatch<UnknownAction>) => {
   const token = Cookies.get(TOKEN);
-  dispatch(
-    setAllFields({
-      name: '',
-      birthday,
-      hobby: '',
-      season: '',
-      flower: '',
-      dish: '',
-      chillTime: '',
-      film: '',
-      singer: '',
-      color: '',
-      positiveTraits: '',
-      dream: '',
-    })
-  );
+  dispatch(setAllFields(defaultUserData));
   if (token) {
     try {
       const response = await axios.delete(
-        'https://catsandpies.ru/api/Questionnaire',
+        `${API_URL}${apiRoutes.questionnaire}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -36,6 +23,7 @@ export const deleteUserData = async (birthday: Date | string) => {
         }
       );
       console.log(response);
+      addNotification(dispatch, 'Анкета успешно удалена', 200)
     } catch (error: any) {
       console.error('Error fetching data:', error);
     }

@@ -9,7 +9,6 @@ import styles from './Questionnaire.module.scss';
 export const Questionnaire = () => {
   const dispatch = useDispatch();
 
-  const { mainFields, fields } = fieldsBox();
   const {
     canChangeInput,
     loading,
@@ -20,7 +19,9 @@ export const Questionnaire = () => {
     setDream,
     setCanChangeInput,
     clearUserData,
+    other,
   } = questionnaireLogic({ dispatch });
+  const { mainFields, fields } = fieldsBox(other, canChangeInput);
   return (
     <section className={styles.person__wrapper}>
       <h2 className={styles['person__top-name']}>
@@ -44,10 +45,9 @@ export const Questionnaire = () => {
               })}
               <FieldWithSelects
                 title="Любимый сезон"
-                value={season}
+                value={season || 'Зима'}
                 setValue={setSeason}
                 canChangeInput={canChangeInput}
-                placeholder=""
                 variants={['Зима', 'Весна', 'Лето', 'Осень']}
               />
               <label className={styles['person__other-textarea-wrapper']}>
@@ -57,8 +57,8 @@ export const Questionnaire = () => {
                   onChange={(e) => setDream(e.target.value)}
                   className={
                     canChangeInput
-                      ? styles['person__about_item-textarea']
-                      : `${styles['person__about_item-textarea']} ${styles['person__about_item-textarea--blocked']}`
+                      ? styles['person__about-item-textarea']
+                      : `${styles['person__about-item-textarea']} ${styles['person__about-item-textarea--blocked']}`
                   }
                   readOnly={!canChangeInput}
                 />
@@ -73,7 +73,10 @@ export const Questionnaire = () => {
             </div>
           ) : (
             <div className={styles.person__btn}>
-              <button onClick={() => setCanChangeInput(true)} className="button">
+              <button
+                onClick={() => setCanChangeInput(true)}
+                className="button"
+              >
                 Изменить
               </button>
               <button

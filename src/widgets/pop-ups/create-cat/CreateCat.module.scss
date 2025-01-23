@@ -43,7 +43,9 @@
 
     margin: rem(10) 0;
     padding: rem(10) rem(20);
+    border-radius: 10px;
 
+    font-size: 18px;
     font-weight: 400;
     color: $white;
 
@@ -69,5 +71,63 @@
     color: $white;
 
     background-color: $orange;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cat {
+    padding: rem(36);
+    &__title {
+      margin-bottom: rem(20);
+      font-size: rem(22);
+    }
+    &__attention {
+      gap: rem(15);
+    }
+    &__name {
+      margin-top: rem(15);
+      font-size: rem(18);
+      &-input {
+        font-size: rem(14);
+      }
+    }
+    &__create-btn {
+      font-size: rem(16);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cat {
+    width: 70vw;
+    padding: rem(24);
+    &__title {
+      margin-bottom: rem(10);
+      font-size: rem(18);
+    }
+    &__attention {
+      gap: rem(10);
+      margin: rem(5) 0;
+      padding: rem(5) rem(10);
+    }
+    &__name {
+      margin-top: rem(10);
+      font-size: rem(16);
+      &-input {
+        margin: rem(5) 0;
+        padding: rem(7) rem(10);
+      }
+    }
+    &__create-btn {
+      padding: rem(10) rem(15);
+      font-size: rem(14);
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .cat {
+    width: 80vw;
+    padding: rem(18);
   }
 }

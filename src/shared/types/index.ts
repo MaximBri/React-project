@@ -30,7 +30,7 @@ export interface FieldEtranceData {
     | ((text: string) => void);
   canChangeInput: boolean;
   main: boolean;
-  placeholder: string;
+  placeholder?: string;
 }
 
 export interface AuthProps {
@@ -41,7 +41,7 @@ export interface AuthProps {
 }
 
 export interface catInterface {
-  existed: boolean;
+  existed: boolean | null;
   data: catDataInterface;
 }
 
@@ -86,7 +86,7 @@ export interface FieldWithSelectsEtranceData {
     | React.Dispatch<React.SetStateAction<string>>
     | ((text: string) => void);
   canChangeInput: boolean;
-  placeholder: string;
+  placeholder?: string;
   variants: string[];
 }
 
@@ -96,3 +96,5 @@ export interface stateRegErrInterface {
   pass?: string;
   other?: string;
 }
+
+export type userDeviceType = 'mobile' | 'tablet' | 'desktop' | null;

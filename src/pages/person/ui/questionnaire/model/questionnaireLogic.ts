@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import {
-  getAllFields,
-  getQuestionnaire,
-} from '@/app/store/slices/AuthSlice';
+import { getAllFields, getQuestionnaire, setQuestionnaire } from '@/app/store/slices/AuthSlice';
 import { deleteUserData } from '@/entities/user/data-management/deleteUserData';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { saveUserData } from '@/entities/user/data-management/saveUserData';
-import { convertData, convertDataToAPI } from '@/entities/user/data-management/convertData';
+import {
+  convertData,
+  convertDataToAPI,
+} from '@/entities/user/data-management/convertData';
 
 export const questionnaireLogic = ({
   dispatch,
@@ -80,7 +80,8 @@ export const questionnaireLogic = ({
     });
   };
   const clearUserData = async () => {
-    deleteUserData(convertDataToAPI(birthday));
+    deleteUserData(dispatch);
+    dispatch(setQuestionnaire(false))
     setName('');
     setHobby('');
     setFilm('');
@@ -91,31 +92,11 @@ export const questionnaireLogic = ({
     setDream('');
     setCharacters('');
     setColor('');
-    setSeason('');
+    setSeason('Зима');
     setFreeTime('');
   };
   return {
-    name,
-    setName,
     canChangeInput,
-    birthday,
-    changeBirthday,
-    hobby,
-    setHobby,
-    flower,
-    setFlower,
-    dish,
-    setDish,
-    freeTime,
-    setFreeTime,
-    film,
-    setFilm,
-    singer,
-    setSinger,
-    color,
-    setColor,
-    characters,
-    setCharacters,
     loading,
     saveUserDataProvider,
     season,
@@ -124,5 +105,27 @@ export const questionnaireLogic = ({
     setDream,
     setCanChangeInput,
     clearUserData,
+    other: {
+      name,
+      setName,
+      birthday,
+      changeBirthday,
+      hobby,
+      setHobby,
+      flower,
+      setFlower,
+      dish,
+      setDish,
+      freeTime,
+      setFreeTime,
+      film,
+      setFilm,
+      singer,
+      setSinger,
+      color,
+      setColor,
+      characters,
+      setCharacters,
+    },
   };
 };

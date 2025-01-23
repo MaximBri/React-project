@@ -1,18 +1,14 @@
 import { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { FieldEtranceData } from '@/shared/types';
-import { questionnaireLogic } from './questionnaireLogic';
 import { Field } from '@/features/questionnaire';
 
-export const fieldsBox = () => {
-  const dispatch = useDispatch();
+export const fieldsBox = (fieldsProps: any, canChangeInput: boolean) => {
   let key = 0;
 
   const {
     name,
     setName,
-    canChangeInput,
     birthday,
     changeBirthday,
     hobby,
@@ -31,7 +27,7 @@ export const fieldsBox = () => {
     setColor,
     characters,
     setCharacters,
-  } = questionnaireLogic({ dispatch });
+  } = { ...fieldsProps };
 
   const mainFields: ReactElement<FieldEtranceData>[] = [
     <Field
@@ -40,7 +36,6 @@ export const fieldsBox = () => {
       setValue={setName}
       canChangeInput={canChangeInput}
       main={true}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -60,7 +55,6 @@ export const fieldsBox = () => {
       setValue={setHobby}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -69,7 +63,6 @@ export const fieldsBox = () => {
       setValue={setFlower}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -78,7 +71,6 @@ export const fieldsBox = () => {
       setValue={setDish}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -87,7 +79,6 @@ export const fieldsBox = () => {
       setValue={setFreeTime}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -96,7 +87,6 @@ export const fieldsBox = () => {
       setValue={setFilm}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -105,7 +95,6 @@ export const fieldsBox = () => {
       setValue={setSinger}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -114,7 +103,6 @@ export const fieldsBox = () => {
       setValue={setColor}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
     <Field
@@ -123,7 +111,6 @@ export const fieldsBox = () => {
       setValue={setCharacters}
       canChangeInput={canChangeInput}
       main={false}
-      placeholder=""
       key={key++}
     />,
   ];

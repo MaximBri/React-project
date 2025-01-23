@@ -1,0 +1,122 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: rem(12) rem(24);
+  &__title {
+    margin: 0 rem(10) rem(10);
+
+    font-size: rem(28);
+    font-weight: 700;
+    line-height: 150%;
+    color: $grey-bg;
+    text-align: center;
+  }
+  &__subtitle {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    margin-bottom: rem(20);
+
+    font-size: rem(16);
+    color: $grey-800;
+    text-align: left;
+
+    background-color: transparent;
+  }
+  &__status {
+    &-success,
+    &-error,
+    &-loading {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+      align-items: center;
+
+      width: 100%;
+      padding: rem(10) rem(5);
+
+      font-size: rem(16);
+      text-align: center;
+
+      background-color: $green;
+      > img {
+        max-width: rem(50);
+      }
+    }
+    &-error {
+      flex-direction: row;
+      font-size: rem(16);
+      background-color: $red;
+      &--under {
+        margin-top: rem(-10);
+        padding: rem(10);
+        border-radius: 0 0 10px 10px;
+
+        font-size: rem(18);
+        color: $white;
+
+        background-color: $red;
+      }
+    }
+    &-loading {
+      border-radius: 10px;
+      background-color: $white;
+      > img {
+        max-width: rem(100);
+      }
+    }
+  }
+  &__entrance {
+    cursor: pointer;
+
+    font-size: rem(16);
+    font-weight: 400;
+    line-height: 150%;
+    color: $grey-800;
+    > span {
+      color: $orange;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+
+    width: 100%;
+    margin-top: rem(12);
+
+    font-size: rem(18);
+    font-weight: 400;
+    line-height: 150%;
+    &-input {
+      padding: rem(10) rem(15);
+      border: 1px solid $grey-400;
+      border-radius: 5px;
+      font-size: rem(16);
+      ::placeholder {
+        color: $grey-600;
+      }
+    }
+    &-btn {
+      width: min-content;
+      margin: rem(12) auto;
+      padding: rem(10) rem(40);
+      border-radius: 5px;
+
+      font-size: rem(18);
+      color: $white;
+
+      background-color: $orange;
+
+      transition: all 0.4s;
+      &:hover {
+        scale: 1.05;
+      }
+    }
+  }
+}

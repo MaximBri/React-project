@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
 import { Header } from './header';
-import { Notifications } from '@/widgets/pop-ups';
+import { Portal } from '@/shared/ui';
 import { useMainLayoutModel } from './model/useMainLayoutModel';
+import { Auth, CreateCat, Notifications, Register } from '@/widgets/pop-ups';
 
 const MainLayout: React.FC = () => {
-  useMainLayoutModel();
+  const { authWindow, registerWindow, catWindow } = useMainLayoutModel();
 
   return (
     <>
@@ -16,6 +17,11 @@ const MainLayout: React.FC = () => {
           <Outlet />
         </main>
       </div>
+      <Portal>
+        {authWindow && <Auth />}
+        {registerWindow && <Register />}
+        {catWindow && <CreateCat />}
+      </Portal>
     </>
   );
 };

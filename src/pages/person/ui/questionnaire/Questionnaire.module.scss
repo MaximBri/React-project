@@ -33,7 +33,7 @@
     & > span {
       font-size: rem(16);
     }
-    &_item {
+    &-item {
       margin: rem(10) 0;
       padding: rem(10) rem(15);
       border: 2px solid $blue;
@@ -110,21 +110,21 @@
     &__about {
       flex-direction: column;
     }
-    &_title {
+    &__title {
       font-size: rem(30);
     }
     &__top {
-      &_name {
+      &-name {
         font-size: rem(20);
       }
     }
     &__list {
-      &_item {
+      &-item {
         font-size: rem(18);
       }
     }
     &__other {
-      &_inputs {
+      &-inputs {
         grid-template-columns: 1fr;
       }
     }

@@ -1,5 +1,6 @@
 .notification {
   position: fixed;
+  z-index: 100;
   right: rem(20);
   bottom: -15vh;
 
@@ -15,10 +16,10 @@
   font-size: rem(18);
 
   opacity: 0;
+  background-color: $white;
   box-shadow: rgba(149, 157, 165, 0.7) 4px 0px 24px;
 
-  transition: all 0.6s;
-}
+  transition: all 0.6s;}
 
 .notification.visible {
   bottom: 5vh;

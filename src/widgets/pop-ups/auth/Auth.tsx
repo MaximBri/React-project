@@ -5,9 +5,11 @@ import LoadGif from '/img/loader.gif';
 import { messages } from '@/entities/user/authorization/model/messagesForUser';
 import { authModel } from './model/authModel';
 import styles from '../shared/AuthAndRegister.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate()
   const {
     loading,
     authMess,
@@ -19,7 +21,7 @@ export const Auth = () => {
     entance,
     openRegWindow,
     closeWindows,
-  } = authModel(dispatch);
+  } = authModel(dispatch, navigation);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { RootState } from '..';
 import { catInterface } from '../../../shared/types';
 
 const initialState: catInterface = {
-  existed: true,
+  existed: null,
   data: {
     name: null,
     role: null,

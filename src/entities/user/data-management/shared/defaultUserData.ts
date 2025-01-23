@@ -5,7 +5,7 @@ export const defaultUserData: UserDataInterface = {
   email: '',
   birthday: '01.01.2000',
   hobby: '',
-  season: '',
+  season: 'Зима',
   flower: '',
   dish: '',
   chillTime: '',

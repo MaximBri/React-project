@@ -10,6 +10,8 @@ export interface mainRoutesInterface {
   cat: routeInterface;
   account: routeInterface;
   about: routeInterface;
+  auth: routeInterface;
+  reg: routeInterface;
 }
 
 export interface routeInterface {
@@ -29,6 +31,8 @@ export const routes: routesInterface = {
     cat: { path: '/Cat', name: 'Мой кот' },
     account: { path: '/Account', name: 'Мой счёт' },
     about: { path: '/About', name: 'О нас' },
+    auth: { path: '/Authorization', name: 'Авторизация' },
+    reg: { path: '/Registration', name: 'Регистрация' },
   },
   other: {
     'not-found': '*',
