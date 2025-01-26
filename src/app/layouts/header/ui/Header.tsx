@@ -19,6 +19,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const { auth, catExisting, userName, onAuthButtonClick } =
   useHeaderModel();
+  console.log(catExisting)
   return (
     <>
       <header className={styles.header}>
@@ -37,10 +38,10 @@ export const Header = () => {
           <BurgerMenu />
           {auth ? (
             <>
-              {catExisting === false && (
+              {!catExisting && (
                 <button
                   onClick={() => dispatch(setCatWindow(true))}
-                  className={styles['header__nav-item']}
+                  className={styles['header__nav-cat']}
                 >
                   <CatImage color={null} shadow={false} />
                 </button>
