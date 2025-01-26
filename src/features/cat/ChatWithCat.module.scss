@@ -1,0 +1,32 @@
+.message {
+  &__user,
+  &__bot {
+    max-width: 70%;
+    padding: rem(15) rem(10);
+    border: 2px solid #484848;
+    border-radius: 15px;
+
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    background-color: #f1ffe8;
+  }
+
+  &__user {
+    align-self: flex-start;
+    border-radius: 15px 15px 15px 0;
+    box-shadow: -4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+
+  &__bot {
+    align-self: flex-end;
+
+    margin-right: rem(20);
+    border-radius: 15px 15px 0 15px;
+
+    text-align: right;
+
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+}

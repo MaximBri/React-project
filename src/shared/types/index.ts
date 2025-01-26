@@ -98,3 +98,8 @@ export interface stateRegErrInterface {
 }
 
 export type userDeviceType = 'mobile' | 'tablet' | 'desktop' | null;
+
+export interface messageWithCatInterface {
+  content: string;
+  author: 'user' | 'bot';
+}

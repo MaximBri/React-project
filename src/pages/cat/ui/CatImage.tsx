@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 
 import styles from './CatImage.module.scss';
 
-const CatImage: FC<{ color: string | null; shadow: boolean }> = ({
+const CatImage: FC<{ color: string | null; shadow: boolean }> = memo(({
   color,
   shadow,
 }) => {
@@ -23,8 +23,6 @@ const CatImage: FC<{ color: string | null; shadow: boolean }> = ({
   return (
     <svg
       className={shadow ? styles.shadow : ''}
-      height="198px"
-      width="198px"
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +95,6 @@ const CatImage: FC<{ color: string | null; shadow: boolean }> = ({
       </g>
     </svg>
   );
-};
+});
 
 export default CatImage;

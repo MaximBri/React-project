@@ -28,9 +28,9 @@ export const RegistrationPage = () => {
             viewBox="0 0 24 24"
             aria-labelledby="returnIconTitle returnIconDesc"
             stroke="#2329D6"
-            stroke-width="1"
-            stroke-linecap="square"
-            stroke-linejoin="miter"
+            strokeWidth="1"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
             fill="none"
             color="#2329D6"
           >

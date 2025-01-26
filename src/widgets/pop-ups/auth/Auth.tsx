@@ -1,13 +1,14 @@
 import { useDispatch } from 'react-redux';
-
-import crossSvg from '/img/attention.svg';
-import LoadGif from '/img/loader.gif';
-import { messages } from '@/entities/user/authorization/model/messagesForUser';
-import { authModel } from './model/authModel';
-import styles from '../shared/AuthAndRegister.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-export const Auth = () => {
+import { messages } from '@/entities/user/authorization/model/messagesForUser';
+import { authModel } from './model/authModel';
+import crossSvg from '/img/attention.svg';
+import LoadGif from '/img/loader.gif';
+import styles from '../shared/AuthAndRegister.module.scss';
+import { memo } from 'react';
+
+export const Auth = memo(() => {
   const dispatch = useDispatch();
   const navigation = useNavigate()
   const {
@@ -84,4 +85,4 @@ export const Auth = () => {
       ></div>
     </>
   );
-};
+});

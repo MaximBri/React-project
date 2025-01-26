@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import { memo } from 'react';
 
 import { Header } from './header';
-import { Portal } from '@/shared/ui';
 import { useMainLayoutModel } from './model/useMainLayoutModel';
-import { Auth, CreateCat, Notifications, Register } from '@/widgets/pop-ups';
+import { Notifications } from '@/widgets/pop-ups';
+import { AppPortals } from './portals/AppPortals';
 
-const MainLayout: React.FC = () => {
-  const { authWindow, registerWindow, catWindow } = useMainLayoutModel();
+const MainLayout: React.FC = memo(() => {
+  useMainLayoutModel();
 
   return (
     <>
@@ -17,13 +18,9 @@ const MainLayout: React.FC = () => {
           <Outlet />
         </main>
       </div>
-      <Portal>
-        {authWindow && <Auth />}
-        {registerWindow && <Register />}
-        {catWindow && <CreateCat />}
-      </Portal>
+      <AppPortals />
     </>
   );
-};
+});
 
 export default MainLayout;
