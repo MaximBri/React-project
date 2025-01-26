@@ -1,0 +1,34 @@
+.save {
+  z-index: 0;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: rem(60);
+  border-top: 2px solid $text-heading;
+
+  opacity: 1;
+
+  transition: all 0.3s;
+  &--disabled {
+    z-index: -10;
+    height: rem(0);
+    opacity: 0;
+  }
+  &__button {
+    margin: 0 auto;
+    padding: rem(10) rem(15);
+    border-radius: 10px;
+
+    font-size: rem(18);
+    color: $text-heading;
+
+    background-color: $blue;
+
+    transition: background 0.3s;
+    &:disabled {
+      background-color: $text-secondary;
+    }
+  }
+}

@@ -44,14 +44,13 @@ export const CatPage = memo(() => {
               <div ref={lastMessage}></div>
             </div>
             <div className={styles['cat__chat-user-panel']}>
-              {!loading && (
-                <button
-                  onClick={() => getNewPhrase()}
-                  className={styles['cat__chat-btn']}
-                >
-                  Скажи что-нибудь
-                </button>
-              )}
+              <button
+                onClick={() => getNewPhrase()}
+                className={`${styles['cat__chat-btn']} ${loading ? styles['cat__chat-btn--disabled'] : ''}`}
+                disabled={loading ? true : false}
+              >
+                Скажи что-нибудь
+              </button>
             </div>
           </div>
           <div

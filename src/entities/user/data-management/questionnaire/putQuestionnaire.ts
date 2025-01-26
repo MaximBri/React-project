@@ -5,6 +5,7 @@ import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { API_URL } from '@/shared/globals/globalsData';
 import { UserDataInterface } from '@/shared/types';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
+import { convertDataToAPI } from '../convertData';
 
 export const putQuestionnaire = async (
   data: UserDataInterface & { userId: number },
@@ -14,7 +15,7 @@ export const putQuestionnaire = async (
   try {
     await axios.put(
       `${API_URL}${apiRoutes.questionnaire}`,
-      { ...data },
+      { ...data, birthday: convertDataToAPI(data.birthday) },
       {
         headers: {
           'Content-Type': 'application/json',

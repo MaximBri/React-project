@@ -74,6 +74,11 @@
       color: $white;
 
       background-color: $blue;
+
+      transition: background .3s;
+      &--disabled{
+        background-color: $text-secondary;
+      }
     }
   }
   &__about {

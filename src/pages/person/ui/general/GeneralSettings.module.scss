@@ -1,4 +1,7 @@
-.user {
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: rem(30);
   &__about {
     &-btn {
       margin: rem(30) 0;
@@ -10,5 +13,11 @@
 
       background-color: $red;
     }
+  }
+  &__separator{
+    width: 100%;
+    height: rem(1);
+    margin-top: rem(-30);
+    background-color: $text-heading;
   }
 }

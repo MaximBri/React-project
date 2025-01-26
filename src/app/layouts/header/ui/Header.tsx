@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { routes } from '@/app/routes/model/routes';
 import { useHeaderModel } from '../model/useHeaderModel';
 import { NavigationList } from '@/app/routes/ui/NavigationList';
-import { setCatWindow } from '../../../store/slices/WindowsSlice';
+import { setCatWindow } from '@/app/store/slices/WindowsSlice';
 
 import CatImage from '@/pages/cat/ui/CatImage';
 import { BurgerMenu } from '../../burger-menu';
@@ -19,7 +19,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const { auth, catExisting, userName, onAuthButtonClick } =
   useHeaderModel();
-  console.log(catExisting)
   return (
     <>
       <header className={styles.header}>
@@ -38,7 +37,7 @@ export const Header = () => {
           <BurgerMenu />
           {auth ? (
             <>
-              {!catExisting && (
+              {catExisting === false && (
                 <button
                   onClick={() => dispatch(setCatWindow(true))}
                   className={styles['header__nav-cat']}

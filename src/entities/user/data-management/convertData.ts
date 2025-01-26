@@ -5,6 +5,7 @@ export const convertData = (dateString: Date | string): string => {
   const year = date.getFullYear();
   return `${day}.${month}.${year}`;
 };
+
 export const convertDataToAPI = (dateString: string | Date): Date | string => {
   dateString = dateString.toString();
   let date = dateString.split('.')[2];

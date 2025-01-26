@@ -1,23 +1,69 @@
 .person {
   &__title {
+    padding: 0 0 rem(20);
+
     font-size: rem(30);
     font-weight: 600;
     color: $blue;
     text-align: center;
   }
+  &__body {
+    display: flex;
+    gap: rem(80);
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+  }
   &__list {
     display: flex;
-    gap: rem(30);
+    flex-direction: column;
+    gap: rem(20);
     align-items: center;
-    justify-content: center;
+
+    width: 100%;
+    max-width: rem(300);
     &-item {
-      cursor: pointer;
-      font-size: rem(24);
-      &--active {
-        border-bottom: 2px solid $red;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      padding: rem(20) rem(24);
+      border: 1px solid $border;
+      border-radius: 10px;
+
+      font-size: rem(18);
+      font-weight: 500;
+      color: $text-muted;
+      text-align: left;
+
+      background-color: $background-primary;
+
+      transition: all 0.3s;
+      &:hover:not(.person__list-item--active) {
         font-weight: 600;
+        color: $text-primary;
+        background-color: $menu-selected;
+        > svg > path {
+          fill: $text-muted;
+        }
+      }
+      &--active {
+        font-weight: 600;
+        color: $text-primary;
+        background-color: $background-secondary;
       }
     }
+  }
+  &__section {
+    flex-grow: 1;
+
+    width: 100%;
+    max-width: rem(1000);
+    padding: rem(30);
+    border: 1px solid $border;
+    border-radius: 15px;
   }
   &__loading {
     width: 100%;
