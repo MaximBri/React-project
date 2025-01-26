@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { ChatWithCat } from '@/features/cat/ChatWithCat';
+import { ChatWithCat } from '@/features/cat';
 import { catPageModel } from './model/catPageModel';
 import leftArrowSvg from '/img/left-arrow.svg';
 import CatImage from '@/pages/cat/ui/CatImage';
@@ -16,12 +16,27 @@ export const CatPage = memo(() => {
     messages,
     lastMessage,
   } = catPageModel();
+  if (!catData.name) return null;
   return (
     <>
+      <section className={styles.cat__info}>
+        <h2 className={styles['cat__info-name']}>Кот {catData.name}</h2>
+        <div className={styles['cat__info-image']}>
+          <CatImage color={catData.color} shadow={true} />
+        </div>
+        <div className={styles['cat__info-item']}>
+          <h3 className={styles['cat__item-title']}>Роль: </h3>
+          <p className={styles['cat__item-text']}>{catData.role}</p>
+        </div>
+        <div className={styles['cat__info-item']}>
+          <h3 className={styles['cat__item-title']}>Описание: </h3>
+          <p className={styles['cat__item-text']}>{catData.description}</p>
+        </div>
+      </section>
       <section className={styles.cat}>
-        <h1
+        <h2
           className={styles.cat__name}
-        >{`Ваш кот-ассистент ${catData.name}`}</h1>
+        >{`Ваш кот-ассистент ${catData.name}`}</h2>
         <div className={styles.cat__body}>
           <div className={styles.cat__chat}>
             <div className={styles['cat__chat-messages']}>
@@ -44,7 +59,7 @@ export const CatPage = memo(() => {
           >
             <img
               onClick={() => setDescription(!description)}
-              className={`${styles['cat__about-close-btn']} ${!description ?styles['cat__about-close-btn--rotated'] : '' }`}
+              className={`${styles['cat__about-close-btn']} ${!description ? styles['cat__about-close-btn--rotated'] : ''}`}
               src={leftArrowSvg}
               alt="close"
             ></img>

@@ -5,6 +5,7 @@
   align-items: center;
 
   width: 90vw;
+  margin: rem(50) 0;
   border: 2px solid $grey-800;
   border-radius: 15px;
 
@@ -12,12 +13,13 @@
   box-shadow: 1px 1px 36px 0px rgba(34, 60, 80, 0.2);
   &__name {
     width: 100%;
-    padding: rem(10) 0;
+    padding: rem(10) rem(20);
     border-bottom: 4px solid $black;
 
     font-size: rem(28);
     color: $white;
     text-align: center;
+    word-break: break-all;
 
     background-color: #383838;
   }
@@ -153,10 +155,41 @@
       }
     }
   }
+  &__info{
+    display: none;
+    flex-direction: column;
+    gap: rem(10);
+    align-items: center;
+
+    width: 100%;
+    max-width: 80vw;
+    margin-bottom: rem(30);
+    &-name{
+      font-size: 18px;
+      text-align: center;
+      word-break: break-all;
+    }
+    &-image{
+      width: rem(120);
+      height: rem(120);
+    }
+    &-item{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  &__item{
+    &-title{
+      color: $orange;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
   .cat {
+    margin: rem(40) 0;
     &__name {
       font-size: rem(22);
     }
@@ -193,8 +226,9 @@
 
 @media (max-width: 768px) {
   .cat {
+    margin: rem(30) 0;
     &__name {
-      padding: rem(5) 0;
+      padding: rem(5) rem(10);
       font-size: rem(18);
     }
     &__chat {
@@ -237,6 +271,7 @@
 
 @media (max-width: 520px) {
   .cat {
+    margin: rem(20) 0;
     &__chat {
       &-messages {
         padding: rem(10);
@@ -248,9 +283,13 @@
     }
     &__body {
       flex-direction: column;
+      min-height: rem(300);
     }
     &__about {
       display: none;
+    }
+    &__info{
+      display: flex;
     }
   }
 }

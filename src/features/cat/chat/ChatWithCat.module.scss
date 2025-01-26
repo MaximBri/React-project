@@ -6,6 +6,7 @@
     border: 2px solid #484848;
     border-radius: 15px;
 
+    font-size: rem(18);
     line-height: 1.5;
     word-break: break-word;
     overflow-wrap: break-word;
@@ -28,5 +29,28 @@
     text-align: right;
 
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .message {
+    &__user,
+    &__bot {
+      max-width: 80%;
+      padding: rem(5) rem(10);
+      border: 1px solid #484848;
+      border-radius: 10px;
+
+      font-size: rem(14);
+    }
+
+    &__user {
+      border-radius: 10px 10px 10px 0;
+    }
+
+    &__bot {
+      margin-right: rem(10);
+      border-radius: 10px 10px 0 10px;
+    }
   }
 }
