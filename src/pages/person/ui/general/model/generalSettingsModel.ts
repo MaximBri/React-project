@@ -1,22 +1,25 @@
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { routes } from '@/app/routes/model/routes';
 import { setCatData } from '@/app/store/slices/CatSlice';
 import { convertData } from '@/entities/user/data-management/convertData';
+import { deleteUserData } from '@/entities/user/data-management/deleteUserData';
 import { defaultCatData } from '@/entities/cat/model/defaultCatData';
 import { defaultUserData } from '@/entities/user/model/defaultUserData';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
 import { CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
+import { putQuestionnaire } from '@/entities/user/data-management/questionnaire/putQuestionnaire';
 import {
   getAllFields,
+  getQuestionnaire,
   setAllFields,
   setAuth,
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
-import { putQuestionnaire } from '@/entities/user/data-management/questionnaire/putQuestionnaire';
+import { postQuestionnaire } from '@/entities/user/data-management/questionnaire/postQuestionnaire';
 
 export interface generalSettingsErrorInterface {
   name?: string;
@@ -27,7 +30,8 @@ export const generalSettingsModel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector(getAllFields);
-  const exitFromAcc = () => {
+  const questionnaire = useSelector(getQuestionnaire);
+  const exitFromAcc = useCallback(() => {
     dispatch(setAuth(false));
     dispatch(setAllFields(defaultUserData));
     dispatch(setQuestionnaire(false));
@@ -36,7 +40,7 @@ export const generalSettingsModel = () => {
     Cookies.set(TOKEN, '');
     Cookies.set(CAT_TOKEN, '');
     navigate(routes.main.home.path);
-  };
+  }, []);
   const [name, setName] = useState<string>(userData.name);
   const [needSave, setNeedSave] = useState<boolean>(false);
   const [canSave, setCanSave] = useState<boolean>(false);
@@ -45,42 +49,57 @@ export const generalSettingsModel = () => {
     convertData(userData.birthday)
   );
 
-  const onChangeName = (text: string) => {
-    setName(text);
-    if (text !== userData.name) setNeedSave(true);
-    else setNeedSave(false);
+  const onChangeName = useCallback(
+    (text: string) => {
+      setName(text);
+      if (text !== userData.name) setNeedSave(true);
+      else setNeedSave(false);
+    },
+    [name, userData.name]
+  );
+
+  const deleteQuestionnaire = () => {
+    deleteUserData(dispatch);
+    setName('');
+    setBirthday('01.01.2000');
   };
 
-  const onChangeBirthday = (text: string) => {
-    text = text.replace(/\D/g, '');
-    if (text.length > 8) text = text.slice(0, 8);
-    if (text.length > 2) {
-      if (Number(text.slice(0, 2)) > 31) text = '';
-      text = text.slice(0, 2) + '.' + text.slice(2);
-    }
-    if (text.length > 5) {
-      if (Number(text.slice(3, 5)) > 12) text = text.slice(0, 3);
-      text = text.slice(0, 5) + '.' + text.slice(5);
-    }
-    if (text.length === 10) {
-      if (Number(text.slice(6, 10)) > Number(new Date().getFullYear()))
-        text = text.slice(0, 6);
-    }
-    setBirthday(text);
-    if (text !== convertData(userData.birthday)) setNeedSave(true);
-    else setNeedSave(false);
-  };
+  const onChangeBirthday = useCallback(
+    (text: string) => {
+      text = text.replace(/\D/g, '');
+      if (text.length > 8) text = text.slice(0, 8);
+      if (text.length > 2) {
+        if (Number(text.slice(0, 2)) > 31) text = '';
+        text = text.slice(0, 2) + '.' + text.slice(2);
+      }
+      if (text.length > 5) {
+        if (Number(text.slice(3, 5)) > 12) text = text.slice(0, 3);
+        text = text.slice(0, 5) + '.' + text.slice(5);
+      }
+      if (text.length === 10) {
+        if (Number(text.slice(6, 10)) > Number(new Date().getFullYear()))
+          text = text.slice(0, 6);
+      }
+      setBirthday(text);
+      if (text !== convertData(userData.birthday)) setNeedSave(true);
+      else setNeedSave(false);
+    },
+    [userData.birthday, name, userData.name]
+  );
 
   const checkValidName = () => name.length !== 0;
   const checkValidBirthday = () => birthday.length === 10;
 
-  const saveData = () => {
+  const saveData = useCallback(() => {
     const data = { ...userData, name, birthday, userId: 0 };
     const token = Cookies.get(TOKEN) ?? '';
-    putQuestionnaire(data, token, dispatch);
-    setNeedSave(false)
-    setCanSave(false)
-  };
+    dispatch(setAllFields(data));
+    questionnaire
+      ? putQuestionnaire(data, token, dispatch)
+      : postQuestionnaire(data, token, dispatch);
+    setNeedSave(false);
+    setCanSave(false);
+  }, [name, birthday, userData.name, userData.birthday]);
 
   useEffect(() => {
     if (!checkValidName()) {
@@ -105,5 +124,6 @@ export const generalSettingsModel = () => {
     canSave,
     error,
     saveData,
+    deleteQuestionnaire,
   };
 };

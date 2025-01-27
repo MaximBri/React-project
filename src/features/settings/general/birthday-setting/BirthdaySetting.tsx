@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from './BirthdaySetting.module.scss';
 
 export interface BirthdaySettingInterface {
@@ -6,7 +7,7 @@ export interface BirthdaySettingInterface {
   error?: string;
 }
 
-export const BirthdaySetting = ({
+export const BirthdaySetting = memo(({
   birthday,
   setBirthday,
   error,
@@ -25,4 +26,4 @@ export const BirthdaySetting = ({
       </div>
     </div>
   );
-};
+});

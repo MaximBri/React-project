@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from './SaveMainSettings.module.scss';
 
 export interface SaveMainSettingsProps {
@@ -6,7 +7,7 @@ export interface SaveMainSettingsProps {
   saveData: () => void;
 }
 
-export const SaveMainSettings = ({
+export const SaveMainSettings = memo(({
   needSave,
   canSave,
   saveData,
@@ -24,4 +25,4 @@ export const SaveMainSettings = ({
       </button>
     </div>
   );
-};
+});

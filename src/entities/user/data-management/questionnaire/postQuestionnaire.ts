@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
-import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { API_URL } from '@/shared/globals/globalsData';
-import { UserDataInterface } from '@/shared/types';
+import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
+import { convertDataToAPI } from '../convertData';
+import { UserDataInterface } from '@/shared/types';
 
 export const postQuestionnaire = async (
   data: UserDataInterface & { userId: number },
@@ -14,7 +15,7 @@ export const postQuestionnaire = async (
   try {
     await axios.post(
       `${API_URL}${apiRoutes.questionnaire}`,
-      { ...data },
+      { ...data, birthday: convertDataToAPI(data.birthday) },
       {
         headers: {
           'Content-Type': 'application/json',

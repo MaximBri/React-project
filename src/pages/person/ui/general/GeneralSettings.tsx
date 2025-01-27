@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { generalSettingsModel } from './model/generalSettingsModel';
 import styles from './GeneralSettings.module.scss';
 import {
@@ -8,7 +9,7 @@ import {
   SaveMainSettings,
 } from '@/features/settings/general';
 
-export const GeneralSettings = () => {
+export const GeneralSettings = memo(() => {
   const {
     exitFromAcc,
     name,
@@ -19,6 +20,7 @@ export const GeneralSettings = () => {
     canSave,
     saveData,
     error,
+    deleteQuestionnaire,
   } = generalSettingsModel();
   return (
     <div className={styles.settings}>
@@ -34,8 +36,8 @@ export const GeneralSettings = () => {
         saveData={saveData}
       />
       <div className={styles.settings__separator}></div>
-      <DeleteQuestionnaire />
+      <DeleteQuestionnaire deleteData={deleteQuestionnaire} />
       <ExitFromAccount exitFromAcc={exitFromAcc} />
     </div>
   );
-};
+});

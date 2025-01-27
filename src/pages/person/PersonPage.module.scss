@@ -18,6 +18,7 @@
   &__list {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     gap: rem(20);
     align-items: center;
 
@@ -133,7 +134,6 @@
     &__list {
       overflow: scroll;
       flex-direction: row;
-      max-width: none;
       max-width: 90vw;
       &::-webkit-scrollbar {
         display: none;

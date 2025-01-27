@@ -1,6 +1,10 @@
+import { FC, memo } from 'react';
+
 import styles from './DeleteQuestionnaire.module.scss';
 
-export const DeleteQuestionnaire = () => {
+export const DeleteQuestionnaire: FC<{
+  deleteData: () => void;
+}> = memo(({ deleteData }) => {
   return (
     <div className={styles.delete}>
       <div className={styles.delete__body}>
@@ -9,7 +13,9 @@ export const DeleteQuestionnaire = () => {
           Их нельзя будет восстановить
         </h4>
       </div>
-      <button className={styles.delete__button}>Удалить</button>
+      <button onClick={() => deleteData()} className={styles.delete__button}>
+        Удалить
+      </button>
     </div>
   );
-};
+});

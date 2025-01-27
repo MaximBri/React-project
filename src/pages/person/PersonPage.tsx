@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import { personPageModel } from './model/personPageModel';
 import { sectionsInUserCabinet } from './model/Sections';
 
 import styles from './PersonPage.module.scss';
 
-export const PersonPage = () => {
+export const PersonPage = memo(() => {
   const { activeSection, setActiveSection, loading } = personPageModel();
   return (
     <>
@@ -51,4 +52,4 @@ export const PersonPage = () => {
       )}
     </>
   );
-};
+});

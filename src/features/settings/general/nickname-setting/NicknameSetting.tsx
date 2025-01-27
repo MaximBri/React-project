@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from './NicknameSetting.module.scss';
 
 export interface NicknameSettingInterface {
@@ -6,7 +7,7 @@ export interface NicknameSettingInterface {
   error?: string;
 }
 
-export const NicknameSetting = ({
+export const NicknameSetting = memo(({
   name,
   setName,
   error,
@@ -29,4 +30,4 @@ export const NicknameSetting = ({
       </div>
     </div>
   );
-};
+});

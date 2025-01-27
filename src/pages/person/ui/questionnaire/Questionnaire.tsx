@@ -21,22 +21,11 @@ export const Questionnaire = () => {
     clearUserData,
     other,
   } = questionnaireLogic({ dispatch });
-  const { mainFields, fields } = fieldsBox(other, canChangeInput);
+  const { fields } = fieldsBox(other, canChangeInput);
   return (
     <section className={styles.person__wrapper}>
-      <h2 className={styles['person__top-name']}>
-        {canChangeInput ? 'Заполните анкету' : 'Ваши данные'}
-      </h2>
       {!loading ? (
         <>
-          <section className={styles.person__main}>
-            <h3 className={styles['person__main-title']}>Основные</h3>
-            <div className={styles.person__about}>
-              {mainFields.map((item: any) => {
-                return cloneElement(item, { key: item.props.title });
-              })}
-            </div>
-          </section>
           <section className={styles.person__other}>
             <h3 className={styles['person__main-title']}>Дополнительные</h3>
             <div className={styles['person__other-inputs']}>

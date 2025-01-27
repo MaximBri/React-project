@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import styles from './ExitFromAccount.module.scss';
 
-export const ExitFromAccount = ({
+export const ExitFromAccount = memo(({
   exitFromAcc,
 }: {
   exitFromAcc: () => void;
@@ -13,4 +14,4 @@ export const ExitFromAccount = ({
       </button>
     </div>
   );
-};
+});
