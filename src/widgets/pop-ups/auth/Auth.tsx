@@ -1,16 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
 import { messages } from '@/entities/user/authorization/model/messagesForUser';
 import { authModel } from './model/authModel';
 import crossSvg from '/img/attention.svg';
-import LoadGif from '/img/loader.gif';
 import styles from '../shared/AuthAndRegister.module.scss';
-import { memo } from 'react';
 
 export const Auth = memo(() => {
   const dispatch = useDispatch();
-  const navigation = useNavigate()
+  const navigation = useNavigate();
   const {
     loading,
     authMess,
@@ -28,12 +27,11 @@ export const Auth = memo(() => {
     <>
       <section className={styles.window}>
         <h2 className={styles.window__title}>Вход</h2>
-        {loading && (
-          <div className={styles['window__status-loading']}>
-            <img src={LoadGif} alt="loading..." />
-            <h2 className={styles['window__success-text']}>{messages[1]}</h2>
-          </div>
-        )}
+        <div
+          className={`${styles['window__status-loading']} ${loading ? styles['window__status-loading--active'] : ''}`}
+        >
+          <h2 className={styles['window__success-text']}>{messages[1]}</h2>
+        </div>
         {authMess && (
           <div className={styles['window__status-success']}>
             <h2 className={styles['window__success-text']}>{authMess}</h2>

@@ -43,7 +43,6 @@
       font-size: rem(16);
       text-align: center;
 
-      background-color: $green;
       > img {
         max-width: rem(50);
       }
@@ -51,21 +50,21 @@
     &-error {
       flex-direction: row;
       font-size: rem(16);
-      background-color: $red;
+      background-color: $delete;
       &--under {
         margin-top: rem(-10);
         padding: rem(10);
         border-radius: 0 0 10px 10px;
 
         font-size: rem(18);
-        color: $white;
+        color: $text-heading;
 
-        background-color: $red;
+        background-color: $delete;
       }
     }
     &-loading {
       border-radius: 10px;
-      background-color: $white;
+      background-color: $background-primary;
       > img {
         max-width: rem(100);
       }
@@ -79,7 +78,7 @@
     line-height: 150%;
     color: $grey-800;
     > span {
-      color: $orange;
+      color: $text-accent;
     }
   }
   &__form {
@@ -109,9 +108,9 @@
       border-radius: 5px;
 
       font-size: rem(18);
-      color: $white;
+      color: $text-heading;
 
-      background-color: $orange;
+      background-color: $text-accent;
 
       transition: all 0.4s;
       &:hover {

@@ -3,12 +3,12 @@
   flex-direction: column;
   &__button {
     min-height: rem(40);
-    margin: 10px 0;
-    padding: 10px 0px;
-    border: 2px solid $blue;
+    margin: rem(10) 0;
+    padding: rem(10) 0px;
+    border: 2px solid $button;
     border-radius: 5px;
 
-    font-size: 16px;
+    font-size: rem(16);
     text-align: center;
 
     background-color: transparent;
@@ -22,8 +22,8 @@
     transition: all 0.5s;
     &:hover {
       line-height: 2;
-      color: $white;
-      background-color: $blue;
+      color: $text-heading;
+      background-color: $button;
     }
   }
   &__variants {

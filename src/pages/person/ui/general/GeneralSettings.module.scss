@@ -9,15 +9,15 @@
       border-radius: 10px;
 
       font-size: rem(24);
-      color: $white;
+      color: $text-heading;
 
-      background-color: $red;
+      background-color: $delete;
     }
   }
-  &__separator{
+  &__separator {
     width: 100%;
-    height: rem(1);
+    height: rem(2);
     margin-top: rem(-30);
-    background-color: $text-heading;
+    background-color: $border-primary;
   }
 }

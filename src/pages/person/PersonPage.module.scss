@@ -4,7 +4,7 @@
 
     font-size: rem(30);
     font-weight: 600;
-    color: $blue;
+    color: $button;
     text-align: center;
   }
   &__body {
@@ -30,7 +30,7 @@
 
       width: 100%;
       padding: rem(20) rem(24);
-      border: 1px solid $border;
+      border: 1px solid $border-primary;
       border-radius: 10px;
 
       font-size: rem(18);
@@ -55,6 +55,10 @@
         background-color: $background-secondary;
       }
     }
+    &-decor {
+      width: 0;
+      height: 0;
+    }
   }
   &__section {
     flex-grow: 1;
@@ -62,7 +66,7 @@
     width: 100%;
     max-width: rem(1000);
     padding: rem(30);
-    border: 1px solid $border;
+    border: 1px solid $border-primary;
     border-radius: 15px;
   }
   &__loading {
@@ -70,15 +74,118 @@
     text-align: center;
   }
 }
+
+@media (max-width: 1400px) {
+  .person {
+    &__body {
+      gap: rem(50);
+    }
+    &__list {
+      max-width: rem(200);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .person {
+    &__title {
+      padding: 0 0 rem(15);
+      font-size: rem(24);
+    }
+    &__body {
+      gap: rem(30);
+    }
+    &__list {
+      gap: rem(15);
+      max-width: rem(200);
+      &-item {
+        padding: rem(15) rem(20);
+        font-size: rem(16);
+      }
+    }
+    &__section {
+      padding: rem(20);
+    }
+  }
+}
+
+// @media (min-width: 768px) {
+//   .person {
+//     &__list {
+//       &-decor {
+
+//       }
+//     }
+//   }
+// }
+
 @media (max-width: 768px) {
   .person {
     &__title {
-      font-size: rem(30);
+      // padding: 0 0 rem(15);
+      font-size: rem(18);
+    }
+    &__body {
+      position: relative;
+      flex-direction: column;
+      gap: rem(30);
     }
     &__list {
-      &-item {
-        font-size: rem(18);
+      overflow: scroll;
+      flex-direction: row;
+      max-width: none;
+      max-width: 90vw;
+      &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
       }
+      &-decor {
+        position: absolute;
+        width: rem(30);
+        height: rem(53);
+      }
+
+      &-item {
+        overflow-y: auto;
+
+        min-width: rem(150);
+        padding: rem(15) rem(20);
+
+        font-size: rem(16);
+        font-weight: 600;
+        color: $text-primary;
+
+        background-color: $menu-selected;
+        &--active {
+          background-color: $background-secondary;
+        }
+        &:nth-child(2) {
+          margin-left: rem(50);
+        }
+        &:nth-child(3) {
+          margin-right: rem(50);
+        }
+      }
+      :first-child {
+        left: 0;
+        background: linear-gradient(
+          90deg,
+          rgb(253, 254, 254),
+          rgba(0, 243, 251, 0)
+        );
+      }
+      :last-child {
+        right: rem(10);
+        background: linear-gradient(
+          270deg,
+          rgb(255, 255, 255),
+          rgba(0, 243, 251, 0)
+        );
+      }
+    }
+    &__section {
+      padding: rem(20);
     }
   }
 }

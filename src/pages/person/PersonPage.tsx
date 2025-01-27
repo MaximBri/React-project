@@ -12,6 +12,7 @@ export const PersonPage = () => {
           <h2 className={styles.person__title}>Личный кабинет</h2>
           <div className={styles.person__body}>
             <nav className={styles.person__list}>
+              <div className={styles['person__list-decor']}></div>
               {sectionsInUserCabinet.map((section, index) => {
                 return (
                   <button
@@ -38,6 +39,7 @@ export const PersonPage = () => {
                   </button>
                 );
               })}
+              <div className={styles['person__list-decor']}></div>
             </nav>
             <div className={styles.person__section}>
               {!loading && sectionsInUserCabinet[activeSection].content}

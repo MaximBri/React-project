@@ -15,7 +15,7 @@
   color: $grey-bg;
   text-align: center;
 
-  background-color: $white;
+  background-color: $background-primary;
   box-shadow:
     0 4px 4px -4px rgba(30, 33, 44, 0.05),
     0 12px 10px -6px rgba(30, 33, 44, 0.08),
@@ -45,11 +45,11 @@
     padding: rem(10) rem(20);
     border-radius: 10px;
 
-    font-size: 18px;
+    font-size: rem(18);
     font-weight: 400;
-    color: $white;
+    color: $text-heading;
 
-    background-color: $red;
+    background-color: $delete;
   }
   &__name {
     margin-top: rem(20);
@@ -68,9 +68,9 @@
     border-radius: 10px;
 
     font-size: rem(18);
-    color: $white;
+    color: $text-heading;
 
-    background-color: $orange;
+    background-color: $text-accent;
   }
 }
 

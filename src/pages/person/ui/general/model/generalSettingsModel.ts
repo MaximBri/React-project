@@ -1,17 +1,15 @@
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { routes } from '@/app/routes/model/routes';
-import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { setCatData } from '@/app/store/slices/CatSlice';
 import { convertData } from '@/entities/user/data-management/convertData';
 import { defaultCatData } from '@/entities/cat/model/defaultCatData';
 import { defaultUserData } from '@/entities/user/model/defaultUserData';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
-import { API_URL, CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
+import { CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
 import {
   getAllFields,
   setAllFields,

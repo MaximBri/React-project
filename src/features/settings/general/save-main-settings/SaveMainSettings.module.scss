@@ -6,7 +6,7 @@
 
   width: 100%;
   height: rem(60);
-  border-top: 2px solid $text-heading;
+  border-top: 2px solid $border-primary;
 
   opacity: 1;
 
@@ -24,11 +24,29 @@
     font-size: rem(18);
     color: $text-heading;
 
-    background-color: $blue;
+    background-color: $button;
 
     transition: background 0.3s;
     &:disabled {
       background-color: $text-secondary;
+    }
+  }
+}
+
+@media(max-width:1024px){
+  .save {
+    &__button {
+      font-size: rem(16);
+    }
+  }
+}
+
+@media(max-width:768px){
+  .save {
+    // height: rem(50);
+    &__button {
+      padding: rem(5) rem(10);
+      font-size: rem(14);
     }
   }
 }

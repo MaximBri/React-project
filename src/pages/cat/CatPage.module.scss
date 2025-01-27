@@ -14,10 +14,10 @@
   &__name {
     width: 100%;
     padding: rem(10) rem(20);
-    border-bottom: 4px solid $black;
+    border-bottom: 4px solid $border-secondary;
 
     font-size: rem(28);
-    color: $white;
+    color: $text-heading;
     text-align: center;
     word-break: break-all;
 
@@ -61,7 +61,7 @@
 
       min-height: rem(60);
       padding: rem(10) 0;
-      border-top: 2px solid $black;
+      border-top: 2px solid $border-secondary;
       border-radius: 0 0 0 15px;
 
       background-color: $grey-300;
@@ -71,12 +71,12 @@
       border-radius: 5px;
 
       font-size: rem(18);
-      color: $white;
+      color: $text-heading;
 
-      background-color: $blue;
+      background-color: $button;
 
-      transition: background .3s;
-      &--disabled{
+      transition: background 0.3s;
+      &--disabled {
         background-color: $text-secondary;
       }
     }
@@ -91,7 +91,7 @@
     width: rem(300);
     min-height: rem(400);
     padding: rem(10) rem(20);
-    border-left: 2px solid $black;
+    border-left: 2px solid $border-secondary;
     border-radius: 0 0 15px;
 
     background-color: $grey-300;
@@ -101,7 +101,7 @@
       width: rem(50);
     }
     &--closed &-wrapper {
-      transform: translateX(220px);
+      transform: translateX(rem(220));
       visibility: hidden;
       opacity: 0;
     }
@@ -160,7 +160,7 @@
       }
     }
   }
-  &__info{
+  &__info {
     display: none;
     flex-direction: column;
     gap: rem(10);
@@ -169,25 +169,25 @@
     width: 100%;
     max-width: 80vw;
     margin-bottom: rem(30);
-    &-name{
-      font-size: 18px;
+    &-name {
+      font-size: rem(18);
       text-align: center;
       word-break: break-all;
     }
-    &-image{
+    &-image {
       width: rem(120);
       height: rem(120);
     }
-    &-item{
+    &-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
   }
-  &__item{
-    &-title{
-      color: $orange;
+  &__item {
+    &-title {
+      color: $text-accent;
     }
   }
 }
@@ -257,7 +257,7 @@
         width: rem(40);
       }
       &--closed &-wrapper {
-        transform: translateX(180px);
+        transform: translateX(rem(180));
       }
       &-wrapper {
         width: rem(240);
@@ -293,7 +293,7 @@
     &__about {
       display: none;
     }
-    &__info{
+    &__info {
       display: flex;
     }
   }

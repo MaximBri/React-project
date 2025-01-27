@@ -12,12 +12,11 @@
 
   width: 100%;
   max-width: rem(500);
-  max-height: 90vh;
   padding: rem(24) rem(48);
   border: 1px solid $grey-300;
   border-radius: 4px;
 
-  background-color: $white;
+  background-color: $background-primary;
   box-shadow:
     0 4px 4px -4px rgba(30, 33, 44, 0.05),
     0 12px 10px -6px rgba(30, 33, 44, 0.08),
@@ -43,38 +42,61 @@
     &-loading {
       display: flex;
       flex-direction: column;
-      gap: rem(15);
+      gap: rem(10);
       align-items: center;
 
-      max-width: 50vw;
-      padding: rem(20) rem(10);
+      width: 100%;
+      padding: rem(15) rem(10);
+      border-radius: 10px;
 
       text-align: center;
 
-      background-color: $green;
       > img {
         max-width: rem(50);
       }
     }
     &-error {
       flex-direction: row;
-      background-color: $red;
+      font-size: rem(14);
+      background-color: $delete;
       &--under {
-        margin-top: rem(-30);
+        margin-top: rem(-20);
         padding: rem(10);
         border-radius: 0 0 10px 10px;
 
-        font-size: 18px;
-        color: $white;
+        font-size: rem(16);
+        color: $text-heading;
 
-        background-color: $red;
+        background-color: $delete;
       }
     }
     &-loading {
-      border-radius: 10px;
-      background-color: $white;
-      > img {
-        max-width: rem(100);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      border-radius: 5px;
+
+      visibility: hidden;
+      background-color: transparent;
+
+      transition: all 0.1s;
+      &--active {
+        z-index: 10;
+        visibility: visible;
+        background-color: #070707c7;
+      }
+      > h2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        font-size: rem(26);
+        font-weight: 500;
+        color: $text-heading;
       }
     }
   }
@@ -86,22 +108,22 @@
     line-height: 150%;
     color: $grey-800;
     > span {
-      color: $orange;
+      color: $text-accent;
     }
   }
   &__form {
     display: flex;
     flex-direction: column;
-    gap: rem(8);
+    gap: rem(5);
 
     width: 100%;
-    margin-top: rem(24);
+    margin-top: rem(16);
 
     font-size: rem(18);
     font-weight: 400;
     line-height: 150%;
     &-input {
-      margin-bottom: rem(20);
+      margin-bottom: rem(10);
       padding: rem(12) rem(16);
       border: 1px solid $grey-400;
       border-radius: 5px;
@@ -118,13 +140,14 @@
       border-radius: 5px;
 
       font-size: rem(18);
-      color: $white;
+      color: $text-heading;
 
-      background-color: $orange;
+      background-color: $delete;
 
       transition: all 0.4s;
       &:hover {
         scale: 1.05;
+        background-color: $delete-hovered;
       }
     }
   }
@@ -209,6 +232,7 @@
         font-size: rem(14);
         &:hover {
           scale: 1;
+          background-color: $delete;
         }
       }
     }

@@ -1,15 +1,23 @@
-.exit {
+.delete {
   display: flex;
   gap: rem(30);
   align-items: center;
   justify-content: space-between;
-  &__title {
-    font-size: rem(20);
-    font-weight: 500;
+  &__body {
+    &-title {
+      margin-bottom: rem(10);
+      font-size: rem(20);
+      font-weight: 500;
+    }
+    &-subtitle {
+      font-size: rem(18);
+      font-weight: 400;
+      color: $text-secondary;
+    }
   }
   &__button {
     width: rem(150);
-    padding: rem(15) rem(40);
+    padding: rem(15) rem(20);
     border-radius: 5px;
 
     font-size: rem(20);
@@ -26,11 +34,16 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .exit {
+@media(max-width: 1024px){
+  .delete {
     gap: rem(20);
-    &__title {
-      font-size: rem(18);
+    &__body {
+      &-title {
+        font-size: rem(18);
+      }
+      &-subtitle {
+        font-size: rem(16);
+      }
     }
     &__button {
       width: rem(120);
@@ -40,12 +53,17 @@
   }
 }
 
-@media (max-width: 768px) {
-  .exit {
+@media(max-width: 768px){
+  .delete {
     gap: rem(15);
-    &__title {
-      margin-bottom: rem(5);
-      font-size: rem(16);
+    &__body {
+      &-title {
+        margin-bottom: rem(5);
+        font-size: rem(16);
+      }
+      &-subtitle {
+        font-size: rem(14);
+      }
     }
     &__button {
       width: rem(100);
@@ -59,3 +77,4 @@
     }
   }
 }
+

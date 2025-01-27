@@ -2,6 +2,7 @@ import { generalSettingsModel } from './model/generalSettingsModel';
 import styles from './GeneralSettings.module.scss';
 import {
   BirthdaySetting,
+  DeleteQuestionnaire,
   ExitFromAccount,
   NicknameSetting,
   SaveMainSettings,
@@ -33,6 +34,7 @@ export const GeneralSettings = () => {
         saveData={saveData}
       />
       <div className={styles.settings__separator}></div>
+      <DeleteQuestionnaire />
       <ExitFromAccount exitFromAcc={exitFromAcc} />
     </div>
   );

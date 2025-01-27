@@ -1,13 +1,7 @@
 $font-size-base: 16;
 
 // Заменить
-$white: #fff;
-$black: #000;
-$green: #07ff49;
-$red: #ff1b13;
-$blue: #3903ff;
 $grey: #cfcfcf;
-$orange: #ff3f3a;
 $grey-bg: #1e212c;
 $grey-300: #e5e8ed;
 $grey-400: #d7dadd;
@@ -17,14 +11,16 @@ $grey-800: #424551;
 // Colors
 $background-primary: #fff;
 $background-secondary: #e7e7e7;
-$button: #fff;
-$border: #d6d6d6;
+$button: #3903ff;
+$border-primary: #d6d6d6;
+$border-secondary: #000;
 $text-muted: rgba(31, 45, 61, 0.75);
 $text-heading: #e9e8e8;
 $text-primary: #1f2d3d;
 $text-secondary: #585858;
+$text-accent: #ff3f3a;
 $activation: #494787;
 $accent: #5c5a93;
-$delete: #d86666;
-$delete-hovered: #be5b5b;
+$delete: #fb2626;
+$delete-hovered: #cf1d1d;
 $menu-selected: #f3f3f3;

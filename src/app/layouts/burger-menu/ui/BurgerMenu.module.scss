@@ -13,7 +13,7 @@
     width: rem(30);
     height: rem(4);
     border-radius: 10px;
-    background-color: $black;
+    background-color: $border-secondary;
   }
   &__menu {
     position: fixed;
@@ -48,9 +48,9 @@
     height: 100%;
     margin: rem(80) 0;
 
-    color: $white;
+    color: $text-heading;
     & > .active {
-      color: $orange;
+      color: $text-accent;
     }
   }
   &__close-btn {
@@ -72,7 +72,7 @@
       width: rem(40);
       height: rem(4);
 
-      background-color: $white;
+      background-color: $background-primary;
     }
     :first-child {
       transform: rotate(45deg);

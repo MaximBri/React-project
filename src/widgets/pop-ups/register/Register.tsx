@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { messages } from '@/entities/user/authorization/model/messagesForUser';
 import { registerModel } from './model/registerModel';
 import crossSvg from '/img/attention.svg';
-import LoadGif from '/img/loader.gif';
 import styles from '../shared/AuthAndRegister.module.scss';
 
 export const Register = () => {
@@ -15,12 +14,9 @@ export const Register = () => {
     <>
       <section className={styles.window}>
         <h2 className={styles.window__title}>Регистрация</h2>
-        {data.loading && (
-          <div className={styles['window__status-loading']}>
-            <img src={LoadGif} alt="loading..." />
-            <h2 className={styles['window__status-text']}>{messages[1]}</h2>
-          </div>
-        )}
+        <div className={`${styles['window__status-loading']} ${data.loading ? styles['window__status-loading--active'] : ''}`}>
+          <h2 className={styles['window__status-text']}>{messages[1]}</h2>
+        </div>
         {data.regMess && (
           <div className={styles['window__status-success']}>
             <h2 className={styles['window__status-text']}>{data.regMess}</h2>

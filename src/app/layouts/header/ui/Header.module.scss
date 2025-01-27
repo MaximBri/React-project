@@ -6,7 +6,7 @@
   padding: rem(20) 10vw;
 
   font-size: rem(16);
-  color: $black;
+  color: $border-secondary;
   &__nav {
     display: flex;
     gap: rem(20);
@@ -17,7 +17,7 @@
       align-items: center;
     }
     & > .active {
-      color: $orange;
+      color: $text-accent;
     }
     &-list {
       display: flex;
@@ -40,8 +40,8 @@
         max-height: rem(50);
       }
       &--active {
-        color: $black;
-        background-color: $white;
+        color: $border-secondary;
+        background-color: $background-primary;
       }
     }
     &-cat{
@@ -65,7 +65,7 @@
     box-sizing: content-box;
     width: rem(60);
     padding: rem(5) rem(15);
-    border: 2px solid $white;
+    border: 2px solid $background-primary;
 
     font-weight: 600;
     text-overflow: ellipsis;
@@ -120,7 +120,7 @@
       max-width: rem(20);
       height: 100%;
       padding: 0;
-      border: 2px solid $white;
+      border: 2px solid $background-primary;
       border-radius: 50%;
 
       line-height: 30px;

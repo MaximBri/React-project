@@ -36,7 +36,7 @@
     &-item {
       margin: rem(10) 0;
       padding: rem(10) rem(15);
-      border: 2px solid $blue;
+      border: 2px solid $button;
       border-radius: 5px;
 
       font-size: rem(16);
@@ -48,7 +48,7 @@
         max-height: 30vh;
         margin: rem(10) 0;
         padding: rem(10) rem(15);
-        border: 2px solid $blue;
+        border: 2px solid $button;
         border-radius: 5px;
 
         font-size: rem(16);
@@ -79,15 +79,15 @@
       padding: 10px rem(20);
       border-radius: 5px;
 
-      font-size: 16px;
-      color: $white;
+      font-size: rem(16);
+      color: $text-heading;
 
-      background-color: $red;
+      background-color: $delete;
     }
   }
   &__loading {
     width: 100%;
-    font-size: 24px;
+    font-size: rem(24);
   }
 }
 
@@ -98,10 +98,10 @@
       padding: rem(20) rem(40);
       border-radius: 10px;
 
-      font-size: 24px;
-      color: #fff;
+      font-size: rem(24);
+      color: $text-heading;
 
-      background-color: $red;
+      background-color: $delete;
     }
   }
 }
