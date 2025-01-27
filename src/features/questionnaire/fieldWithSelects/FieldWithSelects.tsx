@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useState } from 'react';
 
 import { FieldWithSelectsEtranceData } from '@/shared/types';
 import styles from './FieldWithSelects.module.scss';
@@ -8,30 +8,27 @@ export const FieldWithSelects = memo(
     title,
     value,
     setValue,
-    canChangeInput,
     variants,
+    fieldName,
   }: FieldWithSelectsEtranceData) => {
     const [open, setOpen] = useState<boolean>(false);
-    const clickOnVariant = useCallback(
-      (text: string) => {
-        setOpen(!open);
-        setValue(text);
-      },
-      [open]
-    );
-    const canOpen = () => {
-      if (canChangeInput) {
-        setOpen(!open);
-      }
+    const changeSeason = (text: string) => {
+      setOpen(false);
+      setValue(fieldName, text);
     };
     return (
       <span className={styles.field}>
-        {title}:
-        <button
-          onClick={() => canOpen()}
-          className={`${styles.field__button} ${canChangeInput ? '' : styles['field__button--blocked']}`}
+        <h3 className={styles.field__title}>{title}:</h3>
+        <div
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+          className={styles.field__wrapper}
         >
-          {value}
+          <button
+            className={`${styles.field__button} ${open ? styles['field__button-not-rounded'] : ''}`}
+          >
+            {value || 'Ничего не выбрано'}
+          </button>
           {open && (
             <div className={styles.field__variants}>
               {variants.map((item, i) => {
@@ -39,7 +36,7 @@ export const FieldWithSelects = memo(
                   return (
                     <span
                       className={styles.field__variant}
-                      onClick={() => clickOnVariant(item)}
+                      onClick={() => changeSeason(item)}
                       key={i}
                     >
                       {item}
@@ -48,7 +45,7 @@ export const FieldWithSelects = memo(
               })}
             </div>
           )}
-        </button>
+        </div>
       </span>
     );
   }

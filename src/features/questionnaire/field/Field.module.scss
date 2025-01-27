@@ -1,36 +1,46 @@
 .field {
-  &__about {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    &-item {
-      margin: rem(10) 0;
-      padding: rem(10) rem(15);
-      border: 2px solid $button;
-      border-color: rgb(57, 3, 255);
-      border-radius: 5px;
-
-      font-size: rem(16);
-      &--blocked {
-        background-color: $grey;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
   &__title {
-    display: flex;
-    flex-direction: column;
+    font-size: rem(18);
+    font-weight: 500;
+  }
+  &__input {
+    z-index: 50;
 
-    margin: rem(15) 0;
+    width: 100%;
+    padding: rem(15) rem(20);
+    border: 1px solid $border-primary;
+    border-radius: 10px;
 
     font-size: rem(16);
-    font-weight: 700;
+    font-weight: 600;
+
+    background-color: $background-secondary;
+
+    transition: background 0.3s;
+    &:hover {
+      background-color: $menu-selected;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .field {
+    &__title {
+      font-size: rem(16);
+    }
+    &__input {
+      padding: rem(10) rem(15);
+    }
   }
 }
 
 @media (max-width: 768px) {
   .field {
-    &__about {
-      flex-direction: column;
+    &__input {
+      background-color: $menu-selected;
     }
   }
 }

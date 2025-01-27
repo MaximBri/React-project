@@ -1,0 +1,38 @@
+.about {
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(30);
+  }
+  &__title {
+    font-size: rem(20);
+    font-weight: 500;
+    text-align: center;
+  }
+  &__button {
+    padding: rem(10) rem(20);
+    border-radius: 10px;
+
+    font-size: rem(18);
+    font-weight: 400;
+    color: $border-primary;
+
+    background-color: $button;
+    &-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      margin: rem(10) 0 ;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .about {
+    &__list {
+      grid-template-columns: 1fr;
+    }
+  }
+}

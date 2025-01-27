@@ -7,7 +7,6 @@ import { postQuestionnaire } from './questionnaire/postQuestionnaire';
 import { TOKEN } from '@/shared/globals/globalsData';
 
 export const saveUserData = ({
-  setCanChangeInput,
   questionnaire,
   name,
   birthday,
@@ -23,9 +22,7 @@ export const saveUserData = ({
   dream,
   dispatch,
 }: saveUserDataInterface) => {
-  setCanChangeInput(false);
-  const data: UserDataInterface & { userId: number } = {
-    userId: 0,
+  const data: UserDataInterface = {
     name,
     birthday,
     hobby,

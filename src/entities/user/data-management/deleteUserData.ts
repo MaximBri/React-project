@@ -13,7 +13,7 @@ export const deleteUserData = async (dispatch: Dispatch<UnknownAction>) => {
   dispatch(setAllFields(defaultUserData));
   if (token) {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `${API_URL}${apiRoutes.questionnaire}`,
         {
           headers: {
@@ -22,7 +22,6 @@ export const deleteUserData = async (dispatch: Dispatch<UnknownAction>) => {
           },
         }
       );
-      console.log(response);
       addNotification(dispatch, 'Анкета успешно удалена', 200)
     } catch (error: any) {
       console.error('Error fetching data:', error);

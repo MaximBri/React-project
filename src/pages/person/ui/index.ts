@@ -1,2 +1,2 @@
 export { GeneralSettings } from './general/GeneralSettings';
-export { Questionnaire } from './questionnaire/Questionnaire';
+export { AboutSettings } from './about/AboutSettings';

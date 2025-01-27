@@ -41,13 +41,11 @@ export const generalSettingsModel = () => {
     Cookies.set(CAT_TOKEN, '');
     navigate(routes.main.home.path);
   }, []);
-  const [name, setName] = useState<string>(userData.name);
+  const [name, setName] = useState<string>(userData.name || 'User');
   const [needSave, setNeedSave] = useState<boolean>(false);
   const [canSave, setCanSave] = useState<boolean>(false);
   const [error, setError] = useState<generalSettingsErrorInterface>({});
-  const [birthday, setBirthday] = useState<string>(
-    convertData(userData.birthday)
-  );
+  const [birthday, setBirthday] = useState<string>(userData.birthday ?? '');
 
   const onChangeName = useCallback(
     (text: string) => {
@@ -60,7 +58,8 @@ export const generalSettingsModel = () => {
 
   const deleteQuestionnaire = () => {
     deleteUserData(dispatch);
-    setName('');
+    dispatch(setQuestionnaire(false));
+    setName('User');
     setBirthday('01.01.2000');
   };
 
@@ -81,7 +80,8 @@ export const generalSettingsModel = () => {
           text = text.slice(0, 6);
       }
       setBirthday(text);
-      if (text !== convertData(userData.birthday)) setNeedSave(true);
+      if (text !== convertData(userData.birthday ?? '01.01.2000'))
+        setNeedSave(true);
       else setNeedSave(false);
     },
     [userData.birthday, name, userData.name]
@@ -91,15 +91,17 @@ export const generalSettingsModel = () => {
   const checkValidBirthday = () => birthday.length === 10;
 
   const saveData = useCallback(() => {
-    const data = { ...userData, name, birthday, userId: 0 };
+    const data = { ...userData, name, birthday };
     const token = Cookies.get(TOKEN) ?? '';
+    dispatch(setQuestionnaire(true));
     dispatch(setAllFields(data));
+    console.log(questionnaire);
     questionnaire
       ? putQuestionnaire(data, token, dispatch)
       : postQuestionnaire(data, token, dispatch);
     setNeedSave(false);
     setCanSave(false);
-  }, [name, birthday, userData.name, userData.birthday]);
+  }, [name, birthday, userData]);
 
   useEffect(() => {
     if (!checkValidName()) {

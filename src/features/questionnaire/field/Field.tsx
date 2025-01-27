@@ -8,20 +8,18 @@ export const Field = memo(
     title,
     value,
     setValue,
-    canChangeInput,
     placeholder = '',
+    fieldName,
   }: FieldEtranceData) => {
     return (
-      <label className={styles.field__title}>
-        {title}:
+      <label className={styles.field}>
+        <h3 className={styles.field__title}>{title}:</h3>
         <input
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className={`${styles['field__about-item']}
-            ${canChangeInput ? '' : styles['field__about-item--blocked']}`}
+          onChange={(e) => setValue(fieldName, e.target.value)}
+          className={styles.field__input}
           type="text"
           placeholder={placeholder}
-          readOnly={!canChangeInput}
         />
       </label>
     );

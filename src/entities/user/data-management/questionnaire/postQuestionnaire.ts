@@ -8,14 +8,14 @@ import { convertDataToAPI } from '../convertData';
 import { UserDataInterface } from '@/shared/types';
 
 export const postQuestionnaire = async (
-  data: UserDataInterface & { userId: number },
+  data: UserDataInterface,
   token: string,
   dispatch: Dispatch<UnknownAction>
 ) => {
   try {
     await axios.post(
       `${API_URL}${apiRoutes.questionnaire}`,
-      { ...data, birthday: convertDataToAPI(data.birthday) },
+      { ...data, birthday: convertDataToAPI(data.birthday ?? '01.01.2000') },
       {
         headers: {
           'Content-Type': 'application/json',

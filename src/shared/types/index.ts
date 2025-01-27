@@ -1,23 +1,22 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
 export interface UserDataInterface {
-  name: string;
+  name?: string;
   email?: string | null;
-  birthday: Date | string;
-  hobby: string;
-  season: string;
-  flower: string;
-  dish: string;
-  chillTime: string;
-  film: string;
-  singer: string;
-  color: string;
-  positiveTraits: string;
-  dream: string;
+  birthday?: string;
+  hobby?: string;
+  season?: string;
+  flower?: string;
+  dish?: string;
+  chillTime?: string;
+  film?: string;
+  singer?: string;
+  color?: string;
+  positiveTraits?: string;
+  dream?: string;
 }
 
 export interface saveUserDataInterface extends UserDataInterface {
-  setCanChangeInput: (value: React.SetStateAction<boolean>) => void;
   questionnaire: boolean | null;
   dispatch: Dispatch<UnknownAction>;
 }
@@ -25,11 +24,8 @@ export interface saveUserDataInterface extends UserDataInterface {
 export interface FieldEtranceData {
   title: string;
   value: string;
-  setValue:
-    | React.Dispatch<React.SetStateAction<string>>
-    | ((text: string) => void);
-  canChangeInput: boolean;
-  main: boolean;
+  fieldName: questionnaireKeyType;
+  setValue: (key: questionnaireKeyType, value: string) => void;
   placeholder?: string;
 }
 
@@ -82,11 +78,9 @@ export interface RegisterLogicEntanceType {
 export interface FieldWithSelectsEtranceData {
   title: string;
   value: string;
-  setValue:
-    | React.Dispatch<React.SetStateAction<string>>
-    | ((text: string) => void);
-  canChangeInput: boolean;
+  setValue: (key: questionnaireKeyType, value: string) => void;
   placeholder?: string;
+  fieldName: questionnaireKeyType;
   variants: string[];
 }
 
@@ -103,3 +97,15 @@ export interface messageWithCatInterface {
   content: string;
   author: 'user' | 'bot';
 }
+
+export type questionnaireKeyType =
+  | 'hobby'
+  | 'season'
+  | 'flower'
+  | 'dish'
+  | 'chillTime'
+  | 'film'
+  | 'singer'
+  | 'color'
+  | 'positiveTraits'
+  | 'dream';

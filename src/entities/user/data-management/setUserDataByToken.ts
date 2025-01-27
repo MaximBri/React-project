@@ -11,6 +11,7 @@ import {
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
 import { setCatData } from '@/app/store/slices/CatSlice';
+import { convertData } from './convertData';
 
 const setUserDataByToken = async (
   token: string | undefined,
@@ -27,7 +28,7 @@ const setUserDataByToken = async (
           Authorization: `Bearer ${token}`,
         },
       });
-      dispatch(setAllFields(response.data.data));
+      dispatch(setAllFields({...response.data.data, birthday: convertData(response.data.data.birthday), name: response.data.data.name || 'User'}));
       dispatch(setQuestionnaire(true));
     } catch (error: any) {
       console.log(error);

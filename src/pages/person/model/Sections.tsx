@@ -1,4 +1,4 @@
-import { GeneralSettings, Questionnaire } from '../ui';
+import { AboutSettings, GeneralSettings } from '../ui';
 
 export interface sectionsInUserCabinetInterface {
   name: string;
@@ -12,6 +12,6 @@ export const sectionsInUserCabinet: sectionsInUserCabinetInterface[] = [
   },
   {
     name: 'О себе',
-    content: <Questionnaire />,
+    content: <AboutSettings />,
   },
 ];

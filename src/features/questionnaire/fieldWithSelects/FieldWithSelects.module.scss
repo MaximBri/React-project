@@ -1,37 +1,65 @@
 .field {
   display: flex;
   flex-direction: column;
-  &__button {
-    min-height: rem(40);
+  &__wrapper {
+    position: relative;
+    width: 100%;
     margin: rem(10) 0;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  &__button {
+    width: 100%;
+    min-height: rem(40);
     padding: rem(10) 0px;
-    border: 2px solid $button;
+    border: 1px solid $border-primary;
     border-radius: 5px;
 
-    font-size: rem(16);
+    font-size: rem(18);
     text-align: center;
 
-    background-color: transparent;
-    &--blocked {
-      cursor: auto;
-      background-color: $grey;
+    background-color: $background-secondary;
+
+    transition: all 0.3s;
+    &-not-rounded {
+      border-radius: 5px 5px 0 0;
+    }
+    &:hover {
+      background-color: $menu-selected;
     }
   }
   &__variant {
+    border-radius: 5px;
+
+    font-size: rem(18);
+    font-weight: 500;
     line-height: 1.5;
+    color: $text-primary;
+
     transition: all 0.5s;
     &:hover {
-      line-height: 2;
-      color: $text-heading;
-      background-color: $button;
+      background-color: $background-secondary;
     }
   }
   &__variants {
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
     display: flex;
     flex-direction: column;
+
+    width: 100%;
+    padding: rem(10);
+    border: 1px solid $border-primary;
+    border-radius: 0 0 5px 5px;
+
     text-align: center;
-    &:first-child {
-      margin-top: rem(20);
-    }
+
+    background-color: $background-primary;
   }
 }

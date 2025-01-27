@@ -8,14 +8,22 @@ import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotifi
 import { convertDataToAPI } from '../convertData';
 
 export const putQuestionnaire = async (
-  data: UserDataInterface & { userId: number },
+  data: UserDataInterface,
   token: string,
   dispatch: Dispatch<UnknownAction>
 ) => {
+  console.log(data.birthday)
+  console.log({
+    ...data,
+    birthday: convertDataToAPI(data.birthday ?? '01.01.2000'),
+  });
   try {
     await axios.put(
       `${API_URL}${apiRoutes.questionnaire}`,
-      { ...data, birthday: convertDataToAPI(data.birthday) },
+      {
+        ...data,
+        birthday: convertDataToAPI(data.birthday ?? '01.01.2000'),
+      },
       {
         headers: {
           'Content-Type': 'application/json',

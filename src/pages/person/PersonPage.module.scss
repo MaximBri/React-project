@@ -24,6 +24,7 @@
 
     width: 100%;
     max-width: rem(300);
+    margin-top: rem(-15);
     &-item {
       display: flex;
       align-items: center;
@@ -110,20 +111,9 @@
   }
 }
 
-// @media (min-width: 768px) {
-//   .person {
-//     &__list {
-//       &-decor {
-
-//       }
-//     }
-//   }
-// }
-
 @media (max-width: 768px) {
   .person {
     &__title {
-      // padding: 0 0 rem(15);
       font-size: rem(18);
     }
     &__body {
@@ -135,6 +125,7 @@
       overflow: scroll;
       flex-direction: row;
       max-width: 90vw;
+      margin-top: 0;
       &::-webkit-scrollbar {
         display: none;
         width: 0;
