@@ -16,11 +16,6 @@ export interface UserDataInterface {
   dream?: string;
 }
 
-export interface saveUserDataInterface extends UserDataInterface {
-  questionnaire: boolean | null;
-  dispatch: Dispatch<UnknownAction>;
-}
-
 export interface FieldEtranceData {
   title: string;
   value: string;

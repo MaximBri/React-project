@@ -19,7 +19,6 @@ export const aboutSettingsModel = ({
   const userData = useSelector(getAllFields);
   let questionnaire = useSelector(getQuestionnaire);
   const [needSave, setNeedSave] = useState<boolean>(false);
-
   const [data, setData] = useState<UserDataInterface>(userData);
 
   const onDataChange = (key: questionnaireKeyType, value: string) => {
@@ -35,17 +34,16 @@ export const aboutSettingsModel = ({
   };
 
   const saveUserDataProvider = () => {
-    saveUserData({
-      ...data,
-      questionnaire,
-      dispatch,
-    });
+    saveUserData(questionnaire ?? false, data, dispatch);
+    setNeedSave(false);
   };
+  
   const clearUserData = async () => {
     deleteUserData(dispatch);
     dispatch(setQuestionnaire(false));
     setData({});
   };
+
   return {
     saveUserDataProvider,
     clearUserData,

@@ -7,16 +7,16 @@ import styles from './AboutSettings.module.scss';
 
 export const AboutSettings = () => {
   const dispatch = useDispatch();
-
   const { saveUserDataProvider, onDataChange, needSave, other } =
     aboutSettingsModel({ dispatch });
+
   return (
     <div className={styles.about}>
       <h2 className={styles.about__title}>Расскажите о себе</h2>
       <FieldWithSelects
         title="Любимый сезон"
         value={other.season || 'Ничего не выбрано'}
-        fieldName={"season"}
+        fieldName={'season'}
         setValue={onDataChange}
         variants={['Зима', 'Весна', 'Лето', 'Осень']}
       />
@@ -33,36 +33,22 @@ export const AboutSettings = () => {
           );
         })}
       </div>
-      {needSave && (
-        <div className={styles['about__button-wrapper']}>
-          <button
-            className={styles.about__button}
-            onClick={() => saveUserDataProvider()}
-          >
-            Сохранить
-          </button>
-        </div>
-      )}
-      {/* <FieldWithSelects
-          title="Любимый сезон"
-          value={season || 'Зима'}
-          setValue={setSeason}
-          canChangeInput={canChangeInput}
-          variants={['Зима', 'Весна', 'Лето', 'Осень']}
+      <label className={styles['about__textarea-wrapper']}>
+        Мечтаю о
+        <textarea
+          value={other.dream}
+          onChange={(e) => onDataChange('dream', e.target.value)}
+          className={styles['about__textarea']}
         />
-        <label className={styles['person__other-textarea-wrapper']}>
-          Мечтаю о ...
-          <textarea
-            value={dream}
-            onChange={(e) => setDream(e.target.value)}
-            className={
-              canChangeInput
-                ? styles['person__about-item-textarea']
-                : `${styles['person__about-item-textarea']} ${styles['person__about-item-textarea--blocked']}`
-            }
-            readOnly={!canChangeInput}
-          />
-        </label> */}
+      </label>
+      <div className={styles['about__button-wrapper']}>
+        <button
+          className={`${styles.about__button} ${needSave ? styles['about__button--active'] : ''}`}
+          onClick={() => saveUserDataProvider()}
+        >
+          Сохранить
+        </button>
+      </div>
     </div>
   );
 };

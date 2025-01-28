@@ -14,6 +14,7 @@
 
     width: 100%;
     height: 100%;
+    margin: rem(20) 0 rem(50);
   }
   &__list {
     display: flex;
@@ -36,7 +37,7 @@
       border-radius: 10px;
 
       font-size: rem(18);
-      font-weight: 500;
+      font-weight: 600;
       color: $text-muted;
       text-align: left;
 
@@ -44,7 +45,6 @@
 
       transition: all 0.3s;
       &:hover:not(.person__list-item--active) {
-        font-weight: 600;
         color: $text-primary;
         background-color: $menu-selected;
         > svg > path {
@@ -81,6 +81,7 @@
   .person {
     &__body {
       gap: rem(50);
+      margin: rem(20) 0 rem(40);
     }
     &__list {
       max-width: rem(200);
@@ -96,6 +97,7 @@
     }
     &__body {
       gap: rem(30);
+      margin: rem(15) 0 rem(30);
     }
     &__list {
       gap: rem(15);
@@ -120,6 +122,7 @@
       position: relative;
       flex-direction: column;
       gap: rem(30);
+      margin: rem(10) 0 rem(20);
     }
     &__list {
       overflow: scroll;
@@ -156,6 +159,9 @@
         }
         &:nth-child(3) {
           margin-right: rem(50);
+        }
+        &>svg{
+          transform: rotate(90deg);
         }
       }
       :first-child {

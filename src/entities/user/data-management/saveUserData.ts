@@ -1,41 +1,17 @@
 import Cookies from 'js-cookie';
 
 import { setAllFields, setQuestionnaire } from '@/app/store/slices/AuthSlice';
-import { saveUserDataInterface, UserDataInterface } from '@/shared/types';
+import { UserDataInterface } from '@/shared/types';
 import { putQuestionnaire } from './questionnaire/putQuestionnaire';
 import { postQuestionnaire } from './questionnaire/postQuestionnaire';
 import { TOKEN } from '@/shared/globals/globalsData';
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
-export const saveUserData = ({
-  questionnaire,
-  name,
-  birthday,
-  hobby,
-  season,
-  flower,
-  dish,
-  chillTime,
-  film,
-  singer,
-  color,
-  positiveTraits,
-  dream,
-  dispatch,
-}: saveUserDataInterface) => {
-  const data: UserDataInterface = {
-    name,
-    birthday,
-    hobby,
-    season,
-    flower,
-    dish,
-    chillTime,
-    film,
-    singer,
-    color,
-    positiveTraits,
-    dream,
-  };
+export const saveUserData = (
+  questionnaire: boolean,
+  data: UserDataInterface,
+  dispatch: Dispatch<UnknownAction>
+) => {
   dispatch(setAllFields(data));
   dispatch(setQuestionnaire(true));
   const fetchData = () => {

@@ -20,7 +20,7 @@ export const FieldWithSelects = memo(
       <span className={styles.field}>
         <h3 className={styles.field__title}>{title}:</h3>
         <div
-          onMouseEnter={() => setOpen(true)}
+          onClick={() => setOpen(true)}
           onMouseLeave={() => setOpen(false)}
           className={styles.field__wrapper}
         >
