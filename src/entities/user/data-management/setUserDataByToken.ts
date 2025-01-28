@@ -10,7 +10,7 @@ import {
   setLoading,
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
-import { setCatData } from '@/app/store/slices/CatSlice';
+import { setCatData, setCatExisting } from '@/app/store/slices/CatSlice';
 import { convertData } from './convertData';
 
 const setUserDataByToken = async (
@@ -28,7 +28,13 @@ const setUserDataByToken = async (
           Authorization: `Bearer ${token}`,
         },
       });
-      dispatch(setAllFields({...response.data.data, birthday: convertData(response.data.data.birthday), name: response.data.data.name || 'User'}));
+      dispatch(
+        setAllFields({
+          ...response.data.data,
+          birthday: convertData(response.data.data.birthday),
+          name: response.data.data.name || 'User',
+        })
+      );
       dispatch(setQuestionnaire(true));
     } catch (error: any) {
       console.log(error);
@@ -46,6 +52,8 @@ const setUserDataByToken = async (
   const catData = Cookies.get(CAT_TOKEN);
   if (catData) {
     dispatch(setCatData(JSON.parse(catData)));
+  } else {
+    dispatch(setCatExisting(false));
   }
 };
 

@@ -34,7 +34,7 @@ export const AboutSettings = () => {
         })}
       </div>
       <label className={styles['about__textarea-wrapper']}>
-        Мечтаю о
+        Мечтаю о...
         <textarea
           value={other.dream}
           onChange={(e) => onDataChange('dream', e.target.value)}
@@ -45,6 +45,7 @@ export const AboutSettings = () => {
         <button
           className={`${styles.about__button} ${needSave ? styles['about__button--active'] : ''}`}
           onClick={() => saveUserDataProvider()}
+          disabled={!needSave}
         >
           Сохранить
         </button>

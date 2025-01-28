@@ -19,7 +19,7 @@ export const SaveMainSettings = memo(({
       <button
         onClick={() => saveData()}
         className={`${styles.save__button} ${canSave ? styles['save__button--active'] : ''}`}
-        disabled={canSave ? false : true}
+        disabled={!canSave}
       >
         Сохранить
       </button>

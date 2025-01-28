@@ -1,4 +1,3 @@
-import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
 export interface UserDataInterface {
   name?: string;

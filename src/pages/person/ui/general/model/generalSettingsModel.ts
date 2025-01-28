@@ -127,5 +127,6 @@ export const generalSettingsModel = () => {
     error,
     saveData,
     deleteQuestionnaire,
+    questionnaire
   };
 };

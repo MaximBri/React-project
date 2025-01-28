@@ -21,6 +21,7 @@ export const GeneralSettings = memo(() => {
     saveData,
     error,
     deleteQuestionnaire,
+    questionnaire,
   } = generalSettingsModel();
   return (
     <div className={styles.settings}>
@@ -36,7 +37,9 @@ export const GeneralSettings = memo(() => {
         saveData={saveData}
       />
       <div className={styles.settings__separator}></div>
-      <DeleteQuestionnaire deleteData={deleteQuestionnaire} />
+      {questionnaire && (
+        <DeleteQuestionnaire deleteData={deleteQuestionnaire} />
+      )}
       <ExitFromAccount exitFromAcc={exitFromAcc} />
     </div>
   );

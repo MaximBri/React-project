@@ -76,10 +76,12 @@
     }
     &__list {
       grid-template-columns: 1fr;
+      gap: rem(20);
     }
     &__textarea {
       padding: rem(10) rem(15);
       &-wrapper {
+        margin-top: rem(20);
         font-size: rem(16);
       }
     }
@@ -88,12 +90,18 @@
 
 @media (max-width: 768px) {
   .about {
+    &__list{
+      gap: rem(10);
+    }
     &__title {
       margin-bottom: rem(15);
       font-size: rem(18);
     }
     &__textarea {
       background-color: $menu-selected;
+      &-wrapper{
+        margin-top: rem(10);
+      }
     }
   }
 }
