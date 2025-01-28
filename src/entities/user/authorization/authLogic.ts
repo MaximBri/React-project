@@ -51,6 +51,7 @@ const useAuthLogic = ({
             'Content-Type': 'application/json',
           },
         });
+        console.log(response)
         const catInfo = response.data.data.cat;
         if (catInfo) {
           const catData: catInterface = {

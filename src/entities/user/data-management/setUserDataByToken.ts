@@ -1,8 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
 import { API_URL, CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
+import { setCatData, setCatExisting } from '@/app/store/slices/CatSlice';
+import { convertData } from './convertData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
+import { setPies } from '@/entities/coins/setPies';
 import { routes } from '@/app/routes/model/routes';
 import {
   setAllFields,
@@ -10,12 +14,10 @@ import {
   setLoading,
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
-import { setCatData, setCatExisting } from '@/app/store/slices/CatSlice';
-import { convertData } from './convertData';
 
 const setUserDataByToken = async (
   token: string | undefined,
-  dispatch: any,
+  dispatch: Dispatch<UnknownAction>,
   navigate: any
 ) => {
   if (token) {
@@ -36,6 +38,7 @@ const setUserDataByToken = async (
         })
       );
       dispatch(setQuestionnaire(true));
+      setPies(dispatch);
     } catch (error: any) {
       console.log(error);
       if (error.response?.status === 404) dispatch(setQuestionnaire(false));

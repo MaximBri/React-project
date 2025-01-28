@@ -4,5 +4,7 @@ export const apiRoutes = {
   questionnaire: '/api/Questionnaire',
   get_questionnaire: '/api/Questionnaire/GetMyQuestionnaire',
   cat_speech: '/api/Cat/SaySomething',
-  cat_create: '/api/Cat/CreateCat'
+  cat_create: '/api/Cat/CreateCat',
+  create_pie: '/api/Pie/AddPie',
+  get_pie: '/api/Pie/GetUserPies',
 };

@@ -1,0 +1,43 @@
+.pie {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  align-items: center;
+
+  width: rem(250);
+  padding: rem(10);
+  border: 2px solid $border-primary;
+  border-radius: 15px;
+
+  color: $text-primary;
+  text-align: center;
+
+  transition: all 0.4s;
+  &:hover {
+    transform: translateY(rem(-10));
+    scale: 1.05;
+    box-shadow: 0px 4px 5px 3px $shadow-primary;
+  }
+  &__name {
+    font-size: rem(18);
+    font-weight: 600;
+  }
+  &__image {
+    width: 100%;
+    border: 2px solid $text-primary;
+    border-radius: 30px;
+  }
+  &__rarity {
+  }
+  &__description {
+  }
+  &__simple {
+    background-color: $simple;
+  }
+  &__unusual {
+    background-color: $unusual;
+  }
+  &__rare {
+    background-color: $rare;
+  }
+}

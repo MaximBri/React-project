@@ -5,6 +5,8 @@ import windows from './slices/WindowsSlice';
 import cat from './slices/CatSlice';
 import notification from './slices/NotificationSlice';
 import userDevice from './slices/UserDeviceSlice';
+import coins from '../../entities/coins/model/CoinsSlice';
+import pies from '../../entities/pies/model/piesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +15,8 @@ export const store = configureStore({
     cat,
     notification,
     userDevice,
+    coins,
+    pies,
   },
 });
 
