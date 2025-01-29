@@ -28,8 +28,14 @@
   &__form {
     display: flex;
     align-items: center;
+
     height: rem(50);
     margin: rem(20) 0;
+
+    transition: height 0.3s;
+    &--active {
+      height: rem(50);
+    }
     &-input {
       width: rem(250);
       padding: rem(10) rem(20);
@@ -87,6 +93,88 @@
       flex-wrap: wrap;
       gap: rem(30) rem(20);
       justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .pie {
+    margin: rem(40) 0 rem(30);
+    padding: rem(30);
+    &__image {
+      width: rem(100);
+    }
+    &__title {
+      font-size: rem(20);
+    }
+    &__form {
+      margin: rem(15) 0;
+      &-input {
+        width: rem(200);
+        font-size: rem(16);
+      }
+      &-button {
+        &--active {
+          margin-left: rem(30);
+          font-size: rem(16);
+        }
+      }
+    }
+    &__block {
+      &-title {
+        margin: rem(15) 0;
+        font-size: rem(20);
+      }
+      &-list {
+        gap: rem(25) rem(15);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pie {
+    margin: rem(30) 0 rem(20);
+    padding: rem(20);
+    &__image {
+      width: rem(80);
+    }
+    &__title {
+      font-size: rem(20);
+    }
+    &__form {
+      flex-direction: column;
+      gap: rem(10);
+      align-items: center;
+      margin: rem(15) 0;
+      &--active {
+        height: rem(80);
+      }
+      &-input {
+        padding: rem(5) rem(10);
+      }
+      &-button {
+        &--active {
+          margin-left: 0;
+        }
+      }
+    }
+    &__block {
+      &-title {
+        margin: rem(10) 0;
+        font-size: rem(18);
+      }
+      &-list {
+        gap: rem(20) rem(10);
+      }
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .pie {
+    &__title {
+      font-size: rem(18);
     }
   }
 }

@@ -16,7 +16,9 @@ export const CreatePie = () => {
     <section className={styles.pie}>
       <img className={styles.pie__image} src={pieImg} alt="pie"></img>
       <h2 className={styles.pie__title}>Пирожки</h2>
-      <form className={styles.pie__form}>
+      <form
+        className={`${styles.pie__form} ${pieName ? styles['pie__form--active'] : ''}`}
+      >
         <input
           className={styles['pie__form-input']}
           value={pieName}
