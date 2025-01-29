@@ -28,12 +28,12 @@ export const createPieModel = (dispatch: Dispatch<UnknownAction>) => {
         );
         dispatch(
           addOnePie({
-            description: response.data.effect.description,
-            imgLink: response.data.imgLink,
-            name: response.data.name,
+            description: response.data.data.effect.description,
+            imgLink: response.data.data.imgLink,
+            name: response.data.data.name,
             rarity: {
-              chance: response.data.rarity.chance,
-              rare: response.data.rarity.name,
+              chance: response.data.data.rarity.chance,
+              rare: response.data.data.rarity.name,
             },
           })
         );
