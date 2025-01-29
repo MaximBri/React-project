@@ -15,10 +15,10 @@ export const catPageModel = () => {
   const navigate = useNavigate();
   const catData = useSelector(getCatData);
   const auth = useSelector(getAuth);
-  const [description, setDescription] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>();
   const chatRef = useRef<HTMLDivElement>(null);
   const lastMessage = useRef<HTMLDivElement>(null);
+  const [description, setDescription] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>();
   const [messages, setMessages] = useState<messageWithCatInterface[]>([
     {
       content:
@@ -32,16 +32,6 @@ export const catPageModel = () => {
       lastMessage.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    if (catData.name === '') {
-      navigate(routes.main.home.path);
-    }
-  }, [auth, catData.name]);
-
-  useEffect(() => {
-    scroollToBottom();
-  }, [messages]);
 
   const pushMessage = useCallback((message: messageWithCatInterface) => {
     setMessages((prevMessages) => [...prevMessages, message]);
@@ -69,6 +59,17 @@ export const catPageModel = () => {
       }
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    if (catData.name === '') {
+      navigate(routes.main.home.path);
+    }
+  }, [auth, catData.name]);
+
+  useEffect(() => {
+    if (messages.length !== 1) scroollToBottom();
+  }, [messages]);
+
   return {
     description,
     setDescription,

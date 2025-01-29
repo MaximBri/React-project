@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { getAuth, getLoading } from '@/app/store/slices/AuthSlice';
+import { getLoading } from '@/app/store/slices/AuthSlice';
 import { routes } from '@/app/routes/model/routes';
+import { checkUserAuthorization } from '@/entities/user/data-management/shared/checkUserAuthorization';
 
 export const personPageModel = () => {
-  const navigate = useNavigate();
   const loading = useSelector(getLoading);
-  const auth = useSelector(getAuth);
   const [activeSection, setActiveSection] = useState<number>(0);
 
-  useEffect(() => {
-    if (!loading && !auth) navigate(routes.main.home.path);
-  }, [loading, auth]);
+  checkUserAuthorization(routes.main.home.path);
 
   return { activeSection, setActiveSection, loading };
 };

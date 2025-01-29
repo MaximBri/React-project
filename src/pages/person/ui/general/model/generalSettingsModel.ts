@@ -20,6 +20,7 @@ import {
   setQuestionnaire,
 } from '@/app/store/slices/AuthSlice';
 import { postQuestionnaire } from '@/entities/user/data-management/questionnaire/postQuestionnaire';
+import { setAllPies } from '@/entities/pies/model/piesSlice';
 
 export interface generalSettingsErrorInterface {
   name?: string;
@@ -36,6 +37,7 @@ export const generalSettingsModel = () => {
     dispatch(setAllFields(defaultUserData));
     dispatch(setQuestionnaire(false));
     dispatch(setCatData(defaultCatData));
+    dispatch(setAllPies([]))
     addNotification(dispatch, 'Вы вышли из аккаунта', 200);
     Cookies.set(TOKEN, '');
     Cookies.set(CAT_TOKEN, '');
@@ -95,7 +97,6 @@ export const generalSettingsModel = () => {
     const token = Cookies.get(TOKEN) ?? '';
     dispatch(setQuestionnaire(true));
     dispatch(setAllFields(data));
-    console.log(questionnaire);
     questionnaire
       ? putQuestionnaire(data, token, dispatch)
       : postQuestionnaire(data, token, dispatch);

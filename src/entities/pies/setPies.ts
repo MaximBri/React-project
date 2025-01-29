@@ -4,7 +4,7 @@ import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
 import { API_URL, TOKEN } from '@/shared/globals/globalsData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
-import { setAllPies } from '../pies/model/piesSlice';
+import { setAllPies } from './model/piesSlice';
 
 export const setPies = async (dispatch: Dispatch<UnknownAction>) => {
   const token = Cookies.get(TOKEN);
@@ -29,8 +29,12 @@ export const setPies = async (dispatch: Dispatch<UnknownAction>) => {
         });
       });
       dispatch(setAllPies(pies));
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      if (error.status === 404) {
+        dispatch(setAllPies([]));
+      } else {
+        console.error(error.status);
+      }
     }
   }
 };

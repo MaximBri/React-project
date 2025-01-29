@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { routes } from '../model/routes';
 import { getAuth } from '@/app/store/slices/AuthSlice';
@@ -11,7 +11,7 @@ interface NavigationListProps {
   closeBurger?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const NavigationList: FC<NavigationListProps> = ({ closeBurger }) => {
+export const NavigationList: FC<NavigationListProps> = memo(({ closeBurger }) => {
   const auth = useSelector<any, boolean>(getAuth);
   const catExisting = useSelector(getExisting);
   return (
@@ -60,4 +60,4 @@ export const NavigationList: FC<NavigationListProps> = ({ closeBurger }) => {
       </NavLink>
     </>
   );
-};
+});

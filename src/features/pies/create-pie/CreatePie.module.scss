@@ -95,6 +95,13 @@
       justify-content: center;
     }
   }
+  &__loading {
+    margin: rem(40) 0;
+    font-size: rem(20);
+  }
+  &__not-found {
+    font-size: rem(20);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -167,6 +174,13 @@
       &-list {
         gap: rem(20) rem(10);
       }
+    }
+    &__loading {
+      margin: rem(30) 0;
+      font-size: rem(18);
+    }
+    &__not-found {
+      font-size: rem(18);
     }
   }
 }

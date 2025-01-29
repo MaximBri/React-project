@@ -12,11 +12,6 @@ export const putQuestionnaire = async (
   token: string,
   dispatch: Dispatch<UnknownAction>
 ) => {
-  console.log(data.birthday)
-  console.log({
-    ...data,
-    birthday: convertDataToAPI(data.birthday ?? '01.01.2000'),
-  });
   try {
     await axios.put(
       `${API_URL}${apiRoutes.questionnaire}`,
