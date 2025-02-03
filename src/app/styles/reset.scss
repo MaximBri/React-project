@@ -82,8 +82,10 @@ h3,
 h4,
 h5,
 h6 {
+  hyphens: auto;
   font-size: inherit;
   font-weight: inherit;
+  overflow-wrap: break-word;
 }
 
 a {

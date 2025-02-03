@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
-import { setCatData } from '../../app/store/slices/CatSlice';
 import { catInterface } from '../../shared/types';
 import { defaultCatData } from './model/defaultCatData';
 import { CAT_TOKEN } from '@/shared/globals/globalsData';
+import { setCatData } from './model/CatSlice';
 
 export const CatLogic = (catInfo: any, dispatch: any) => {
   if (catInfo) {

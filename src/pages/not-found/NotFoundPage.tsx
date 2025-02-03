@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { Header } from '@/app/layouts/header';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import styles from './NotFoundPage.module.scss';
 
 export const NotFoundPage = () => {

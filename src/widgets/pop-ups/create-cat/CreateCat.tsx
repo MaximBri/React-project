@@ -1,13 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { setCatWindow } from '@/app/store/slices/WindowsSlice';
 import { createCatModel } from './model/createCatModel';
+import { useAppDispatch } from '@/app/store';
 import attentionSvg from '/img/attention.svg';
 import styles from './CreateCat.module.scss';
 
 export const CreateCat = () => {
-  const dispatch = useDispatch();
-  const { error, name, setName, createCat } = createCatModel(dispatch);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { error, name, setName, toCreateCat } = createCatModel(dispatch, navigate);
   return (
     <>
       <div className={styles.cat}>
@@ -28,7 +30,7 @@ export const CreateCat = () => {
         {name && (
           <button
             className={styles['cat__create-btn']}
-            onClick={() => createCat()}
+            onClick={() => toCreateCat()}
           >
             Создать кота
           </button>

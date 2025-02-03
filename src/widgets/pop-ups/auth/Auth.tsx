@@ -21,11 +21,17 @@ export const Auth = memo(() => {
     entance,
     openRegWindow,
     closeWindows,
+    popUpRef,
+    background,
+    fromRegister,
   } = authModel(dispatch, navigation);
 
   return (
     <>
-      <section className={styles.window}>
+      <section
+        ref={popUpRef}
+        className={`${styles.window} ${styles['window--animated']}`}
+      >
         <h2 className={styles.window__title}>Вход</h2>
         <div
           className={`${styles['window__status-loading']} ${loading ? styles['window__status-loading--active'] : ''}`}
@@ -78,8 +84,9 @@ export const Auth = memo(() => {
         </form>
       </section>
       <div
+        ref={background}
         onClick={() => closeWindows()}
-        className={styles.window__background}
+        className={`${styles.window__background} ${fromRegister ? '' : styles['window__background--animated']}`}
       ></div>
     </>
   );

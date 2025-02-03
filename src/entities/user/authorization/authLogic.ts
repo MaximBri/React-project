@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { catInterface } from '@/shared/types';
-import { setCatData } from '@/app/store/slices/CatSlice';
-import { setAuth, setExpires } from '@/app/store/slices/AuthSlice';
 import { setAuthWindow } from '@/app/store/slices/WindowsSlice';
 import { messages } from './model/messagesForUser';
 import { defaultCatData } from '@/entities/cat/model/defaultCatData';
 import { API_URL, CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
+import { setCatData } from '@/entities/cat/model/CatSlice';
+import { setAuth, setExpires } from './model/AuthSlice';
 
 interface AuthLogicReturnType {
   entance: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;

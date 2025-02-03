@@ -1,12 +1,12 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-import { setAllFields } from '@/app/store/slices/AuthSlice';
 import { API_URL, TOKEN } from '@/shared/globals/globalsData';
 import { defaultUserData } from '../model/defaultUserData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
+import { setAllFields } from '../authorization/model/AuthSlice';
 
 export const deleteUserData = async (dispatch: Dispatch<UnknownAction>) => {
   const token = Cookies.get(TOKEN);

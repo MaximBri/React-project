@@ -1,3 +1,10 @@
 .active {
   color: $text-accent;
 }
+.link {
+  color: $text-primary;
+  transition: color 0.3s;
+  &:hover {
+    color: $text-accent;
+  }
+}

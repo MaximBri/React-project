@@ -6,7 +6,7 @@ import { messages } from '@/entities/user/authorization/model/messagesForUser';
 import LoadGif from '/img/loader.gif';
 import crossSvg from '/img/attention.svg';
 import styles from './AuthorizationPage.module.scss';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 
 export const AuthorizationPage = () => {
   const navigate = useNavigate();

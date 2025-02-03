@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { routes } from './model/routes';
+import { routes } from '../../shared/config/routes';
 import MainLayout from '../layouts/MainLayout';
 import {
   AboutPage,

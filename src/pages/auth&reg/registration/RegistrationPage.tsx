@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { messages } from '@/entities/user/authorization/model/messagesForUser';
 import { registerModel } from '@/widgets/pop-ups/register/model/registerModel';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import LoadGif from '/img/loader.gif';
 import CrossSvg from '/img/attention.svg';
 import styles from '../authorization/AuthorizationPage.module.scss';

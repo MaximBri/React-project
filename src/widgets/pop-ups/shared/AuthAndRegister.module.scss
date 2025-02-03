@@ -1,3 +1,4 @@
+@import url('../../../app/styles/globals.scss');
 .window {
   position: fixed;
   z-index: 100;
@@ -5,6 +6,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +24,16 @@
     0 12px 10px -6px rgba(30, 33, 44, 0.08),
     0 26px 24px -10px rgba(30, 33, 44, 0.1),
     0 60px 80px -20px rgba(30, 33, 44, 0.16);
+
+  // animation: slow-create 0.2s ease-in-out;
+  &--animated {
+    animation: slow-create 0.2s ease-in-out;
+  }
+  &--hidden {
+    animation: slow-remove 0.2s ease-in-out;
+  }
   &__background {
-    position: absolute;
+    position: fixed;
     z-index: 50;
     top: 0;
     right: 0;
@@ -35,6 +45,13 @@
 
     opacity: 0.75;
     background-color: $grey-bg;
+
+    &--animated {
+      animation: slow-create-not-full 0.3s ease-in-out;
+    }
+    &--hidden {
+      animation: slow-remove-not-full 0.3s ease-in-out;
+    }
   }
   &__status {
     &-success,

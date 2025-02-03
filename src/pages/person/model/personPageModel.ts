@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getLoading } from '@/app/store/slices/AuthSlice';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
+import { getLoading } from '@/entities/user/authorization/model/AuthSlice';
 import { checkUserAuthorization } from '@/entities/user/data-management/shared/checkUserAuthorization';
 
 export const personPageModel = () => {

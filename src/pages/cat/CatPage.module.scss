@@ -145,13 +145,14 @@
 
       font-size: rem(18);
       font-weight: 500;
-      word-break: break-all;
+      overflow-wrap: break-word;
 
       opacity: 1;
 
       transition:
         opacity 0.3s,
         max-height 0.3s;
+
       &--hidden {
         overflow: hidden;
         max-height: 0;

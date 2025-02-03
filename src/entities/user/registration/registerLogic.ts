@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import { setAuth } from '@/app/store/slices/AuthSlice';
 import { setRegisterWindow } from '@/app/store/slices/WindowsSlice';
 import { API_URL, TOKEN } from '@/shared/globals/globalsData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
+import { setAuth } from '../authorization/model/AuthSlice';
 import { messages } from '../authorization/model/messagesForUser';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
 import {

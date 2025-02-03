@@ -2,18 +2,18 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
+import { setCatData, setCatExisting } from '@/entities/cat/model/CatSlice';
 import { API_URL, CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
-import { setCatData, setCatExisting } from '@/app/store/slices/CatSlice';
 import { convertData } from './convertData';
 import { apiRoutes } from '@/shared/globals/apiRoutes';
 import { setPies } from '@/entities/pies/setPies';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import {
   setAllFields,
   setAuth,
   setLoading,
   setQuestionnaire,
-} from '@/app/store/slices/AuthSlice';
+} from '../authorization/model/AuthSlice';
 
 const setUserDataByToken = async (
   token: string | undefined,
@@ -21,7 +21,6 @@ const setUserDataByToken = async (
   navigate: any
 ) => {
   if (token) {
-    // dispatch(setAuth(true));
     dispatch(setLoading(true));
     try {
       const response = await axios.get(API_URL + apiRoutes.get_questionnaire, {

@@ -1,15 +1,14 @@
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { routes } from '@/app/routes/model/routes';
-import { getAuth } from '@/app/store/slices/AuthSlice';
-import { getCatData } from '@/app/store/slices/CatSlice';
-import { apiRoutes } from '@/shared/globals/apiRoutes';
-import { API_URL, TOKEN } from '@/shared/globals/globalsData';
+import { routes } from '@/shared/config/routes';
+import { getAuth } from '@/entities/user/authorization/model/AuthSlice';
+import { getCatData } from '@/entities/cat/model/CatSlice';
+import { TOKEN } from '@/shared/globals/globalsData';
 import { messageWithCatInterface } from '@/shared/types';
+import { getNewPhraseFromCat } from '@/entities/cat/getNewPhraseFromCat';
 
 export const catPageModel = () => {
   const navigate = useNavigate();
@@ -43,19 +42,7 @@ export const catPageModel = () => {
     setTimeout(async () => {
       const token = Cookies.get(TOKEN);
       if (token) {
-        try {
-          const responce = await axios.get(API_URL + apiRoutes.cat_speech, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          pushMessage({ content: responce.data.data, author: 'bot' });
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
+        getNewPhraseFromCat(pushMessage, setLoading, token);
       }
     }, 1000);
   }, []);

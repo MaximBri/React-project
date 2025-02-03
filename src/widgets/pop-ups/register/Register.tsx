@@ -12,9 +12,14 @@ export const Register = () => {
   const data = registerModel(dispatch, navigate);
   return (
     <>
-      <section className={styles.window}>
+      <section
+        ref={data.popUpRef}
+        className={`${styles.window} ${styles['window--animated']}`}
+      >
         <h2 className={styles.window__title}>Регистрация</h2>
-        <div className={`${styles['window__status-loading']} ${data.loading ? styles['window__status-loading--active'] : ''}`}>
+        <div
+          className={`${styles['window__status-loading']} ${data.loading ? styles['window__status-loading--active'] : ''}`}
+        >
           <h2 className={styles['window__status-text']}>{messages[1]}</h2>
         </div>
         {data.regMess && (
@@ -99,8 +104,9 @@ export const Register = () => {
         </div>
       </section>
       <div
+        ref={data.background}
         onClick={() => data.closeWindows()}
-        className={styles.window__background}
+        className={`${styles.window__background} ${data.fromRegister ? '' : styles['window__background--animated']}`}
       ></div>
     </>
   );

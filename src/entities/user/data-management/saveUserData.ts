@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie';
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
-import { setAllFields, setQuestionnaire } from '@/app/store/slices/AuthSlice';
 import { UserDataInterface } from '@/shared/types';
 import { putQuestionnaire } from './questionnaire/putQuestionnaire';
 import { postQuestionnaire } from './questionnaire/postQuestionnaire';
 import { TOKEN } from '@/shared/globals/globalsData';
-import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
+import { setAllFields, setQuestionnaire } from '../authorization/model/AuthSlice';
 
 export const saveUserData = (
   questionnaire: boolean,

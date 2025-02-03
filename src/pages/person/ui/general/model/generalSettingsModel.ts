@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { routes } from '@/app/routes/model/routes';
-import { setCatData } from '@/app/store/slices/CatSlice';
+import { routes } from '@/shared/config/routes';
 import { convertData } from '@/entities/user/data-management/convertData';
 import { deleteUserData } from '@/entities/user/data-management/deleteUserData';
 import { defaultCatData } from '@/entities/cat/model/defaultCatData';
@@ -12,15 +11,16 @@ import { defaultUserData } from '@/entities/user/model/defaultUserData';
 import { addNotification } from '@/widgets/pop-ups/notifications/model/addNotification';
 import { CAT_TOKEN, TOKEN } from '@/shared/globals/globalsData';
 import { putQuestionnaire } from '@/entities/user/data-management/questionnaire/putQuestionnaire';
+import { postQuestionnaire } from '@/entities/user/data-management/questionnaire/postQuestionnaire';
+import { setAllPies } from '@/entities/pies/model/piesSlice';
+import { setCatData } from '@/entities/cat/model/CatSlice';
 import {
   getAllFields,
   getQuestionnaire,
   setAllFields,
   setAuth,
   setQuestionnaire,
-} from '@/app/store/slices/AuthSlice';
-import { postQuestionnaire } from '@/entities/user/data-management/questionnaire/postQuestionnaire';
-import { setAllPies } from '@/entities/pies/model/piesSlice';
+} from '@/entities/user/authorization/model/AuthSlice';
 
 export interface generalSettingsErrorInterface {
   name?: string;
@@ -37,7 +37,7 @@ export const generalSettingsModel = () => {
     dispatch(setAllFields(defaultUserData));
     dispatch(setQuestionnaire(false));
     dispatch(setCatData(defaultCatData));
-    dispatch(setAllPies([]))
+    dispatch(setAllPies([]));
     addNotification(dispatch, 'Вы вышли из аккаунта', 200);
     Cookies.set(TOKEN, '');
     Cookies.set(CAT_TOKEN, '');
@@ -128,6 +128,6 @@ export const generalSettingsModel = () => {
     error,
     saveData,
     deleteQuestionnaire,
-    questionnaire
+    questionnaire,
   };
 };

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import { useHeaderModel } from '../model/useHeaderModel';
 import { NavigationList } from '@/app/routes/ui/NavigationList';
 import { setCatWindow } from '@/app/store/slices/WindowsSlice';
@@ -17,8 +17,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const { auth, catExisting, userName, onAuthButtonClick } =
-  useHeaderModel();
+  const { auth, catExisting, userName, onAuthButtonClick } = useHeaderModel();
   return (
     <>
       <header className={styles.header}>

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '..';
-import { userDeviceType } from '../../../shared/types';
+
+import { userDeviceType } from '@/shared/types';
+import { RootState } from '@/app/store';
 
 const initialState: {
   device: userDeviceType;

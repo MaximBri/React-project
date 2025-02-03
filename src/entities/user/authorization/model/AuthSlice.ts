@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '..';
 
-import { UserDataInterface } from '../../../shared/types';
 import { defaultUserData } from '@/entities/user/model/defaultUserData';
+import { UserDataInterface } from '@/shared/types';
+import { RootState } from '@/app/store';
 
 const initialState: {
   expiresIn: Date | null;

@@ -2,13 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 
-import { getAuth } from '@/app/store/slices/AuthSlice';
-import { getUserDevice, setDevice } from '@/app/store/slices/UserDeviceSlice';
-import { getExisting } from '@/app/store/slices/CatSlice';
 import { setUserDevice } from '@/features/user/lib/setUserDevice';
-import { routes } from '@/app/routes/model/routes';
+import { routes } from '@/shared/config/routes';
 import { setAuthWindow } from '@/app/store/slices/WindowsSlice';
 import { PREV_PAGE } from '@/shared/globals/globalsData';
+import { getAuth } from '@/entities/user/authorization/model/AuthSlice';
+import { getExisting } from '@/entities/cat/model/CatSlice';
+import {
+  getUserDevice,
+  setDevice,
+} from '@/entities/user/data-management/shared/UserDeviceSlice';
 
 export const useHeaderModel = () => {
   const dispatch = useDispatch();

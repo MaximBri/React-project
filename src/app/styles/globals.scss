@@ -2,16 +2,18 @@
 @use './mixins' as *;
 @use './variables' as *;
 
-html{
+html {
   font-size: rem($font-size-base);
 }
 
 body {
   user-select: none;
-  line-height: 1.1;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+
+  overflow-x: hidden;
+
   font-weight: 700;
+  line-height: 1.1;
 }
 
 body,
@@ -22,8 +24,8 @@ html,
 
 .App,
 #root {
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 .container {
@@ -43,18 +45,22 @@ html,
 .button {
   padding: rem(10) rem(20);
   border-radius: 5px;
-  background-color: #3903ff;
-  color: #fff;
+
   font-size: rem(16);
+  color: #fff;
+
+  background-color: #3903ff;
 }
 
 .button2 {
   margin: rem(30) 0;
-  background-color: $delete;
   padding: rem(20) rem(40);
+  border-radius: 10px;
+
   font-size: rem(24);
   color: $text-heading;
-  border-radius: 10px;
+
+  background-color: $delete;
 }
 
 @keyframes rotate {
@@ -63,6 +69,42 @@ html,
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slow-create-not-full {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes slow-remove-not-full {
+  0% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slow-create {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slow-remove {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

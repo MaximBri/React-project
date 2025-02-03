@@ -9,7 +9,7 @@ import {
   getAllFields,
   getQuestionnaire,
   setQuestionnaire,
-} from '@/app/store/slices/AuthSlice';
+} from '@/entities/user/authorization/model/AuthSlice';
 
 export const aboutSettingsModel = ({
   dispatch,
@@ -37,7 +37,7 @@ export const aboutSettingsModel = ({
     saveUserData(questionnaire ?? false, data, dispatch);
     setNeedSave(false);
   };
-  
+
   const clearUserData = async () => {
     deleteUserData(dispatch);
     dispatch(setQuestionnaire(false));

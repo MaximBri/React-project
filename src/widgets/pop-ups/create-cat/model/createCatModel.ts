@@ -1,46 +1,33 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 import { useState } from 'react';
-import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
-import { addNotification } from '../../notifications/model/addNotification';
-import { API_URL, TOKEN } from '@/shared/globals/globalsData';
-import { setCatWindow } from '@/app/store/slices/WindowsSlice';
-import { apiRoutes } from '@/shared/globals/apiRoutes';
+import { createCatThunk } from '@/entities/cat/model/catThunks';
 import { CatLogic } from '@/entities/cat/catLogic';
-import { routes } from '@/app/routes/model/routes';
+import { setCatWindow } from '@/app/store/slices/WindowsSlice';
+import { addNotification } from '../../notifications/model/addNotification';
+import { routes } from '@/shared/config/routes';
+import { AppDispatch } from '@/app/store';
 
-export const createCatModel = (dispatch: Dispatch<UnknownAction>) => {
-  const navigate = useNavigate();
+export const createCatModel = (
+  dispatch: AppDispatch,
+  navigate: NavigateFunction
+) => {
   const [name, setName] = useState('');
   const [error, setError] = useState<string>('');
-  const createCat = async () => {
+  const toCreateCat = async () => {
     try {
-      const response = await axios.post(
-        `${API_URL}${apiRoutes.cat_create}`,
-        name,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${Cookies.get(TOKEN)}`,
-          },
-        }
-      );
-      const catInfo = response.data.data;
-      CatLogic(catInfo, dispatch);
-      dispatch(setCatWindow(false));
-      addNotification(
-        dispatch,
-        response.data.messageForUser,
-        response.data.statusCode
-      );
-
-      navigate(routes.main.cat.path);
+      const result = await dispatch(createCatThunk(name));
+      if (createCatThunk.fulfilled.match(result)) {
+        const response = result.payload;
+        CatLogic(response.data, dispatch);
+        dispatch(setCatWindow(false));
+        addNotification(dispatch, response.messageForUser, response.statusCode);
+        navigate(routes.main.cat.path);
+      }
     } catch (error) {
-      console.log(error);
       setError('Произошла ошибка при создании кота');
     }
   };
-  return { name, setName, error, setError, createCat };
+
+  return { name, setName, error, setError, toCreateCat };
 };
