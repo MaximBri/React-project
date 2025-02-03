@@ -166,6 +166,17 @@
     &__transfer-button {
       padding: 0.5em 1.5em;
       font-size: rem(15);
+      color: $text-heading;
+      background-color: $button;
+      &::before,
+      &::after {
+        display: none;
+      }
+      &:hover::before,
+      &:hover::after {
+        width: 0;
+        height: 0;
+      }
     }
   }
 }
