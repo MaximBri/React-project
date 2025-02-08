@@ -3,7 +3,7 @@
   "api_version": 3,
   "layout": {
       "logo": "/yandex-icon.png",
-      "color": "#FFF",
+      "color": "#F3F3F3",
       "show_title": false
   }
 }
