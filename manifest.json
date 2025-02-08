@@ -1,6 +1,11 @@
 {
   "name": "Cats and Pies",
   "short_name": "Cats and Pies",
+  "layout": {
+    "logo": "/yandex-icon.png",
+    "color": "#0035FF",
+    "show_title": "none"
+  },
   "icons": [
     {
       "src": "/logo192.png",
@@ -16,10 +21,5 @@
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "start_url": "/",
-  "layout": {
-    "logo": "/yandex-icon.png",
-    "color": "#0035FF",
-    "show_title": "none"
-  }
+  "start_url": "/"
 }
