@@ -1,19 +1,14 @@
 {
   "name": "Cats and Pies",
   "short_name": "Cats and Pies",
-  "layout": {
-    "logo": "%PUBLIC_URL%/yandex-icon.png",
-    "color": "#0035FF",
-    "show_title": "none"
-  },
   "icons": [
     {
-      "src": "%PUBLIC_URL%/logo192.png",
+      "src": "/logo192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "%PUBLIC_URL%/logo512.png",
+      "src": "/logo512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
