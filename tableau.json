@@ -2,8 +2,8 @@
   "version": "1.2",
   "api_version": 3,
   "layout": {
-      "logo": "/yandex-icon.png",
-      "color": "#0035FF",
+      "logo": "https://maximbri.github.io/React-project/yandex-icon.png",
+      "color": "#FF7504",
       "show_title": "none"
   }
 }
