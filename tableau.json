@@ -4,6 +4,6 @@
   "layout": {
       "logo": "https://maximbri.github.io/React-project/yandex-icon.png",
       "color": "#FF7504",
-      "show_title": "none"
+      "show_title": false
   }
 }
